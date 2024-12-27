@@ -25,11 +25,11 @@ namespace HelloWorld
 
         public void OnStateChanged(Vector3 previous, Vector3 current)
         {
-            Debug.Log("OnStateChanged 했어 ");
+           // Debug.Log("OnStateChanged 했어 ");
             // note: `Position.Value` will be equal to `current` here
             if (Position.Value != previous)
             {
-                Debug.Log(" OnStateC 조건문했어 ");
+               // Debug.Log(" OnStateC 조건문했어 ");
                 transform.position = Position.Value;
             }
         }
