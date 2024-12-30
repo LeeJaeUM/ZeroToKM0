@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene/03_NetworkVariiableScene.unity
     guid: b43fad49fa54e8f4693ea57d3277c8ff
+  - enabled: 1
+    path: Assets/Scenes/TestScene/04_SessionViewScene.unity
+    guid: e04c9d8c49db05b4bace3c4d72e3ed2e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

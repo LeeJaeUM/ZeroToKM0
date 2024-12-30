@@ -1,34 +1,34 @@
+using System;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
 
 public class TestNetworkVariable : NetworkBehaviour
 {
-    [SerializeField]
-    NetworkVariable<bool> olVar;
+    [SerializeField] NetworkVariable<bool> olVar;
+    [SerializeField] NetworkVariable<bool> IsDie = new NetworkVariable<bool>(false);
     [SerializeField] NetworkVariable<Vector3> Position = new NetworkVariable<Vector3>();
 
     public BoxCollider boxCollider;
     public float speed = 10;
+
+    public Vector3 TestVect = Vector3.zero;
 
     Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider>(); 
-        
+        boxCollider = GetComponent<BoxCollider>();
+
+        //자신이 아닌 다른 클라이언트의 행동을 동기화하기 위한 연결
         if (!IsOwner)
         {
             Position.OnValueChanged += OnPositionChanged; // 값이 변경될 때마다 호출
+            IsDie.OnValueChanged += OnDieAnimation;
         }
-    }    
-    // Position이 변경되었을 때 클라이언트에서 처리하는 함수
-    private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
-    {
-        // 서버나 다른 클라이언트에서 Position이 변경되었을 때 호출
-        transform.position = newPosition;
     }
+
 
     private void Update()
     {
@@ -39,7 +39,41 @@ public class TestNetworkVariable : NetworkBehaviour
             TestAnimationServerRpc();
         }
         //Move();
+    }
+
+    private void FixedUpdate()
+    {
+        if(!IsOwner) return;
         ActionMove();
+    }
+    private void OnDieAnimation(bool previousValue, bool newValue)
+    {
+        if (newValue)
+        {
+            animator.SetTrigger("DieTr");
+        }
+    }
+
+    // Position이 변경되었을 때 클라이언트에서 처리하는 함수
+    private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
+    {
+        // 서버나 다른 클라이언트에서 Position이 변경되었을 때 호출
+        transform.position = newPosition;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (IsOwner)
+            {
+                SubmitDieRequestServerRpc(new ServerRpcParams());
+            }
+            else if (!IsOwner)
+            {
+                Debug.Log("자신의 오브젝트가 아님!");
+            }
+        }
     }
 
     [ServerRpc]
@@ -47,16 +81,6 @@ public class TestNetworkVariable : NetworkBehaviour
     {
         olVar.Value = !olVar.Value;
         animator.SetTrigger("Test");
-    }    
-    
-
-
-    // 위치를 서버로 전송하고 서버에서 Position을 업데이트
-    [ServerRpc]
-    void SubmitPositionRequestServerRpc(Vector3 movedPosition)
-    {
-        Debug.Log("ServerRpc 호출");
-        Position.Value += movedPosition; // 서버에서 Position.Value를 갱신
     }
 
 
@@ -68,11 +92,31 @@ public class TestNetworkVariable : NetworkBehaviour
         if (moveHorizontal != 0)
         {
             // 이동
-            Vector3 movement = new Vector3(moveHorizontal, 0f, 0f) * speed * Time.deltaTime;
+            Vector3 movement = new Vector3(moveHorizontal, 0f, 0f) * speed * Time.fixedDeltaTime;
             transform.position += movement;
-            SubmitPositionRequestServerRpc(movement); // 서버에 위치 업데이트 요청
+            TestVect = movement;
+            SubmitPositionRequestServerRpc(transform.position, new ServerRpcParams()); // 서버에 위치 업데이트 요청
         }
     }
+
+    // 위치를 서버로 전송하고 서버에서 Position을 업데이트
+    [ServerRpc]
+    void SubmitPositionRequestServerRpc(Vector3 movedPosition, ServerRpcParams serverRpcParams)
+    {
+        //Debug.Log("OwnerClientId : " + OwnerClientId + "; SenderClientID : " + serverRpcParams.Receive.SenderClientId);
+        Position.Value = movedPosition; // 서버에서 Position.Value를 갱신
+    }
+
+
+    [ServerRpc]
+    void SubmitDieRequestServerRpc(ServerRpcParams serverRpcParams)
+    {
+        IsDie.Value = true;
+        animator.SetTrigger("DieTr");
+    }
+
+
+
 
     //void Move()
     //{
