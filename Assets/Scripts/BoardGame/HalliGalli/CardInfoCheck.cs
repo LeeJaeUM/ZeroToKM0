@@ -13,7 +13,7 @@ public class CardInfoCheck : MonoBehaviour
     {
 
         if (GameManager.Instance.m_halligalli.m_topCard[index] != null)
-            myText.text = string.Format("{0:F0} {1:F0}", GameManager.Instance.m_halligalli.m_topCard[index].m_fruitType.ToString(), GameManager.Instance.m_halligalli.m_topCard[index].m_fruitNum);
+            myText.text = string.Format("{0:F0} {1:F0}", GameManager.Instance.m_halligalli.m_topCard[index].m_AnimalType.ToString(), GameManager.Instance.m_halligalli.m_topCard[index].m_fruitNum);
         else
             myText.text = " ";
     }

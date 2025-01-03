@@ -5,20 +5,22 @@ using UnityEngine;
 
 public class HalliGalli : MonoBehaviour
 {
-    public HalliGalliCard[] m_card;                   // ÀüÃ¼ Ä«µå
-    public Queue<HalliGalliCard>[] m_playerCard;      // ÇÃ·¹ÀÌ¾î °¢°¢ÀÇ Ä«µå
-    public HalliGalliCard[] m_topCard;                // °¢ ÇÃ·¹ÀÌ¾îÀÇ ¸Ç À§ Ä«µå
-    public List<HalliGalliCard> m_openedCard;         // ¿ÀÇÂµÈ Ä«µå
+    public Sprite[] m_fruitSprite;                      // ê³¼ì¼ ì´ë¯¸ì§€
+    public HalliGalliCard[] m_card;                   // ì „ì²´ ì¹´ë“œ
+    [SerializeField]
+    public Queue<HalliGalliCard>[] m_playerCard;      // í”Œë ˆì´ì–´ ê°ê°ì˜ ì¹´ë“œ
+    public HalliGalliCard[] m_topCard;                // ê° í”Œë ˆì´ì–´ì˜ ë§¨ ìœ„ ì¹´ë“œ
+    public List<HalliGalliCard> m_openedCard;         // ì˜¤í”ˆëœ ì¹´ë“œ
 
-    public int[] m_playerCardCount;         // °¢ ÇÃ·¹ÀÌ¾îÀÇ Ä«µå °³¼ö
-    public float m_cardHeight;              // Ä«µåÀÇ ³ôÀÌ
-    public CardPos[] m_cardPos;           // °¢ ÇÃ·¹ÀÌ¾îÀÇ Ä«µå À§Ä¡
+    public int[] m_playerCardCount;         // ê° í”Œë ˆì´ì–´ì˜ ì¹´ë“œ ê°œìˆ˜
+    public float m_cardHeight;              // ì¹´ë“œì˜ ë†’ì´
+    public CardPos[] m_cardPos;           // ê° í”Œë ˆì´ì–´ì˜ ì¹´ë“œ ìœ„ì¹˜
 
-    public int[] m_fruitCount = { 3, 3, 3, 3, 2 };              // °úÀÏ °³¼öº° Ä«µå °³¼ö, ex) °úÀÏÀÌ 1°³ ±×·ÁÁø Ä«µå´Â ÃÑ m_fruitCount[0] = 3°³
+    public int[] m_fruitCount = { 3, 3, 3, 3, 2 };              // ê³¼ì¼ ê°œìˆ˜ë³„ ì¹´ë“œ ê°œìˆ˜, ex) ê³¼ì¼ì´ 1ê°œ ê·¸ë ¤ì§„ ì¹´ë“œëŠ” ì´ m_fruitCount[0] = 3ê°œ
 
     public int m_roundCount = 1;
 
-    public void GameSetting()                                                       // °ÔÀÓ ½ÃÀÛ Àü ½ÇÇà
+    public void GameSetting()                                                       // ê²Œì„ ì‹œì‘ ì „ ì‹¤í–‰
     {
         print("GameStart");
 
@@ -28,7 +30,7 @@ public class HalliGalli : MonoBehaviour
         Collectcard();
         GameManager.Instance.Shuffle(m_card);
         m_playerCard = new Queue<HalliGalliCard>[GameManager.Instance.PlayerCount];
-        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)                  // m_playerCard ÃÊ±âÈ­
+        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)                  // m_playerCard ì´ˆê¸°í™”
         {
             m_playerCard[i] = new Queue<HalliGalliCard>();
         }
@@ -37,32 +39,33 @@ public class HalliGalli : MonoBehaviour
         DistributeCard();
         Dealcard();
     }
-    public void CreateCard()                                                        // Ä«µå ÃÊ±âÈ­ ÇØÁÖ±â( type, ¼ıÀÚ )
+    public void CreateCard()                                                        // ì¹´ë“œ ì´ˆê¸°í™” í•´ì£¼ê¸°( type, ìˆ«ì )
     {
         int i = 0;
-        foreach (HalliGalliCard.FruitType fruit in Enum.GetValues(typeof(HalliGalliCard.FruitType)))
+        foreach (HalliGalliCard.AnimalType fruit in Enum.GetValues(typeof(HalliGalliCard.AnimalType)))
         {
             for (int k = 0; k < m_fruitCount.Length; k++)
             {
                 for (int j = 0; j < m_fruitCount[k]; j++)
                 {
                     m_card[i++].Initialize(fruit, k + 1);
+                    //TODO : ì¹´ë“œì— ë§ê²Œ ìŠ¤í”„ë¼ì´íŠ¸ ë„£ê¸° ì¶”ê°€
                 }
             }
         }
     }
-    public void DistributeCard()                             // Ä«µå ¹èºĞ, À§Ä¡¸¦ ÁöÁ¤
+    public void DistributeCard()                             // ì¹´ë“œ ë°°ë¶„, ìœ„ì¹˜ë¥¼ ì§€ì •
     {
-        int k = 0;      // Ä«µå ¹øÈ£ Ã¼Å© ¿ë
-        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)              // i : ÇÃ·¹ÀÌ¾î ¹øÈ£
+        int k = 0;      // ì¹´ë“œ ë²ˆí˜¸ ì²´í¬ ìš©
+        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)              // i : í”Œë ˆì´ì–´ ë²ˆí˜¸
         {
-            for (int j = 0; j < m_playerCardCount[i]; j++)   // j : ÇÃ·¹ÀÌ¾î°¡ °¡Áø Ä«µå ³»¿¡¼­ÀÇ Ä«µå ¹øÈ£
+            for (int j = 0; j < m_playerCardCount[i]; j++)   // j : í”Œë ˆì´ì–´ê°€ ê°€ì§„ ì¹´ë“œ ë‚´ì—ì„œì˜ ì¹´ë“œ ë²ˆí˜¸
             {
                 m_playerCard[i].Enqueue(m_card[k++]);
             }
         }
     }
-    public void Dealcard()                                   // Ä«µå µô¸µ, À§Ä¡¸¦ ¿Å±è
+    public void Dealcard()                                   // ì¹´ë“œ ë”œë§, ìœ„ì¹˜ë¥¼ ì˜®ê¹€
     {
         for (int i = 0; i < m_playerCard.Length; i++)
         {
@@ -77,7 +80,7 @@ public class HalliGalli : MonoBehaviour
             m_cardPos[i].m_cardCount = 0;
         }
     }
-    public void SetPos(int playerNum, GameObject gameobj)       // Ä«µå¸¦ ¹èÄ¡ÇØÁÖ´Â ÇÔ¼ö(´©±¸ÀÇ Ä«µå¸¦, ¸î¹øÂ°¿¡ ³õÀ»Áö, ¾î¶² Ä«µåÀÎÁö)
+    public void SetPos(int playerNum, GameObject gameobj)       // ì¹´ë“œë¥¼ ë°°ì¹˜í•´ì£¼ëŠ” í•¨ìˆ˜(ëˆ„êµ¬ì˜ ì¹´ë“œë¥¼, ëª‡ë²ˆì§¸ì— ë†“ì„ì§€, ì–´ë–¤ ì¹´ë“œì¸ì§€)
     {
         Vector3 cardPos = m_cardPos[playerNum].transform.position;
         cardPos.y += m_cardHeight * m_cardPos[playerNum].m_cardCount++;
@@ -87,7 +90,7 @@ public class HalliGalli : MonoBehaviour
         gameobj.transform.Rotate(Vector3.right * 90);
 
     }
-    public void Collectcard()                          // ¸ğµç Ä«µå µô·¯°¡ °¡Á®¿À±â
+    public void Collectcard()                          // ëª¨ë“  ì¹´ë“œ ë”œëŸ¬ê°€ ê°€ì ¸ì˜¤ê¸°
     {
         for (int i = 0; i < m_card.Length; i++)
         {
@@ -97,17 +100,17 @@ public class HalliGalli : MonoBehaviour
 
     public void OpenCard(int playerNum)     
     {
-        playerNum = GameManager.Instance.GetCurrentPlayer();    // ÀÏ´ÜÀº ÇöÀç ÇÃ·¹ÀÌ¾îÀÇ Ä«µå¸¦ openÇÏ´Â ¹æ½ÄÀ¸·Î,
-                                                                // todo : ¸ÖÆ¼ÇÃ·¹ÀÌ ±¸ÇöµÇ¸é Áö¿ï°Í
+        playerNum = GameManager.Instance.GetCurrentPlayer();    // ì¼ë‹¨ì€ í˜„ì¬ í”Œë ˆì´ì–´ì˜ ì¹´ë“œë¥¼ opení•˜ëŠ” ë°©ì‹ìœ¼ë¡œ,
+                                                                // todo : ë©€í‹°í”Œë ˆì´ êµ¬í˜„ë˜ë©´ ì§€ìš¸ê²ƒ
         HalliGalliCard card;
         if (m_playerCard[playerNum].Count > 0)
         {
-            card = m_playerCard[playerNum].Dequeue();           // ÀÔ·Â ¹ŞÀº ÇÃ·¹ÀÌ¾îÀÇ Ä«µåµ¦¿¡¼­ °¡Àå À§ÀÇ Ä«µå¸¦ °¡Á®¿È
-            m_topCard[playerNum] = card;                        // ±× Ä«µå¸¦ m_topCard¿¡ Ãß°¡
-            m_openedCard.Add(card);                             // m_openedCard¿¡ Ãß°¡
+            card = m_playerCard[playerNum].Dequeue();           // ì…ë ¥ ë°›ì€ í”Œë ˆì´ì–´ì˜ ì¹´ë“œë±ì—ì„œ ê°€ì¥ ìœ„ì˜ ì¹´ë“œë¥¼ ê°€ì ¸ì˜´
+            m_topCard[playerNum] = card;                        // ê·¸ ì¹´ë“œë¥¼ m_topCardì— ì¶”ê°€
+            m_openedCard.Add(card);                             // m_openedCardì— ì¶”ê°€
 
             SetPos(playerNum + 4, card.gameObject);
-            card.OpenCard();                                    // card¸¦ µÚÁı´Â ÇÔ¼ö( ÀÛµ¿ ¾ÈµÊ )
+            card.OpenCard();                                    // cardë¥¼ ë’¤ì§‘ëŠ” í•¨ìˆ˜( ì‘ë™ ì•ˆë¨ )
 
             GameManager.Instance.NextTurn(playerNum);
             return;
@@ -119,7 +122,7 @@ public class HalliGalli : MonoBehaviour
         }
         print("All Card Used");
     }
-    public void RingBell(int playernum)                         // player°¡ space¹Ù¸¦ ´­·¶À» ¶§ È£Ãâ
+    public void RingBell(int playernum)                         // playerê°€ spaceë°”ë¥¼ ëˆŒë €ì„ ë•Œ í˜¸ì¶œ
     {
         if (isCorrect())
         {
@@ -133,28 +136,28 @@ public class HalliGalli : MonoBehaviour
             print("That's not five");
         }
     }
-    public bool isCorrect()                                 // ¸Ç À§ Ä«µåµéÀÇ ½Éº¼ÀÇ ÇÕÀ» °è»êÇÏ¿© true, false¸¦ ¹İÈ¯
+    public bool isCorrect()                                 // ë§¨ ìœ„ ì¹´ë“œë“¤ì˜ ì‹¬ë³¼ì˜ í•©ì„ ê³„ì‚°í•˜ì—¬ true, falseë¥¼ ë°˜í™˜
     {
-        int[] sum = new int[4];                             // ½Éº¼ º° ÇÕÀ» ´ã¾ÆÁÙ ¹è¿­
+        int[] sum = new int[4];                             // ì‹¬ë³¼ ë³„ í•©ì„ ë‹´ì•„ì¤„ ë°°ì—´
 
         if (m_topCard == null)
         {
             return false;
         }
-        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)              // °¢ ½Éº¼ º° ÇÕÀ» °è»ê
+        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)              // ê° ì‹¬ë³¼ ë³„ í•©ì„ ê³„ì‚°
         {
             if (m_topCard[i] != null)
-                sum[(int)m_topCard[i].m_fruitType] += m_topCard[i].m_fruitNum;
+                sum[(int)m_topCard[i].m_AnimalType] += m_topCard[i].m_fruitNum;
         }
 
-        for (int i = 0; i < sum.Length; i++)                 // ÇÕÀÌ 5°¡ µÇ´Â ½Éº¼ÀÌ ÀÖ´ÂÁö È®ÀÎ
+        for (int i = 0; i < sum.Length; i++)                 // í•©ì´ 5ê°€ ë˜ëŠ” ì‹¬ë³¼ì´ ìˆëŠ”ì§€ í™•ì¸
         {
             if (sum[i] == 5)
                 return true;
         }
         return false;
     }
-    public void GiveCard(int playerNum)                     // ½ÂÀÚ¿¡°Ô openµÈ Ä«µå¸¦ ÀüºÎ ÁÜ.
+    public void GiveCard(int playerNum)                     // ìŠ¹ìì—ê²Œ openëœ ì¹´ë“œë¥¼ ì „ë¶€ ì¤Œ.
     {
         for (int i = 0; i < m_openedCard.Count; i++)
         {
@@ -166,28 +169,28 @@ public class HalliGalli : MonoBehaviour
         m_topCard = null;
         m_topCard = new HalliGalliCard[GameManager.Instance.PlayerCount];
     }
-    public void RoundFinish()                               // Å»¶ôÀÚ¸¦ Á¦°ÅÇÏ°í, »õ ¶ó¿îµå¸¦ ½ÃÀÛÇÏ´Â ÇÔ¼ö.
-                                                            // Á¾À» ÃÄ¼­ Á¤´äÀÏ °æ¿ì È£ÃâµÊ.
+    public void RoundFinish()                               // íƒˆë½ìë¥¼ ì œê±°í•˜ê³ , ìƒˆ ë¼ìš´ë“œë¥¼ ì‹œì‘í•˜ëŠ” í•¨ìˆ˜.
+                                                            // ì¢…ì„ ì³ì„œ ì •ë‹µì¼ ê²½ìš° í˜¸ì¶œë¨.
     {
-        for (int i = 0; i < m_playerCard.Length; i++)  // Ä«µå°¡ 0°³ÀÎ ÇÃ·¹ÀÌ¾î Å»¶ô
+        for (int i = 0; i < m_playerCard.Length; i++)  // ì¹´ë“œê°€ 0ê°œì¸ í”Œë ˆì´ì–´ íƒˆë½
         {
             if (m_playerCard[i].Count == 0)
             {
                 GameManager.Instance.RemovePlayer(i);
             }
         }
-        if (GameManager.Instance.PlayerCount == 1)          // È¥ÀÚ ³²¾ÒÀ» °æ¿ì ÃÖÁ¾ ½Â¸®.
+        if (GameManager.Instance.PlayerCount == 1)          // í˜¼ì ë‚¨ì•˜ì„ ê²½ìš° ìµœì¢… ìŠ¹ë¦¬.
         {
             GameOver();
         }
-        else                                                // ÇÃ·¹ÀÌ¾î°¡ 2¸í ÀÌ»óÀÏ °æ¿ì, ´Ù½Ã ÁøÇà
+        else                                                // í”Œë ˆì´ì–´ê°€ 2ëª… ì´ìƒì¼ ê²½ìš°, ë‹¤ì‹œ ì§„í–‰
         {
             print(GameManager.Instance.PlayerCount);
-            Array.Clear(m_topCard, 0, m_topCard.Length);    // topcardÃÊ±âÈ­
+            Array.Clear(m_topCard, 0, m_topCard.Length);    // topcardì´ˆê¸°í™”
             print("new round");
         }
     }
-    public void GameOver()                                  // °ÔÀÓ Á¾·á
+    public void GameOver()                                  // ê²Œì„ ì¢…ë£Œ
     {
         GameManager.Instance.FinalWinMessage();
         print("game over");
