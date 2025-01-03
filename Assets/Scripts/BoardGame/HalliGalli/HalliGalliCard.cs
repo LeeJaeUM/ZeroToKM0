@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class HalliGalliCard : Card
 {
-    public enum FruitType
+    public enum AnimalType
     {
-        Strawberry,
-        Banana,
-        Plum,
-        Kiwi
+        Corc,
+        Lion,
+        Fox,
+        Panda
     }
-    public FruitType m_fruitType;       // °úÀÏ Á¾·ù
-    public int m_fruitNum;              // °úÀÏ °³¼ö
+    public AnimalType m_AnimalType;       // ê³¼ì¼ ì¢…ë¥˜
+    public int m_fruitNum;              // ê³¼ì¼ ê°œìˆ˜
 
-    public void Initialize(FruitType type, int num)
+    public void Initialize(AnimalType type, int num)
     {
-        m_fruitType = type;
+        m_AnimalType = type;
         m_fruitNum = num;
     }
 }
