@@ -9,3 +9,9 @@ Multi용 추가패키지
 05. Multiplayer Widgets
 
 Voice/Text chat (아직 설치안함)
+
+Board Game 리소스
+06. PBR Little Games Pack - 4K
+
+UI 리소스
+07. Modern UI Pack v5.5.25
