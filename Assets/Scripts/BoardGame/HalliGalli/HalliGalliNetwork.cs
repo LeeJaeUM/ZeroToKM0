@@ -115,7 +115,7 @@ public class HalliGalliNetwork : NetworkBehaviour
             m_openedCard.Add(card);                             // m_openedCard에 추가
 
             SetPos(playerNum + 4, card.gameObject);
-            card.OpenCard();                                    // card를 뒤집는 함수( 작동 안됨 )
+            card.FlipCard();                                    // card를 뒤집는 함수( 작동 안됨 )
 
             OnTopCardChanged?.Invoke();
             GameManager.Instance.NextTurn(playerNum);
@@ -228,11 +228,6 @@ public class HalliGalliNetwork : NetworkBehaviour
     [ClientRpc]
     public void SyncShuffledIndexesToClientRpc(int[] shuffledIndexes)
     {
-        Debug.Log($"{shuffledIndexes.Length}");
-        for (int i = 0; i < shuffledIndexes.Length; i++)
-        {
-            Debug.Log($"{shuffledIndexes[i]}");
-        }
         // 클라이언트에서 받은 섞인 인덱스를 기반으로 카드를 섞는다.
         ShuffleCards(shuffledIndexes);
     }
@@ -245,7 +240,8 @@ public class HalliGalliNetwork : NetworkBehaviour
         m_cardHeight = 0.01f;
         CreateCard();
 
-        GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
+        //GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
+        GameManager.Instance.Calculatecard(m_card.Length, 4, m_playerCardCount);
     }
 
 }

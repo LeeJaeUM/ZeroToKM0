@@ -109,7 +109,7 @@ public class HalliGalli : MonoBehaviour
             m_openedCard.Add(card);                             // m_openedCard에 추가
 
             SetPos(playerNum + 4, card.gameObject);
-            card.OpenCard();                                    // card를 뒤집는 함수( 작동 안됨 )
+            card.FlipCard();                                    // card를 뒤집는 함수( 작동 안됨 )
 
             GameManager.Instance.NextTurn(playerNum);
             return;

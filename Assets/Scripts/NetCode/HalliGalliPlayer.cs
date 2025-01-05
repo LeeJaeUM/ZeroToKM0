@@ -4,7 +4,7 @@ using Unity.Netcode;
 public class HalliGalliPlayer : NetworkBehaviour
 {
     public NetworkVariable<int> m_playerNum = new NetworkVariable<int>(0); // 기본값 0
-    private static int nextPlayerNum = 1; // 서버에서 고유 번호를 관리
+    private static int nextPlayerNum = 0; // 서버에서 고유 번호를 관리
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
