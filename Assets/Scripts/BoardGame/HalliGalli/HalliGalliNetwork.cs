@@ -21,7 +21,7 @@ public class HalliGalliNetwork : NetworkBehaviour
     public int m_roundCount = 1;
 
     // 길이 변경 이벤트
-    public event Action OnTopCardChanged;
+    public event Action<string, int> OnTopCardChanged;
 
     public void GameSetting()                                                       // 게임 시작 전 실행
     {
@@ -117,7 +117,8 @@ public class HalliGalliNetwork : NetworkBehaviour
             SetPos(playerNum + 4, card.gameObject);
             card.FlipCard();                                    // card를 뒤집는 함수( 작동 안됨 )
 
-            OnTopCardChanged?.Invoke();
+            //CardInfoCheck에 액션으로 보낼 string값을 현재 Top 카드에서 찾아서 보냄
+            OnTopCardChanged?.Invoke(m_topCard[playerNum].m_AnimalType.ToString() + m_topCard[playerNum].m_fruitNum, playerNum); 
             GameManager.Instance.NextTurn(playerNum);
             return;
         }
@@ -194,6 +195,11 @@ public class HalliGalliNetwork : NetworkBehaviour
             print(GameManager.Instance.PlayerCount);
             Array.Clear(m_topCard, 0, m_topCard.Length);    // topcard초기화
             print("new round");
+
+            for(int i=0 ; i < GameManager.Instance.PlayerCount; i++)    // topcard초기화 후 CardInfoCheck에 초기화 된 string값을 액션으로 보냄 
+            {
+                OnTopCardChanged?.Invoke(" 라운드 초기화 ", i);
+            }
         }
     }
     public void GameOver()                                  // 게임 종료
@@ -245,29 +251,3 @@ public class HalliGalliNetwork : NetworkBehaviour
     }
 
 }
-
-/*
-     public void GameSetting()                                                       // 게임 시작 전 실행
-    {
-        print("GameStart");
-
-        //CreateCard();
-        m_playerCardCount = new int[GameManager.Instance.PlayerCount];
-        GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
-        Collectcard();
-
-        m_shuffledIndexes = GameManager.Instance.Shuffle(m_card);   //랜덤으로 섞인 카드의 인덱스를 받아옴
-        ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
-
-        m_playerCard = new Queue<HalliGalliCard>[GameManager.Instance.PlayerCount];
-        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)                  // m_playerCard 초기화
-        {
-            m_playerCard[i] = new Queue<HalliGalliCard>();
-        }
-        m_topCard = new HalliGalliCard[GameManager.Instance.PlayerCount];
-
-        DistributeCard();
-        Dealcard();
-    }
- 
- */
