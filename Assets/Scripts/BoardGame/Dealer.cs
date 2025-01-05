@@ -15,15 +15,40 @@ public class Dealer : NetworkBehaviour
             playerCardCount[i] = divide + (mod > i ? 1 : 0);
         }
     }
-    public void Shuffle(object[] obj)                           // Fisher-Yates 셔플 알고리즘
+    //public void Shuffle(object[] obj)                           // Fisher-Yates 셔플 알고리즘
+    //{
+    //    System.Random random = new System.Random();     // 난수 생성기
+
+
+    //    for (int i = obj.Length - 1; i > 0; i--)
+    //    {
+    //        int j = random.Next(i + 1);                 // 0 ~ i 범위에서 랜덤 인덱스
+    //        object temp = obj[i];                     // 현재 인덱스와 랜덤 인덱스를 스왑
+    //        obj[i] = obj[j];
+    //        obj[j] = temp;
+    //    }
+    //}
+    public int[] Shuffle(object[] obj)
     {
-        System.Random random = new System.Random();     // 난수 생성기
+        System.Random random = new System.Random();
+        int[] shuffledIndexes = new int[obj.Length];
+
+        // 인덱스를 랜덤하게 섞을 배열을 만든다.
+        for (int i = 0; i < obj.Length; i++)
+        {
+            shuffledIndexes[i] = i;
+        }
+
         for (int i = obj.Length - 1; i > 0; i--)
         {
-            int j = random.Next(i + 1);                 // 0 ~ i 범위에서 랜덤 인덱스
-            object temp = obj[i];                     // 현재 인덱스와 랜덤 인덱스를 스왑
-            obj[i] = obj[j];
-            obj[j] = temp;
+            int j = random.Next(i + 1); // 0 ~ i 범위에서 랜덤 인덱스
+                                        // 인덱스를 섞는다.
+            int temp = shuffledIndexes[i];
+            shuffledIndexes[i] = shuffledIndexes[j];
+            shuffledIndexes[j] = temp;
         }
+
+        return shuffledIndexes;
     }
+
 }

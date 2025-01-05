@@ -12,7 +12,7 @@ public class Player : NetworkBehaviour
     public KushiExpressIngredient[] m_ingredients = new KushiExpressIngredient[6];
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && m_isMyTurn && m_isGetInput)    // OpenCard 체크용
+        if (Input.GetMouseButtonDown(1) && m_isMyTurn && m_isGetInput)    // OpenCard 체크용
         {
             m_halligalli.OpenCard(m_playerNum);
         }

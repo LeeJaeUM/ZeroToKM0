@@ -46,9 +46,9 @@ public class GameManager : NetworkBehaviour
     {
         return m_playerManager.CurrentPlayer;
     }
-    public void Shuffle(object[] obj)
+    public int[] Shuffle(object[] obj)
     {
-        m_dealer.Shuffle(obj);
+        return m_dealer.Shuffle(obj);
     }
     public void Calculatecard(int cardCount, int playerCount, int[] playerCardCount)
     {
