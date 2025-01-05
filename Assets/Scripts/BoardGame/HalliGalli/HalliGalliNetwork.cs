@@ -19,6 +19,9 @@ public class HalliGalliNetwork : NetworkBehaviour
 
     public int m_roundCount = 1;
 
+    // 길이 변경 이벤트
+    public event Action OnTopCardChanged;
+
     public void GameSetting()                                                       // 게임 시작 전 실행
     {
         print("GameStart");
@@ -111,6 +114,7 @@ public class HalliGalliNetwork : NetworkBehaviour
             SetPos(playerNum + 4, card.gameObject);
             card.OpenCard();                                    // card를 뒤집는 함수( 작동 안됨 )
 
+            OnTopCardChanged?.Invoke();
             GameManager.Instance.NextTurn(playerNum);
             return;
         }
@@ -194,6 +198,38 @@ public class HalliGalliNetwork : NetworkBehaviour
         GameManager.Instance.FinalWinMessage();
         print("game over");
     }
+
+    #region Network Function
+    public void InitializeGame()
+    {
+        if (IsServer) // 서버에서만 실행
+        {
+            GameSetting();
+            SyncInitialDataServerRpc();
+        }
+    }
+    [ServerRpc]
+    private void SyncInitialDataServerRpc()
+    {
+        // 카드 상태 및 초기 데이터를 클라이언트로 동기화
+        DistributeInitialCardDataToClientRpc();
+    }
+
+    [ClientRpc]
+    private void DistributeInitialCardDataToClientRpc()
+    {
+        // 클라이언트에서 초기 상태를 적용
+        ApplyDistributedData();
+    }
+    private void ApplyDistributedData()
+    {
+        // 서버에서 받은 데이터를 로컬 상태에 적용
+        //UpdatePlayerCards();
+        //UpdateOpenedCards();
+        //UpdateCardPositions();
+    }
+    #endregion
+
     void Awake()
     {
 
@@ -203,6 +239,7 @@ public class HalliGalliNetwork : NetworkBehaviour
         m_card = GetComponentsInChildren<HalliGalliCard>();
         m_playerCardCount = new int[GameManager.Instance.PlayerCount];
         m_cardHeight = 0.01f;
+        //InitializeGame();
 
         GameSetting();
     }

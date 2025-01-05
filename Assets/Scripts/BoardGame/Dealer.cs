@@ -2,25 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Dealer : MonoBehaviour
+public class Dealer : NetworkBehaviour
 {
-    public void Calculatecard(int cardCount, int playerCount, int[] playerCardCount)                            // °¢ ÇÃ·¹ÀÌ¾î°¡ °¡Áú Ä«µåÀÇ ¼ö¸¦ °è»ê
+    public void Calculatecard(int cardCount, int playerCount, int[] playerCardCount)                            // ê° í”Œë ˆì´ì–´ê°€ ê°€ì§ˆ ì¹´ë“œì˜ ìˆ˜ë¥¼ ê³„ì‚°
     {
-        int divide = cardCount / playerCount;    // 1ÀÎ´ç Ä«µåÀÇ ¼ö
+        int divide = cardCount / playerCount;    // 1ì¸ë‹¹ ì¹´ë“œì˜ ìˆ˜
         int mod = cardCount % playerCount;
-        for (int i = 0; i < playerCount; i++)             // Ä«µå°¡ ³ª´©¾î ¶³¾îÁöÁö ¾ÊÀ» °æ¿ì, Ã¹¹øÂ° ÇÃ·¹ÀÌ¾îºÎÅÍ ÇÑÀå¾¿ Ãß°¡
+        for (int i = 0; i < playerCount; i++)             // ì¹´ë“œê°€ ë‚˜ëˆ„ì–´ ë–¨ì–´ì§€ì§€ ì•Šì„ ê²½ìš°, ì²«ë²ˆì§¸ í”Œë ˆì´ì–´ë¶€í„° í•œì¥ì”© ì¶”ê°€
         {
             playerCardCount[i] = divide + (mod > i ? 1 : 0);
         }
     }
-    public void Shuffle(object[] obj)                           // Fisher-Yates ¼ÅÇÃ ¾Ë°í¸®Áò
+    public void Shuffle(object[] obj)                           // Fisher-Yates ì…”í”Œ ì•Œê³ ë¦¬ì¦˜
     {
-        System.Random random = new System.Random();     // ³­¼ö »ı¼º±â
+        System.Random random = new System.Random();     // ë‚œìˆ˜ ìƒì„±ê¸°
         for (int i = obj.Length - 1; i > 0; i--)
         {
-            int j = random.Next(i + 1);                 // 0 ~ i ¹üÀ§¿¡¼­ ·£´ı ÀÎµ¦½º
-            object temp = obj[i];                     // ÇöÀç ÀÎµ¦½º¿Í ·£´ı ÀÎµ¦½º¸¦ ½º¿Ò
+            int j = random.Next(i + 1);                 // 0 ~ i ë²”ìœ„ì—ì„œ ëœë¤ ì¸ë±ìŠ¤
+            object temp = obj[i];                     // í˜„ì¬ ì¸ë±ìŠ¤ì™€ ëœë¤ ì¸ë±ìŠ¤ë¥¼ ìŠ¤ì™‘
             obj[i] = obj[j];
             obj[j] = temp;
         }

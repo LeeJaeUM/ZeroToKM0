@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Unity.Netcode;
 
-public class Card : MonoBehaviour
+public class Card : NetworkBehaviour
 {
-    public void OpenCard()              // Ä«µå¸¦ µÚÁý¾îÁÖ´Â ÇÔ¼ö
+    public void OpenCard()              // ì¹´ë“œë¥¼ ë’¤ì§‘ì–´ì£¼ëŠ” í•¨ìˆ˜
     {
         transform.Rotate(Vector3.right * 180);
     }

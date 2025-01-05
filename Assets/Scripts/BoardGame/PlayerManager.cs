@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;    
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     public Player[] m_players;
     public List<Player> m_alivePlayers;
@@ -13,13 +14,13 @@ public class PlayerManager : MonoBehaviour
 
     public void NextTurn(int currentPlayerIndex)
     {
-        // todo : ¸ÖÆ¼ÇÃ·¹ÀÌ µÇ¸é ÁÖ¼® Áö¿ì±â
+        // todo : ë©€í‹°í”Œë ˆì´ ë˜ë©´ ì£¼ì„ ì§€ìš°ê¸°
         //m_players[currentPlayerIndex].m_isMyTurn = false;
 
-        currentPlayerIndex = (currentPlayerIndex + 1) % PlayerCount;            // ¸¶Áö¸· Â÷·ÊÀÎ ÇÃ·¹ÀÌ¾îÀÏ¶§, ´Ù½Ã Ã³À½À¸·Î µ¹¾Æ°¨.
+        currentPlayerIndex = (currentPlayerIndex + 1) % PlayerCount;            // ë§ˆì§€ë§‰ ì°¨ë¡€ì¸ í”Œë ˆì´ì–´ì¼ë•Œ, ë‹¤ì‹œ ì²˜ìŒìœ¼ë¡œ ëŒì•„ê°.
 
         m_currentPlayer = m_alivePlayers[currentPlayerIndex];
-        // todo : ¸ÖÆ¼ÇÃ·¹ÀÌ µÇ¸é ÁÖ¼® Áö¿ì±â
+        // todo : ë©€í‹°í”Œë ˆì´ ë˜ë©´ ì£¼ì„ ì§€ìš°ê¸°
         //m_currentPlayer.m_isMyTurn = true;
     }
     public void RemovePlayer(int player)

@@ -20,6 +20,7 @@ public class GameManager : NetworkBehaviour
             Destroy(gameObject);
         }
     }
+
     public enum BoardGameType
     {
         HalliGalli,

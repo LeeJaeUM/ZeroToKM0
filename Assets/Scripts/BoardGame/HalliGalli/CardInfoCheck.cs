@@ -1,20 +1,30 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class CardInfoCheck : MonoBehaviour
+public class CardInfoCheck : NetworkBehaviour
 {
     public TextMesh myText;
     public int index;
-    private void Awake()
-    {
-        myText = GetComponent<TextMesh>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
 
+    void UpdateText()
+    {
         if (GameManager.Instance.m_halligalli.m_topCard[index] != null)
             myText.text = string.Format("{0:F0} {1:F0}", GameManager.Instance.m_halligalli.m_topCard[index].m_AnimalType.ToString(), GameManager.Instance.m_halligalli.m_topCard[index].m_fruitNum);
         else
             myText.text = " ";
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.m_halligalli.OnTopCardChanged -= UpdateText;
+    }
+    private void Awake()
+    {
+        myText = GetComponent<TextMesh>();
+        myText.text = " ";
+    }
+    private void Start()
+    {
+        GameManager.Instance.m_halligalli.OnTopCardChanged += UpdateText;
     }
 }
