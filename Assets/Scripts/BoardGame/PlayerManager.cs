@@ -1,31 +1,43 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;    
+using Unity.Netcode;
 
 public class PlayerManager : NetworkBehaviour
 {
     public Player[] m_players;
     public List<Player> m_alivePlayers;
-    public Player m_currentPlayer;
 
-    public int CurrentPlayer { get { return m_currentPlayer.m_playerNum; } }
-    public int PlayerCount {  get { return m_alivePlayers.Count; } }
+    public int CurrentPlayer { get { return nm_currentPlayer.Value; } }
+    public int PlayerCount { get { return m_alivePlayers.Count; } }
+
+
+    public NetworkVariable<int> nm_currentPlayer = new NetworkVariable<int>(0);  // 현재 턴의 플레이어 번호
+    //public NetworkVariable<int> nm_playerCount = new NetworkVariable<int>(0);  // 살아있는 플레이어 수
 
     public void NextTurn(int currentPlayerIndex)
     {
-        // todo : 멀티플레이 되면 주석 지우기
-        //m_players[currentPlayerIndex].m_isMyTurn = false;
+        Debug.Log("NextTurn");
+        if (IsServer)
+        {
+            Debug.Log("NextTurnIn Server");
+            currentPlayerIndex = (currentPlayerIndex + 1) % PlayerCount;            // 마지막 차례인 플레이어일때, 다시 처음으로 돌아감.
+            nm_currentPlayer.Value = currentPlayerIndex;
 
-        currentPlayerIndex = (currentPlayerIndex + 1) % PlayerCount;            // 마지막 차례인 플레이어일때, 다시 처음으로 돌아감.
-
-        m_currentPlayer = m_alivePlayers[currentPlayerIndex];
-        // todo : 멀티플레이 되면 주석 지우기
-        //m_currentPlayer.m_isMyTurn = true;
+            for (int i = 0; i < m_alivePlayers.Count; i++)
+            {
+                if(m_alivePlayers[i].m_playerNum == nm_currentPlayer.Value)
+                {
+                    m_alivePlayers[currentPlayerIndex].nm_isMyTurn.Value = true;
+                }
+                m_alivePlayers[i].nm_isMyTurn.Value = false;
+            }
+        }
+        Debug.Log("NextTur - Endn");
     }
     public void RemovePlayer(int player)
     {
-        for(int i = 0; i < m_alivePlayers.Count; i++)
+        for (int i = 0; i < m_alivePlayers.Count; i++)
         {
             if (m_players[player] == m_alivePlayers[i])
             {
@@ -34,17 +46,19 @@ public class PlayerManager : NetworkBehaviour
             }
         }
     }
-    void Awake()
+
+    private void Awake()
     {
         m_players = GetComponentsInChildren<Player>();
         m_alivePlayers = new List<Player>();
-        for(int i = 0 ; i < m_players.Length; i++)
+        for (int i = 0; i < m_players.Length; i++)
         {
             m_alivePlayers.Add(m_players[i]);
         }
     }
+
     void Start()
     {
-        m_currentPlayer = m_players[0];
+
     }
 }

@@ -90,4 +90,10 @@ public class GameManager : NetworkBehaviour
         yield return new WaitForSeconds(1f);
         m_finalWinner.gameObject.SetActive(false);
     }
+
+    //----
+    public void OpenCard(int playerNum)
+    {
+        m_halligalli.OpenCard(playerNum);
+    }
 }

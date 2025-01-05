@@ -14,10 +14,6 @@ public class CardInfoCheck : NetworkBehaviour
             myText.text = " ";
     }
 
-    private void OnDisable()
-    {
-        GameManager.Instance.m_halligalli.OnTopCardChanged -= UpdateText;
-    }
     private void Awake()
     {
         myText = GetComponent<TextMesh>();
@@ -26,5 +22,9 @@ public class CardInfoCheck : NetworkBehaviour
     private void Start()
     {
         GameManager.Instance.m_halligalli.OnTopCardChanged += UpdateText;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.m_halligalli.OnTopCardChanged -= UpdateText;
     }
 }

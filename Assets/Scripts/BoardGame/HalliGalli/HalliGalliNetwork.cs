@@ -27,14 +27,13 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         print("GameStart");
 
-        CreateCard();
-        m_playerCardCount = new int[GameManager.Instance.PlayerCount];
-        GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
-        Collectcard();
-
-        m_shuffledIndexes = GameManager.Instance.Shuffle(m_card);   //랜덤으로 섞인 카드의 인덱스를 받아옴
-        ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
-        SyncShuffledIndexesToClientRpc(m_shuffledIndexes);          // 클라이언트에게 섞인 인덱스 전달
+        if(IsServer)
+        {
+            Collectcard();          //위치조절함수
+            m_shuffledIndexes = GameManager.Instance.Shuffle(m_card);   //랜덤으로 섞인 카드의 인덱스를 받아옴
+            ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
+        }
+            SyncShuffledIndexesToClientRpc(m_shuffledIndexes);          // 클라이언트에게 섞인 인덱스 전달
 
         m_playerCard = new Queue<HalliGalliCard>[GameManager.Instance.PlayerCount];
         for (int i = 0; i < GameManager.Instance.PlayerCount; i++)                  // m_playerCard 초기화
@@ -43,8 +42,8 @@ public class HalliGalliNetwork : NetworkBehaviour
         }
         m_topCard = new HalliGalliCard[GameManager.Instance.PlayerCount];
 
-        DistributeCard();
-        Dealcard();
+        DistributeCard();       //위치조절함수
+        Dealcard();             //위치조절함수
 
     }
     public void CreateCard()                                                        // 카드 초기화 해주기( type, 숫자 )
@@ -108,8 +107,6 @@ public class HalliGalliNetwork : NetworkBehaviour
 
     public void OpenCard(int playerNum)
     {
-        playerNum = GameManager.Instance.GetCurrentPlayer();    // 일단은 현재 플레이어의 카드를 open하는 방식으로,
-                                                                // todo : 멀티플레이 구현되면 지울것
         HalliGalliCard card;
         if (m_playerCard[playerNum].Count > 0)
         {
@@ -219,39 +216,15 @@ public class HalliGalliNetwork : NetworkBehaviour
     #region Network Function
     public void InitializeGame()  //기존 Start 유니티 함수에 있던걸 직접 눌러서 실행하도록 함수로 뺌
     {
-        if (IsServer) // 서버에서만 실행
-        {
-            GameSetting();
-            //DistributeInitialCardDataToClientRpc();
-        }
+        GameSetting();
+        SyncGameSettingClientRpc();
     }
-    //[ServerRpc]
-    //private void SyncInitialDataServerRpc()
-    //{
-    //    // 카드 상태 및 초기 데이터를 클라이언트로 동기화
-    //    DistributeInitialCardDataToClientRpc();
-    //}
 
-    //[ClientRpc]
-    //private void DistributeInitialCardDataToClientRpc()
-    //{
-    //    Debug.Log("DistributeInitialCardDataToClientRpc");
-    //    // 클라이언트에서 초기 상태를 적용        
-    //    UpdateOpenedCards();
-    //    UpdateCardPositions();
-    //}
-
-    //private void UpdateCardPositions()
-    //{
-    //    Debug.Log("UpdateCardPositions");
-    //}
-
-    //private void UpdateOpenedCards()
-    //{
-    //    Debug.Log("UpdateOpenedCards");
-    //}
-
-    // ClientRpc로 클라이언트에게 섞은 인덱스를 전달 GameSetting()에서 호출
+    [ClientRpc]
+    public void SyncGameSettingClientRpc()
+    {
+        GameSetting();
+    }
     [ClientRpc]
     public void SyncShuffledIndexesToClientRpc(int[] shuffledIndexes)
     {
@@ -263,8 +236,6 @@ public class HalliGalliNetwork : NetworkBehaviour
         // 클라이언트에서 받은 섞인 인덱스를 기반으로 카드를 섞는다.
         ShuffleCards(shuffledIndexes);
     }
-
-
     #endregion
 
     private void Start()
@@ -272,19 +243,12 @@ public class HalliGalliNetwork : NetworkBehaviour
         m_card = GetComponentsInChildren<HalliGalliCard>();
         m_playerCardCount = new int[GameManager.Instance.PlayerCount];
         m_cardHeight = 0.01f;
+        CreateCard();
 
+        GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
     }
 
 }
-
-
-
-
-
-
-
-
-
 
 /*
      public void GameSetting()                                                       // 게임 시작 전 실행

@@ -1227,8 +1227,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 0
   m_halligalli: {fileID: 441099419}
-  m_isMyTurn: 1
-  m_isGetInput: 1
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}
@@ -2611,6 +2611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389820503}
+  - component: {fileID: 389820505}
   - component: {fileID: 389820504}
   m_Layer: 0
   m_Name: PlayerManager
@@ -2653,7 +2654,33 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_players: []
   m_alivePlayers: []
-  m_currentPlayer: {fileID: 0}
+  nm_currentPlayer:
+    m_InternalValue: 0
+--- !u!114 &389820505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389820502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2488488663
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &390130098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3278,7 +3305,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  m_fruitSprite: []
+  m_fruitSprite:
+  - {fileID: -1810560813, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: -994140163, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: -1248976606, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: 818293304, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: 1256335605, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: -1117358035, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: -2058898577, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: -1086417318, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: 1812912109, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: 1651292194, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
+  - {fileID: 225596509, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: -1376633750, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: 758053663, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: 1056273880, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: -1762840880, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: 1858327317, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: 1666906980, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: 1325432078, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: 1159674612, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  - {fileID: 259818952, guid: 0357c37707ee91c468fded36544c5484, type: 3}
   m_card: []
   m_topCard: []
   m_openedCard: []
@@ -3294,6 +3341,7 @@ MonoBehaviour:
   - {fileID: 1378389911}
   - {fileID: 1786802792}
   - {fileID: 1536132619}
+  m_shuffledIndexes: 
   m_fruitCount: 0300000003000000030000000300000002000000
   m_roundCount: 1
 --- !u!4 &441099421
@@ -4678,8 +4726,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 2
   m_halligalli: {fileID: 441099419}
-  m_isMyTurn: 0
-  m_isGetInput: 0
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}
@@ -6140,6 +6188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1120672022285219088, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: NetworkConfig.PlayerPrefab
+      value: 
+      objectReference: {fileID: 3972669666073577831, guid: cee4c7b5d403d5349b718503795fa02c, type: 3}
     - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 773.225
@@ -10261,8 +10313,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 3
   m_halligalli: {fileID: 441099419}
-  m_isMyTurn: 0
-  m_isGetInput: 0
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}
@@ -11888,6 +11940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  m_testplayerNum: 0
 --- !u!4 &1985927882
 Transform:
   m_ObjectHideFlags: 0
@@ -12581,8 +12634,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 1
   m_halligalli: {fileID: 441099419}
-  m_isMyTurn: 0
-  m_isGetInput: 0
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}
