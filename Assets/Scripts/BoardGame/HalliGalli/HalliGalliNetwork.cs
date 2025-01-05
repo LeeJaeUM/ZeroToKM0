@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
+using Unity.Netcode;
 
-public class HalliGalli : MonoBehaviour
+public class HalliGalliNetwork : NetworkBehaviour
 {
     public Sprite[] m_fruitSprite;                      // 과일 이미지
     public HalliGalliCard[] m_card;                   // 전체 카드
-    [SerializeField]
     public Queue<HalliGalliCard>[] m_playerCard;      // 플레이어 각각의 카드
     public HalliGalliCard[] m_topCard;                // 각 플레이어의 맨 위 카드
     public List<HalliGalliCard> m_openedCard;         // 오픈된 카드
@@ -23,6 +22,7 @@ public class HalliGalli : MonoBehaviour
     public void GameSetting()                                                       // 게임 시작 전 실행
     {
         print("GameStart");
+
         CreateCard();
         m_playerCardCount = new int[GameManager.Instance.PlayerCount];
         GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
@@ -97,7 +97,7 @@ public class HalliGalli : MonoBehaviour
         }
     }
 
-    public void OpenCard(int playerNum)     
+    public void OpenCard(int playerNum)
     {
         playerNum = GameManager.Instance.GetCurrentPlayer();    // 일단은 현재 플레이어의 카드를 open하는 방식으로,
                                                                 // todo : 멀티플레이 구현되면 지울것
@@ -196,12 +196,14 @@ public class HalliGalli : MonoBehaviour
     }
     void Awake()
     {
-        m_card = GetComponentsInChildren<HalliGalliCard>();
-        m_playerCardCount = new int[GameManager.Instance.PlayerCount];
-        m_cardHeight = 0.01f;
+
     }
     void Start()
     {
+        m_card = GetComponentsInChildren<HalliGalliCard>();
+        m_playerCardCount = new int[GameManager.Instance.PlayerCount];
+        m_cardHeight = 0.01f;
+
         GameSetting();
     }
 }

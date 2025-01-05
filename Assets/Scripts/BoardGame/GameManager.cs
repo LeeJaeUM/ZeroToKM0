@@ -1,8 +1,25 @@
 using System.Collections;
 using UnityEngine;
+using Unity.Netcode;
 
-public class GameManager : SingletonMonoBehaviour<GameManager>
+public class GameManager : NetworkBehaviour
 {
+    static GameManager m_instance;
+    public static GameManager Instance { get { return m_instance; } private set { m_instance = value; } }
+    protected virtual void OnAwake() { }
+
+    protected virtual void Awake()
+    {
+        if (m_instance == null)
+        {
+            m_instance = this;
+            OnAwake();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public enum BoardGameType
     {
         HalliGalli,
@@ -11,19 +28,20 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     public Dealer m_dealer;
     public PlayerManager m_playerManager;
-    public HalliGalli m_halligalli;
-    public BoardGameType m_boardGame;                   // ÇöÀç º¸µå°ÔÀÓ
+    public HalliGalli m_halligalli_old;
+    public HalliGalliNetwork m_halligalli;
+    public BoardGameType m_boardGame;                   // í˜„ì¬ ë³´ë“œê²Œì„
 
-    // ÇÒ¸®°¥¸® topcard Á¤º¸ Ã¼Å©¿ë
-    // ÀÌ¹ÌÁö ±¸ÇØÁö¸é Áö¿ì±â
+    // í• ë¦¬ê°ˆë¦¬ topcard ì •ë³´ ì²´í¬ìš©
+    // ì´ë¯¸ì§€ êµ¬í•´ì§€ë©´ ì§€ìš°ê¸°
     public RoundWinner m_roundWinner;
     public FinalWinner m_finalWinner;
-    public int PlayerCount                              // ¸î ¸íÀÇ ÇÃ·¹ÀÌ¾î°¡ Âü¿©ÁßÀÎÁö
+    public int PlayerCount                              // ëª‡ ëª…ì˜ í”Œë ˆì´ì–´ê°€ ì°¸ì—¬ì¤‘ì¸ì§€
     {
         get{ return m_playerManager.PlayerCount; }
     }
 
-    public int GetCurrentPlayer()                       // Áö±İ ´©±¸ÀÇ ÅÏÀÎÁö, index°ª ¹İÈ¯
+    public int GetCurrentPlayer()                       // ì§€ê¸ˆ ëˆ„êµ¬ì˜ í„´ì¸ì§€, indexê°’ ë°˜í™˜
     {
         return m_playerManager.CurrentPlayer;
     }

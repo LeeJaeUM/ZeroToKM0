@@ -3,15 +3,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int m_playerNum;
-    public HalliGalli m_halligalli;
-    public bool m_isMyTurn;             // ³» ÅÏÀÎÁö Ã¼Å©, trueÀÏ¶§¸¸ opencard°¡´É
-    public bool m_isGetInput;           // space bar input ÇÏ³ª¸¸ ¹Ş±â À§ÇØ, ¸ÖÆ¼ÇÃ·¹ÀÌ°¡ µÇ¸é ¾ø¾Ù °Í
+    public HalliGalliNetwork m_halligalli;
+    public bool m_isMyTurn;             // ë‚´ í„´ì¸ì§€ ì²´í¬, trueì¼ë•Œë§Œ opencardê°€ëŠ¥
+    public bool m_isGetInput;           // space bar input í•˜ë‚˜ë§Œ ë°›ê¸° ìœ„í•´, ë©€í‹°í”Œë ˆì´ê°€ ë˜ë©´ ì—†ì•¨ ê²ƒ
 
-    // ²¿Ä¡ÀÇ ´ŞÀÎ
+    // ê¼¬ì¹˜ì˜ ë‹¬ì¸
     public KushiExpressIngredient[] m_ingredients = new KushiExpressIngredient[6];
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && m_isMyTurn && m_isGetInput)    // OpenCard Ã¼Å©¿ë
+        if (Input.GetMouseButtonDown(0) && m_isMyTurn && m_isGetInput)    // OpenCard ì²´í¬ìš©
         {
             m_halligalli.OpenCard(m_playerNum);
         }
