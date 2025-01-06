@@ -13,12 +13,12 @@ public class PlayerResult
 }
 
 public class GameResultController : MonoBehaviour
-{   
-    public ModalWindowManager m_modalWindowManager;     // Modal Window Manager
-    public GameObject m_modalWindow;
-    public Transform m_listParent;                      // List View의 List (Item 부모)
-    public GameObject m_listItemPrefab;                 // List View Item Prefab (Item)
-    public TMP_Text m_turnsText;                        // 진행한 턴 횟수 텍스트
+{
+    [SerializeField] ModalWindowManager m_modalWindowManager;     // Modal Window Manager
+    [SerializeField] GameObject m_modalWindow;                    // Modal Window
+    [SerializeField] Transform m_listParent;                      // List View의 List (Item 부모)
+    [SerializeField] GameObject m_listItemPrefab;                 // List View Item Prefab (Item)
+    [SerializeField] TMP_Text m_turnsText;                        // 진행한 턴 횟수 텍스트
 
     /// <summary>
     /// 게임 결과를 표시합니다.
@@ -41,8 +41,6 @@ public class GameResultController : MonoBehaviour
         {
             // List Item 생성
             GameObject listItem = Instantiate(m_listItemPrefab, m_listParent);
-
-
 
             // Row 1: 유저명
             Transform row = listItem.transform.Find("Row 1");
@@ -76,13 +74,4 @@ public class GameResultController : MonoBehaviour
         m_modalWindow.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // TODO : TEST용, 게임끝났을 경우 EndGame함수 호출로 변경 필요 (2025.01.06)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManager.Instance.EndGame();
-        }
-    }
 }
