@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1264999881
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (13)
@@ -189,6 +193,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3157014020
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (20)
@@ -251,6 +259,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2685054509
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (52)
@@ -421,6 +433,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1399402501
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (30)
@@ -483,6 +499,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4081224839
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (15)
@@ -545,6 +565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3965324430
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (55)
@@ -645,10 +669,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 0
   m_halligalli: {fileID: 0}
-  m_isMyTurn: 1
-  m_isGetInput: 1
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}
@@ -709,6 +734,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 635002784
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (32)
@@ -940,6 +969,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3051133366
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (7)
@@ -1002,6 +1035,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4146057840
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (38)
@@ -1064,6 +1101,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3783729875
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (4)
@@ -1126,6 +1167,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 15849556
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (31)
@@ -1371,6 +1416,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2444274968
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (44)
@@ -1433,6 +1482,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 212423798
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (18)
@@ -1495,6 +1548,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 309862687
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (47)
@@ -1557,6 +1614,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2648112252
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (16)
@@ -1751,9 +1812,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1704cd1af16f83c4f8e37858b2b5570f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_players: []
   m_alivePlayers: []
-  m_currentPlayer: {fileID: 0}
+  nm_currentPlayer:
+    m_InternalValue: 0
 --- !u!1 &392954805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +2023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2293110480
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (33)
@@ -2206,6 +2273,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1027644616
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (6)
@@ -2377,6 +2448,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2785456287
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (26)
@@ -2439,6 +2514,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2917084977
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (9)
@@ -2501,6 +2580,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 932610865
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (27)
@@ -2601,10 +2684,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 2
   m_halligalli: {fileID: 0}
-  m_isMyTurn: 0
-  m_isGetInput: 0
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}
@@ -2666,6 +2750,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1871458467
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (14)
@@ -2774,6 +2862,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2226479583
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (23)
@@ -2928,6 +3020,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 523357392
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (24)
@@ -3077,6 +3173,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3628920547
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (22)
@@ -3139,6 +3239,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 974795645
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (1)
@@ -3247,6 +3351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2315078946
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test
@@ -3473,6 +3581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ff7f39768d1c34da571a7a34a8e0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_dealer: {fileID: 998778490}
   m_playerManager: {fileID: 389820504}
   m_halligalli_old: {fileID: 0}
@@ -3488,6 +3597,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 193645838
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (46)
@@ -3550,6 +3663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2164904450
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (11)
@@ -3643,6 +3760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2774377372
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (3)
@@ -3864,6 +3985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79568ec1a6e04b41873440341a225c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!4 &998778491
 Transform:
   m_ObjectHideFlags: 0
@@ -3887,6 +4009,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2782042287
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (43)
@@ -3949,6 +4075,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1065823632
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (53)
@@ -4011,6 +4141,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 383632917
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (49)
@@ -4108,6 +4242,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1839544931
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (45)
@@ -4170,6 +4308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 186925701
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (37)
@@ -4292,6 +4434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780cb797217f29b47956bc8692dcfb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   myText: {fileID: 0}
   index: 0
 --- !u!23 &1156353403
@@ -4635,6 +4778,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 496069273
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (48)
@@ -4762,6 +4909,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1997527132
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (28)
@@ -4824,6 +4975,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 280302771
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (42)
@@ -4886,6 +5041,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3945600770
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (39)
@@ -4948,6 +5107,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3271453679
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (25)
@@ -5055,6 +5218,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3683400318
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (41)
@@ -5117,6 +5284,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2812102366
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (36)
@@ -5270,6 +5441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780cb797217f29b47956bc8692dcfb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   myText: {fileID: 0}
   index: 2
 --- !u!23 &1511940242
@@ -5654,6 +5826,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1991905257
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (54)
@@ -5716,6 +5892,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3580953839
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (21)
@@ -5816,10 +5996,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 3
   m_halligalli: {fileID: 0}
-  m_isMyTurn: 0
-  m_isGetInput: 0
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}
@@ -5970,6 +6151,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1455250298
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (51)
@@ -6186,6 +6371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780cb797217f29b47956bc8692dcfb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   myText: {fileID: 0}
   index: 3
 --- !u!23 &1800212892
@@ -6346,6 +6532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780cb797217f29b47956bc8692dcfb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   myText: {fileID: 0}
   index: 1
 --- !u!23 &1829136236
@@ -6416,6 +6603,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1509461496
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (17)
@@ -6478,6 +6669,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4268430733
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (5)
@@ -6540,6 +6735,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2460645237
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (34)
@@ -6602,6 +6801,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3839464635
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (19)
@@ -6664,6 +6867,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 596956243
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (2)
@@ -6726,6 +6933,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2358241979
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (35)
@@ -6788,6 +6999,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2838423826
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (40)
@@ -6850,6 +7065,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2392500349
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (29)
@@ -6912,6 +7131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3677836374
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (10)
@@ -7123,6 +7346,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3017671738
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (50)
@@ -7231,6 +7458,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1501231389
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (12)
@@ -7293,6 +7524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 794165284}
     m_Modifications:
+    - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1133849715
+      objectReference: {fileID: 0}
     - target: {fileID: 3424492911375710235, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_Name
       value: Card_HalliGalli_Test (8)
@@ -7393,10 +7628,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_playerNum: 1
   m_halligalli: {fileID: 0}
-  m_isMyTurn: 0
-  m_isGetInput: 0
+  nm_isMyTurn:
+    m_InternalValue: 0
   m_ingredients:
   - {fileID: 0}
   - {fileID: 0}

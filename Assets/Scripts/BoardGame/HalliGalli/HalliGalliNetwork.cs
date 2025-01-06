@@ -5,7 +5,8 @@ using Unity.Netcode;
 
 public class HalliGalliNetwork : NetworkBehaviour
 {
-    public Sprite[] m_fruitSprite;                      // 과일 이미지
+    public GameManager m_gameManager;
+    public Sprite[] m_animalSprite;                      // 동물 이미지
     public HalliGalliCard[] m_card;                   // 전체 카드
     public Queue<HalliGalliCard>[] m_playerCard;      // 플레이어 각각의 카드
     public HalliGalliCard[] m_topCard;                // 각 플레이어의 맨 위 카드
@@ -16,7 +17,9 @@ public class HalliGalliNetwork : NetworkBehaviour
     public CardPos[] m_cardPos;           // 각 플레이어의 카드 위치
     public int[] m_shuffledIndexes;         // 랜덤으로 섞인 카드의 인덱스
 
-    public int[] m_fruitCount = { 3, 3, 3, 3, 2 };              // 과일 개수별 카드 개수, ex) 과일이 1개 그려진 카드는 총 m_fruitCount[0] = 3개
+    public int[] m_animalCount = { 3, 3, 3, 3, 2 };              // 동물 개수별 카드 개수. 인덱스는 동물 개수, 값은 카드 개수( 모든 동물이 동일 )
+                                                                 // ex : 악어 1개짜리 3개, 2개짜리 3개, .. , 5개짜리 2개 => 악어 카드 총 3+3+3+3+2 = 14장
+                                                                 // => 모든 동물이 카드개수가 같음. 따라서 총 카드 개수는 14 * 4 = 56
 
     public int m_roundCount = 1;
 
@@ -30,17 +33,17 @@ public class HalliGalliNetwork : NetworkBehaviour
         if (IsServer)
         {
             Collectcard();          //위치조절함수
-            m_shuffledIndexes = GameManager.Instance.Shuffle(m_card);   //랜덤으로 섞인 카드의 인덱스를 받아옴
+            m_shuffledIndexes = m_gameManager.Shuffle(m_card);   //랜덤으로 섞인 카드의 인덱스를 받아옴
             ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
         }
         SyncShuffledIndexesToClientRpc(m_shuffledIndexes);          // 클라이언트에게 섞인 인덱스 전달
 
-        m_playerCard = new Queue<HalliGalliCard>[GameManager.Instance.PlayerCount];
-        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)                  // m_playerCard 초기화
+        m_playerCard = new Queue<HalliGalliCard>[m_gameManager.GetPlayerCount()];
+        for (int i = 0; i < m_gameManager.GetPlayerCount(); i++)                  // m_playerCard 초기화
         {
             m_playerCard[i] = new Queue<HalliGalliCard>();
         }
-        m_topCard = new HalliGalliCard[GameManager.Instance.PlayerCount];
+        m_topCard = new HalliGalliCard[m_gameManager.GetPlayerCount()];
 
         DistributeCard();       //위치조절함수
         Dealcard();             //위치조절함수
@@ -49,14 +52,17 @@ public class HalliGalliNetwork : NetworkBehaviour
     public void CreateCard()                                                        // 카드 초기화 해주기( type, 숫자 )
     {
         int i = 0;
-        foreach (HalliGalliCard.AnimalType fruit in Enum.GetValues(typeof(HalliGalliCard.AnimalType)))
+        foreach (HalliGalliCard.AnimalType animal in Enum.GetValues(typeof(HalliGalliCard.AnimalType))) // animal = 동물 타입
         {
-            for (int k = 0; k < m_fruitCount.Length; k++)
+            for (int k = 0; k < m_animalCount.Length; k++)       // k = 동물 개수
             {
-                for (int j = 0; j < m_fruitCount[k]; j++)
+                for (int j = 0; j < m_animalCount[k]; j++)       // j = 카드 개수
+                                                                 // => animal이 k개가 그려진 카드를 j개 생성.
                 {
-                    m_card[i++].Initialize(fruit, k + 1);
-                    //TODO : 카드에 맞게 스프라이트 넣기 추가
+                    m_card[i].Initialize(animal, k + 1);
+                    // 카드에 맞게 스프라이트 넣기
+                    m_card[i].m_sprite.sprite = m_animalSprite[(int)animal * 5 + k];
+                    i++;
                 }
             }
         }
@@ -64,7 +70,7 @@ public class HalliGalliNetwork : NetworkBehaviour
     public void DistributeCard()                             // 카드 배분, 위치를 지정
     {
         int k = 0;      // 카드 번호 체크 용
-        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)              // i : 플레이어 번호
+        for (int i = 0; i < m_gameManager.GetPlayerCount(); i++)              // i : 플레이어 번호
         {
             for (int j = 0; j < m_playerCardCount[i]; j++)   // j : 플레이어가 가진 카드 내에서의 카드 번호
             {
@@ -79,6 +85,7 @@ public class HalliGalliNetwork : NetworkBehaviour
             foreach (Card card in m_playerCard[i])
             {
                 SetPos(i, card.gameObject);
+                card.FlipCard();                                    // card를 뒤집어서 방향 맞춤
             }
         }
 
@@ -108,6 +115,8 @@ public class HalliGalliNetwork : NetworkBehaviour
     public void OpenCard(int playerNum)
     {
         HalliGalliCard card;
+
+        // 1. 정상작동. 플레이어의 카드가 존재할때(0개 이상일 때)
         if (m_playerCard[playerNum].Count > 0)
         {
             card = m_playerCard[playerNum].Dequeue();           // 입력 받은 플레이어의 카드덱에서 가장 위의 카드를 가져옴
@@ -115,51 +124,60 @@ public class HalliGalliNetwork : NetworkBehaviour
             m_openedCard.Add(card);                             // m_openedCard에 추가
 
             SetPos(playerNum + 4, card.gameObject);
-            card.FlipCard();                                    // card를 뒤집는 함수( 작동 안됨 )
 
             //CardInfoCheck에 액션으로 보낼 string값을 현재 Top 카드에서 찾아서 보냄
             OnTopCardChanged?.Invoke(m_topCard[playerNum].m_AnimalType.ToString() + m_topCard[playerNum].m_fruitNum, playerNum);
-            GameManager.Instance.NextTurn(playerNum);
-            return;
+            m_gameManager.NextTurn();
         }
+
+        // 2. 예외처리(1). 플레이어의 카드가 존재하지 않고(0개이고) 모든 카드가 오픈되지 않았을 때.
         else if (m_card.Length != m_openedCard.Count)
         {
-            GameManager.Instance.NextTurn(playerNum);
-            OpenCard(0);
+            OpenCard(m_gameManager.NextTurn());
         }
-        print("All Card Used");
+
+        // 3. 예외처리(2). 모든 카드가 오픈되었을 때
+        else
+        {
+            print("All Card Used");
+        }
     }
     public void RingBell(int playernum)                         // player가 space바를 눌렀을 때 호출
     {
-        if (isCorrect())
+        // 1. 정답이 맞을 때
+        if (IsCorrect())
         {
             print("Round" + m_roundCount++ + " Winner : Player" + (playernum + 1));
-            GameManager.Instance.RoundWinMessage(playernum + 1);
+            m_gameManager.RoundWinMessage(playernum + 1);
             GiveCard(playernum);
             RoundFinish();
         }
+        // 2. 정답이 아닐 때
         else
         {
             print("That's not five");
         }
     }
-    public bool isCorrect()                                 // 맨 위 카드들의 심볼의 합을 계산하여 true, false를 반환
+    public bool IsCorrect()                                 // 맨 위 카드들의 심볼의 합을 계산하여 true, false를 반환
     {
         int[] sum = new int[4];                             // 심볼 별 합을 담아줄 배열
 
-        if (m_topCard == null)
+        // m_topCard가 완전히 비어 있을 때( 게임이 시작되고 아무 카드도 오픈이 안됬을 때 예외처리 )
+        if (m_topCard == null)                              
         {
             return false;
         }
-        for (int i = 0; i < GameManager.Instance.PlayerCount; i++)              // 각 심볼 별 합을 계산
+        for (int i = 0; i < m_gameManager.GetPlayerCount(); i++)              // 각 심볼 별 합을 계산
         {
+            // 어떤 플레이어의 topCard가 존재하지 않을 때
+            // ( ex : 플레이어 1, 2번은 턴을 진행하여 topCard가 존재하는데, 3번은 아직 턴을 진행하지 않아 topCard가 존재하지 않는 경우 )
             if (m_topCard[i] != null)
                 sum[(int)m_topCard[i].m_AnimalType] += m_topCard[i].m_fruitNum;
         }
 
         for (int i = 0; i < sum.Length; i++)                 // 합이 5가 되는 심볼이 있는지 확인
         {
-            if (sum[i] == 5)
+            if (sum[i] == 5)                
                 return true;
         }
         return false;
@@ -174,29 +192,31 @@ public class HalliGalliNetwork : NetworkBehaviour
 
         m_openedCard.Clear();
         m_topCard = null;
-        m_topCard = new HalliGalliCard[GameManager.Instance.PlayerCount];
+        m_topCard = new HalliGalliCard[m_gameManager.GetPlayerCount()];
     }
     public void RoundFinish()                               // 탈락자를 제거하고, 새 라운드를 시작하는 함수.
                                                             // 종을 쳐서 정답일 경우 호출됨.
     {
-        for (int i = 0; i < m_playerCard.Length; i++)  // 카드가 0개인 플레이어 탈락
+        for (int i = 0; i < m_playerCard.Length; i++)  
         {
-            if (m_playerCard[i].Count == 0)
+            if (m_playerCard[i].Count == 0) // 카드가 0개인 플레이어 탈락
             {
-                GameManager.Instance.RemovePlayer(i);
+                m_gameManager.RemovePlayer(i);
             }
         }
-        if (GameManager.Instance.PlayerCount == 1)          // 혼자 남았을 경우 최종 승리.
+        // 혼자 남았을 경우 최종 승리.
+        if (m_gameManager.GetPlayerCount() == 1)         
         {
             GameOver();
         }
-        else                                                // 플레이어가 2명 이상일 경우, 다시 진행
+        // 플레이어가 2명 이상일 경우, 다시 진행
+        else
         {
-            print(GameManager.Instance.PlayerCount);
+            print(m_gameManager.GetPlayerCount());
             //Array.Clear(m_topCard, 0, m_topCard.Length);    // topcard초기화
             print("new round");
 
-            for (int i = 0; i < GameManager.Instance.PlayerCount; i++)    // topcard초기화 후 CardInfoCheck에 초기화 된 string값을 액션으로 보냄 
+            for (int i = 0; i < m_gameManager.GetPlayerCount(); i++)    // topcard초기화 후 CardInfoCheck에 초기화 된 string값을 액션으로 보냄 
             {
                 OnTopCardChanged?.Invoke(" 라운드 초기화 ", i);
             }
@@ -204,7 +224,7 @@ public class HalliGalliNetwork : NetworkBehaviour
     }
     public void GameOver()                                  // 게임 종료
     {
-        GameManager.Instance.FinalWinMessage();
+        m_gameManager.FinalWinMessage();
         print("game over");
     }
     public void ShuffleCards(int[] shuffledIndexes) // 카드를 섞는다.
@@ -241,12 +261,13 @@ public class HalliGalliNetwork : NetworkBehaviour
 
     private void Start()
     {
+        m_gameManager = GameManager.Instance;
         m_card = GetComponentsInChildren<HalliGalliCard>();
-        m_playerCardCount = new int[GameManager.Instance.PlayerCount];
+        m_playerCardCount = new int[m_gameManager.GetPlayerCount()];
         m_cardHeight = 0.01f;
         CreateCard();
 
-        //GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
-        GameManager.Instance.Calculatecard(m_card.Length, 4, m_playerCardCount);
+        //m_gameManager.Calculatecard(m_card.Length, m_gameManager.PlayerCount, m_playerCardCount);
+        m_gameManager.Calculatecard(m_card.Length, m_gameManager.GetPlayerCount(), m_playerCardCount);
     }
 }

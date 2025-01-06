@@ -16,7 +16,7 @@ public class TestStartGame : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2)) // 2 키를 눌렀을 때
         {
-            GameManager.Instance.NextTurn(m_testplayerNum);
+            GameManager.Instance.NextTurn();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) // 2 키를 눌렀을 때
         {

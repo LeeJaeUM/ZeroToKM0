@@ -75,14 +75,4 @@ public class GameResultController : MonoBehaviour
     {
         m_modalWindow.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // TODO : TEST용, 게임끝났을 경우 EndGame함수 호출로 변경 필요 (2025.01.06)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManager.Instance.EndGame();
-        }
-    }
 }

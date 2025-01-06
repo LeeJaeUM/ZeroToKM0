@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/05_TEST_NetworkHalliGalli.unity
     guid: 6a82d4c00dfef474092845d3d14a9405
+  - enabled: 1
+    path: Assets/Scenes/05_TEST_NetworkHalliGalli (2).unity
+    guid: a22c35abef9c8564d806993ff89336cc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
