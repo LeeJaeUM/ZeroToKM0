@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 
@@ -12,18 +13,39 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public Dealer m_dealer;
     public PlayerManager m_playerManager;
     public HalliGalli m_halligalli;
-    public BoardGameType m_boardGame;                   // ÇöÀç º¸µå°ÔÀÓ
+    public BoardGameType m_boardGame;                   // í˜„ì¬ ë³´ë“œê²Œì„
 
-    // ÇÒ¸®°¥¸® topcard Á¤º¸ Ã¼Å©¿ë
-    // ÀÌ¹ÌÁö ±¸ÇØÁö¸é Áö¿ì±â
+    // í• ë¦¬ê°ˆë¦¬ topcard ì •ë³´ ì²´í¬ìš©
+    // ì´ë¯¸ì§€ êµ¬í•´ì§€ë©´ ì§€ìš°ê¸°
     public RoundWinner m_roundWinner;
     public FinalWinner m_finalWinner;
-    public int PlayerCount                              // ¸î ¸íÀÇ ÇÃ·¹ÀÌ¾î°¡ Âü¿©ÁßÀÎÁö
+
+    [SerializeField]
+    public GameResultController m_gameResultController;
+
+    public void EndGame()
+    {
+        // TODO : example data ë§ê²Œ ìˆ˜ì •í•„ìš” (2025.01.06)
+        int totalTurns = 3;
+
+        PlayerResult[] results = new PlayerResult[]
+        {
+            new PlayerResult{playerName = "player1", isWinner = false, winCount = 1, totalGames = totalTurns},
+            new PlayerResult{playerName = "player2", isWinner = false, winCount = 0, totalGames = totalTurns},
+            new PlayerResult{playerName = "player3", isWinner = false, winCount = 0, totalGames = totalTurns},
+            new PlayerResult{playerName = "player4", isWinner = true, winCount = 2, totalGames = totalTurns},
+        };
+
+        // ê²Œì„ ê²°ê³¼ ì°½ í‘œì‹œ
+        m_gameResultController.ShowGameResult(results, totalTurns);
+    }
+
+    public int PlayerCount                              // ëª‡ ëª…ì˜ í”Œë ˆì´ì–´ê°€ ì°¸ì—¬ì¤‘ì¸ì§€
     {
         get{ return m_playerManager.PlayerCount; }
     }
 
-    public int GetCurrentPlayer()                       // Áö±İ ´©±¸ÀÇ ÅÏÀÎÁö, index°ª ¹İÈ¯
+    public int GetCurrentPlayer()                       // ì§€ê¸ˆ ëˆ„êµ¬ì˜ í„´ì¸ì§€, indexê°’ ë°˜í™˜
     {
         return m_playerManager.CurrentPlayer;
     }
