@@ -11,13 +11,13 @@ public class CardInfoCheck : NetworkBehaviour
     private void UpdateTextClientRpc(string cardInfo, int targetIndex)
     {
         // 자신의 index와 targetIndex가 일치할 때만 업데이트
-        if (index == targetIndex)
-        {
+      //  if (index == targetIndex)
+     //   {
             if (myText != null)
             {
                 myText.text = cardInfo; // 텍스트 업데이트
             }
-        }
+       // }
     }
 
     // 서버에서 실행: 텍스트를 업데이트하고 조건에 맞는 클라이언트로 전송
