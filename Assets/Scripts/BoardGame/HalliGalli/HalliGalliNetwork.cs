@@ -27,13 +27,13 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         print("GameStart");
 
-        if(IsServer)
+        if (IsServer)
         {
             Collectcard();          //위치조절함수
             m_shuffledIndexes = GameManager.Instance.Shuffle(m_card);   //랜덤으로 섞인 카드의 인덱스를 받아옴
             ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
         }
-            SyncShuffledIndexesToClientRpc(m_shuffledIndexes);          // 클라이언트에게 섞인 인덱스 전달
+        SyncShuffledIndexesToClientRpc(m_shuffledIndexes);          // 클라이언트에게 섞인 인덱스 전달
 
         m_playerCard = new Queue<HalliGalliCard>[GameManager.Instance.PlayerCount];
         for (int i = 0; i < GameManager.Instance.PlayerCount; i++)                  // m_playerCard 초기화
@@ -118,7 +118,7 @@ public class HalliGalliNetwork : NetworkBehaviour
             card.FlipCard();                                    // card를 뒤집는 함수( 작동 안됨 )
 
             //CardInfoCheck에 액션으로 보낼 string값을 현재 Top 카드에서 찾아서 보냄
-            OnTopCardChanged?.Invoke(m_topCard[playerNum].m_AnimalType.ToString() + m_topCard[playerNum].m_fruitNum, playerNum); 
+            OnTopCardChanged?.Invoke(m_topCard[playerNum].m_AnimalType.ToString() + m_topCard[playerNum].m_fruitNum, playerNum);
             GameManager.Instance.NextTurn(playerNum);
             return;
         }
@@ -193,10 +193,10 @@ public class HalliGalliNetwork : NetworkBehaviour
         else                                                // 플레이어가 2명 이상일 경우, 다시 진행
         {
             print(GameManager.Instance.PlayerCount);
-            Array.Clear(m_topCard, 0, m_topCard.Length);    // topcard초기화
+            //Array.Clear(m_topCard, 0, m_topCard.Length);    // topcard초기화
             print("new round");
 
-            for(int i=0 ; i < GameManager.Instance.PlayerCount; i++)    // topcard초기화 후 CardInfoCheck에 초기화 된 string값을 액션으로 보냄 
+            for (int i = 0; i < GameManager.Instance.PlayerCount; i++)    // topcard초기화 후 CardInfoCheck에 초기화 된 string값을 액션으로 보냄 
             {
                 OnTopCardChanged?.Invoke(" 라운드 초기화 ", i);
             }
@@ -249,5 +249,4 @@ public class HalliGalliNetwork : NetworkBehaviour
         //GameManager.Instance.Calculatecard(m_card.Length, GameManager.Instance.PlayerCount, m_playerCardCount);
         GameManager.Instance.Calculatecard(m_card.Length, 4, m_playerCardCount);
     }
-
 }

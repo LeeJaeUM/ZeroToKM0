@@ -17,10 +17,10 @@ public class PlayerManager : NetworkBehaviour
 
     public void NextTurn(int currentPlayerIndex)
     {
-        Debug.Log("NextTurn");
+       // Debug.Log("NextTurn");
         if (IsServer)
         {
-            Debug.Log("NextTurnIn Server");
+            //Debug.Log("NextTurnIn Server");
             currentPlayerIndex = (currentPlayerIndex + 1) % PlayerCount;            // 마지막 차례인 플레이어일때, 다시 처음으로 돌아감.
             nm_currentPlayer.Value = currentPlayerIndex;
 
@@ -33,7 +33,7 @@ public class PlayerManager : NetworkBehaviour
                 m_alivePlayers[i].nm_isMyTurn.Value = false;
             }
         }
-        Debug.Log("NextTur - Endn");
+       // Debug.Log("NextTur - Endn");
     }
     public void RemovePlayer(int player)
     {
