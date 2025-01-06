@@ -1,30 +1,43 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     public Player[] m_players;
     public List<Player> m_alivePlayers;
-    public Player m_currentPlayer;
 
-    public int CurrentPlayer { get { return m_currentPlayer.m_playerNum; } }
-    public int PlayerCount {  get { return m_alivePlayers.Count; } }
+    public int CurrentPlayer { get { return nm_currentPlayer.Value; } }
+    public int PlayerCount { get { return m_alivePlayers.Count; } }
+
+
+    public NetworkVariable<int> nm_currentPlayer = new NetworkVariable<int>(0);  // í˜„ì¬ í„´ì˜ í”Œë ˆì´ì–´ ë²ˆí˜¸
+    //public NetworkVariable<int> nm_playerCount = new NetworkVariable<int>(0);  // ì‚´ì•„ìˆëŠ” í”Œë ˆì´ì–´ ìˆ˜
 
     public void NextTurn(int currentPlayerIndex)
     {
-        // todo : ¸ÖÆ¼ÇÃ·¹ÀÌ µÇ¸é ÁÖ¼® Áö¿ì±â
-        //m_players[currentPlayerIndex].m_isMyTurn = false;
+       // Debug.Log("NextTurn");
+        if (IsServer)
+        {
+            //Debug.Log("NextTurnIn Server");
+            currentPlayerIndex = (currentPlayerIndex + 1) % PlayerCount;            // ë§ˆì§€ë§‰ ì°¨ë¡€ì¸ í”Œë ˆì´ì–´ì¼ë•Œ, ë‹¤ì‹œ ì²˜ìŒìœ¼ë¡œ ëŒì•„ê°.
+            nm_currentPlayer.Value = currentPlayerIndex;
 
-        currentPlayerIndex = (currentPlayerIndex + 1) % PlayerCount;            // ¸¶Áö¸· Â÷·ÊÀÎ ÇÃ·¹ÀÌ¾îÀÏ¶§, ´Ù½Ã Ã³À½À¸·Î µ¹¾Æ°¨.
-
-        m_currentPlayer = m_alivePlayers[currentPlayerIndex];
-        // todo : ¸ÖÆ¼ÇÃ·¹ÀÌ µÇ¸é ÁÖ¼® Áö¿ì±â
-        //m_currentPlayer.m_isMyTurn = true;
+            for (int i = 0; i < m_alivePlayers.Count; i++)
+            {
+                if(m_alivePlayers[i].m_playerNum == nm_currentPlayer.Value)
+                {
+                    m_alivePlayers[currentPlayerIndex].nm_isMyTurn.Value = true;
+                }
+                m_alivePlayers[i].nm_isMyTurn.Value = false;
+            }
+        }
+       // Debug.Log("NextTur - Endn");
     }
     public void RemovePlayer(int player)
     {
-        for(int i = 0; i < m_alivePlayers.Count; i++)
+        for (int i = 0; i < m_alivePlayers.Count; i++)
         {
             if (m_players[player] == m_alivePlayers[i])
             {
@@ -33,17 +46,19 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    void Awake()
+
+    private void Awake()
     {
         m_players = GetComponentsInChildren<Player>();
         m_alivePlayers = new List<Player>();
-        for(int i = 0 ; i < m_players.Length; i++)
+        for (int i = 0; i < m_players.Length; i++)
         {
             m_alivePlayers.Add(m_players[i]);
         }
     }
+
     void Start()
     {
-        m_currentPlayer = m_players[0];
+
     }
 }

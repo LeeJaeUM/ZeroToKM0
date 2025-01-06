@@ -73,5 +73,4 @@ public class GameResultController : MonoBehaviour
     {
         m_modalWindow.SetActive(false);
     }
-
 }
