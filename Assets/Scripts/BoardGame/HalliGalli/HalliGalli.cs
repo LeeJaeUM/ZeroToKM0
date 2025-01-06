@@ -42,14 +42,16 @@ public class HalliGalli : MonoBehaviour
     public void CreateCard()                                                        // 카드 초기화 해주기( type, 숫자 )
     {
         int i = 0;
-        foreach (HalliGalliCard.AnimalType fruit in Enum.GetValues(typeof(HalliGalliCard.AnimalType)))
+        foreach (HalliGalliCard.AnimalType animal in Enum.GetValues(typeof(HalliGalliCard.AnimalType)))
         {
-            for (int k = 0; k < m_fruitCount.Length; k++)
+            for (int k = 0; k < m_fruitCount.Length; k++)               // 동물을 몇 개까지 만들지
             {
-                for (int j = 0; j < m_fruitCount[k]; j++)
+                for (int j = 0; j < m_fruitCount[k]; j++)               // 동물 k+1개를 몇개를 만들지
                 {
-                    m_card[i++].Initialize(fruit, k + 1);
-                    //TODO : 카드에 맞게 스프라이트 넣기 추가
+                    m_card[i].Initialize(animal, k + 1);
+                    //카드에 맞게 스프라이트 넣기
+                    m_card[i].m_sprite.sprite = m_fruitSprite[(int)animal * 5 + k];
+                    i++;
                 }
             }
         }
@@ -72,6 +74,7 @@ public class HalliGalli : MonoBehaviour
             foreach (Card card in m_playerCard[i])
             {
                 SetPos(i, card.gameObject);
+                card.RotateCard();
             }
         }
 
@@ -88,7 +91,6 @@ public class HalliGalli : MonoBehaviour
         gameobj.transform.position = cardPos;
         gameobj.transform.forward = m_cardPos[playerNum].transform.forward;
         gameobj.transform.Rotate(Vector3.right * 90);
-
     }
     public void Collectcard()                          // 모든 카드 딜러가 가져오기
     {
@@ -110,7 +112,7 @@ public class HalliGalli : MonoBehaviour
             m_openedCard.Add(card);                             // m_openedCard에 추가
 
             SetPos(playerNum + 4, card.gameObject);
-            card.OpenCard();                                    // card를 뒤집는 함수( 작동 안됨 )
+            //card.RotateCard();                                    
 
             GameManager.Instance.NextTurn(playerNum);
             return;

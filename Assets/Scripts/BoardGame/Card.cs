@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
-    public void OpenCard()              // Ä«µå¸¦ µÚÁý¾îÁÖ´Â ÇÔ¼ö
+    public void RotateCard()              // ì¹´ë“œë¥¼ ë’¤ì§‘ì–´ì£¼ëŠ” í•¨ìˆ˜
     {
         transform.Rotate(Vector3.right * 180);
     }
