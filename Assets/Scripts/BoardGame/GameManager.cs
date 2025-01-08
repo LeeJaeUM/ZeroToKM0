@@ -38,13 +38,21 @@ public class GameManager : NetworkBehaviour
     public RoundWinner m_roundWinner;
     public FinalWinner m_finalWinner;
 
+    public void InitPlayers(int playerCount)
+    {
+        m_turnManager.InitPlayers(playerCount);
+    }
     public int GetPlayerCount()
     {
         return m_turnManager.AlivePlayerCount;
     }
-    public int GetCurrentPlayer()                       // 지금 누구의 턴인지, index값 반환
+    public int GetCurrentTurn()                       // 지금 누구의 턴인지, index값 반환
     {
         return m_turnManager.CurrentTurn;
+    }
+    public void SetCurrentTurn(int turn)
+    {
+        m_turnManager.CurrentTurn = turn;
     }
     public int[] Shuffle(object[] obj)
     {

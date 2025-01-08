@@ -8,7 +8,10 @@ public class TurnManager : MonoBehaviour
     public List<int> m_alivePlayers;     // 살아있는 Player들의 인덱스
     public int m_currentTurn;            // 현재 차례인 Player의 m_alivePlayers에서의 인덱스
     public int AlivePlayerCount { get { return m_alivePlayers.Count; } }
-    public int CurrentTurn { get { return m_alivePlayers[m_currentTurn]; } }    // 현재 차례인 Player의 인덱스 반환
+    public int CurrentTurn { 
+        get { return m_alivePlayers[m_currentTurn]; }               // 현재 차례인 Player의 번호 반환
+        set { m_currentTurn = m_alivePlayers.IndexOf(value); }      // Player번호를 입력받아 m_alivePlayers내에서의 인덱스로 m_currentTurn의 값 변경
+    }    
 
     public void InitPlayers(int playerCount)                               // 입력 받은 player의 숫자만큼 m_alivePlayers를 초기화해줌
     {
@@ -29,10 +32,5 @@ public class TurnManager : MonoBehaviour
         m_alivePlayers.Remove(target);
 
         print("Player Out : " + (target + 1));
-    }
-
-    void Awake()
-    {
-        InitPlayers(2);             // TODO : 임의로 초기화한 것. 나중에 지우기
     }
 }

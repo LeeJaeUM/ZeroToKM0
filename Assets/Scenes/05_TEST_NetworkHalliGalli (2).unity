@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170826972}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
@@ -1405,13 +1405,10 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_mainCamera: {fileID: 0}
 --- !u!1 &172693291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,7 +2939,6 @@ GameObject:
   m_Component:
   - component: {fileID: 389820503}
   - component: {fileID: 389820505}
-  - component: {fileID: 389820504}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -2969,23 +2965,6 @@ Transform:
   - {fileID: 1707183391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &389820504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389820502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1704cd1af16f83c4f8e37858b2b5570f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  m_players: []
-  m_alivePlayers: []
-  nm_currentPlayer:
-    m_InternalValue: 0
 --- !u!114 &389820505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3207,7 +3186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &395050507
 Transform:
   m_ObjectHideFlags: 0
@@ -5049,7 +5028,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650001117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
@@ -5059,13 +5038,10 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_mainCamera: {fileID: 0}
 --- !u!1001 &663937375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8378,33 +8354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a1cfc2b57f4dc4a9430ed30ba1d75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cards: []
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_kushi: []
 --- !u!4 &1193039413
 Transform:
   m_ObjectHideFlags: 0
@@ -8786,24 +8735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fbb44af33800942ab2782aa3ac8e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_animalSprite: []
-  m_card: []
-  m_topCard: []
-  m_openedCard: []
-  m_playerCardCount: 
-  m_cardHeight: 0
-  m_cardPos:
-  - {fileID: 2119405249}
-  - {fileID: 1797511473}
-  - {fileID: 1632913451}
-  - {fileID: 203230685}
-  - {fileID: 1823431699}
-  - {fileID: 1713070063}
-  - {fileID: 1378389911}
-  - {fileID: 1786802792}
-  - {fileID: 1536132619}
-  m_animalCount: 0300000003000000030000000300000002000000
-  m_roundCount: 1
 --- !u!4 &1311717146
 Transform:
   m_ObjectHideFlags: 0
@@ -10641,7 +10572,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707183390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
@@ -10651,13 +10582,10 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_mainCamera: {fileID: 0}
 --- !u!1 &1713070061
 GameObject:
   m_ObjectHideFlags: 0
@@ -13008,7 +12936,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095496598}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
@@ -13018,13 +12946,10 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_mainCamera: {fileID: 0}
 --- !u!1001 &2112033237
 PrefabInstance:
   m_ObjectHideFlags: 0

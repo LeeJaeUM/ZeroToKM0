@@ -28,7 +28,12 @@ public class HalliGalliNetwork : NetworkBehaviour
 
     public void GameSetting()                                                       // 게임 시작 전 실행
     {
-        print("GameStart");
+        int playerCount = NetworkManager.Singleton.ConnectedClients.Count;          // 연결된 플레이어 숫자 가져옴
+        m_playerCardCount = new int[playerCount];                                   
+        GameManager.Instance.InitPlayers(playerCount);                              // TurnManager에 플레이어 숫자 할당해줌.
+
+        CreateCard();                                                               // 카드들에 정보+sprite 할당
+        m_gameManager.Calculatecard(m_card.Length, playerCount, m_playerCardCount); // 각 플레이어 별 카드 숫자 계산
 
         if (IsServer)
         {
@@ -38,12 +43,14 @@ public class HalliGalliNetwork : NetworkBehaviour
         }
         SyncShuffledIndexesToClientRpc(m_shuffledIndexes);          // 클라이언트에게 섞인 인덱스 전달
 
-        m_playerCard = new Queue<HalliGalliCard>[m_gameManager.GetPlayerCount()];
-        for (int i = 0; i < m_gameManager.GetPlayerCount(); i++)                  // m_playerCard 초기화
+        m_playerCard = new Queue<HalliGalliCard>[playerCount];
+        for (int i = 0; i < playerCount; i++)                  // m_playerCard 초기화
         {
             m_playerCard[i] = new Queue<HalliGalliCard>();
         }
-        m_topCard = new HalliGalliCard[m_gameManager.GetPlayerCount()];
+        m_topCard = new HalliGalliCard[playerCount];
+
+        print("GameStart");
 
         DistributeCard();       //위치조절함수
         Dealcard();             //위치조절함수
@@ -153,6 +160,7 @@ public class HalliGalliNetwork : NetworkBehaviour
             m_gameManager.RoundWinMessage(playernum + 1);
             GiveCard(playernum);
             RoundFinish();
+            m_gameManager.SetCurrentTurn(playernum);            // 승자부터 다시 시작
         }
         // 2. 정답이 아닐 때
         else
@@ -265,11 +273,6 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         m_gameManager = GameManager.Instance;
         m_card = GetComponentsInChildren<HalliGalliCard>();
-        m_playerCardCount = new int[m_gameManager.GetPlayerCount()];
         m_cardHeight = 0.01f;
-        CreateCard();
-
-        //m_gameManager.Calculatecard(m_card.Length, m_gameManager.PlayerCount, m_playerCardCount);
-        m_gameManager.Calculatecard(m_card.Length, m_gameManager.GetPlayerCount(), m_playerCardCount);
     }
 }
