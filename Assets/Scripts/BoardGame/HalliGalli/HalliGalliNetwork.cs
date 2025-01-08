@@ -116,7 +116,7 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         HalliGalliCard card;
 
-        // 1. 정상작동. 플레이어의 카드가 존재할때(0개 이상일 때)
+        // 1. 정상작동 : 플레이어의 카드가 존재할때(0개 이상일 때)
         if (m_playerCard[playerNum].Count > 0)
         {
             card = m_playerCard[playerNum].Dequeue();           // 입력 받은 플레이어의 카드덱에서 가장 위의 카드를 가져옴
@@ -127,19 +127,21 @@ public class HalliGalliNetwork : NetworkBehaviour
 
             //CardInfoCheck에 액션으로 보낼 string값을 현재 Top 카드에서 찾아서 보냄
             OnTopCardChanged?.Invoke(m_topCard[playerNum].m_AnimalType.ToString() + m_topCard[playerNum].m_fruitNum, playerNum);
-            m_gameManager.NextTurn();
-        }
 
-        // 2. 예외처리(1). 플레이어의 카드가 존재하지 않고(0개이고) 모든 카드가 오픈되지 않았을 때.
-        else if (m_card.Length != m_openedCard.Count)
-        {
-            OpenCard(m_gameManager.NextTurn());
-        }
+            int index;
+            do
+            {
+                // GameManager의 NextTurn()함수를 통해 다음 차례로 넘김.
+                index = m_gameManager.NextTurn();
+                // 2. 예외처리(1) : 모든 플레이어의 카드가 Open되었다면 반복문 중지
+                if(m_card.Length == m_openedCard.Count)
+                {
+                    print("All Card Used");
+                    // TODO : 모든 카드가 사용되었을때의 룰 필요( ex : 게임을 다시 시작한다, 라운드를 다시 시작한다 )
+                }
 
-        // 3. 예외처리(2). 모든 카드가 오픈되었을 때
-        else
-        {
-            print("All Card Used");
+            // 3. 예외처리(2) : 다음 차례로 넘겼는데 그 플레이어의 카드가 0개라면 다시 다음 차례로 넘김.
+            } while (m_playerCard[index].Count == 0);           
         }
     }
     public void RingBell(int playernum)                         // player가 space바를 눌렀을 때 호출

@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class TurnManager : MonoBehaviour
 {
     public List<int> m_alivePlayers;     // 살아있는 Player들의 인덱스
-    public int m_currentTurn;            // 현재 차례인 Player의 인덱스
+    public int m_currentTurn;            // 현재 차례인 Player의 m_alivePlayers에서의 인덱스
     public int AlivePlayerCount { get { return m_alivePlayers.Count; } }
-    public int CurrentTurn { get { return m_currentTurn; } }
+    public int CurrentTurn { get { return m_alivePlayers[m_currentTurn]; } }    // 현재 차례인 Player의 인덱스 반환
 
     public void InitPlayers(int playerCount)                               // 입력 받은 player의 숫자만큼 m_alivePlayers를 초기화해줌
     {
@@ -27,6 +27,7 @@ public class TurnManager : MonoBehaviour
     public void RemovePlayer(int target)                                   // 인자로 player의 index를 받아서 그 player를 제거. 
     {
         m_alivePlayers.Remove(target);
+
         print("Player Out : " + (target + 1));
     }
 
