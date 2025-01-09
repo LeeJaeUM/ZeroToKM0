@@ -65,7 +65,6 @@ public class GameResultController : MonoBehaviour
     public void OnCofirm()
     {
         Debug.Log("Click Confirm");
-        //m_modalWindowManager.CloseWindow();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

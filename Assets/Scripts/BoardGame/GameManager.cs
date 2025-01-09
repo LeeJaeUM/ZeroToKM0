@@ -38,6 +38,25 @@ public class GameManager : NetworkBehaviour
     public RoundWinner m_roundWinner;
     public FinalWinner m_finalWinner;
 
+    [SerializeField] GameResultController m_gameResultController;
+
+    public void EndGame()
+    {
+        // TODO : 예제 데이터, 데이터베이스 데이터로 변경 필요
+        PlayerResult[] results = new PlayerResult[]
+        {
+            new PlayerResult { playerName = "Player1", isWinner = true, winCount = 1, totalGames = 3 },
+            new PlayerResult { playerName = "Player2", isWinner = false, winCount = 0, totalGames = 3 },
+            new PlayerResult { playerName = "Player3", isWinner = false, winCount = 0, totalGames = 3 },
+            new PlayerResult { playerName = "Player4", isWinner = false, winCount = 2, totalGames = 3 },
+        };
+
+        int totalTurns = 3;
+
+        // Modal 창 열기
+        m_gameResultController.ShowGameResult(results, totalTurns);
+    }
+
     public void InitPlayers(int playerCount)
     {
         m_turnManager.InitPlayers(playerCount);
@@ -103,5 +122,15 @@ public class GameManager : NetworkBehaviour
     public void OpenCard(int playerNum)
     {
         m_halligalli.OpenCard(playerNum);
+    }
+
+    void Update()
+    {
+        // TODO : 데이터베이스 연결 시 변경필요
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            EndGame();
+        }
+        
     }
 }
