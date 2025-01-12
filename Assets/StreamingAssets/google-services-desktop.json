@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "760326917255",
+    "project_id": "fbunitydb",
+    "storage_bucket": "fbunitydb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760326917255:android:34e60abcd2eeb378c0bc22",
+        "android_client_info": {
+          "package_name": "com.LSW.games"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760326917255-d67kpikl8l0c41is5ud4kpb3ilhsqvho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwXxhe5KT0jZ9LNtQSOoVzwoaPaD_OEeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760326917255-d67kpikl8l0c41is5ud4kpb3ilhsqvho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
