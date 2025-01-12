@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -10,11 +10,11 @@ namespace Michsky.MUIP
     public class DropdownMultiSelect : MonoBehaviour, IPointerExitHandler, IPointerClickHandler
     {
         // Resources
-        public GameObject triggerObject;
-        public Transform itemParent;
-        public GameObject itemObject;
+        public GameObject triggerObject;            // 드롭다운 트리거 (버튼 역할)
+        public Transform itemParent;                // 드롭다운 아이템 부모
+        public GameObject itemObject;               // 드롭다운 아이템 템플릿 (Prefab)
         public GameObject scrollbar;
-        private VerticalLayoutGroup itemList;
+        private VerticalLayoutGroup itemList;       
         private Transform currentListParent;
         public Transform listParent;
         private Animator dropdownAnimator;

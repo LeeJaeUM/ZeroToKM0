@@ -20,7 +20,6 @@ public class LoadScene : SingletonDontDestroy<LoadScene>
 
     public void LoadSceneAsync(SceneState scene)
     {
-        if (m_loadScene != SceneState.None) return;
         m_loadScene = scene;
         m_loadState = SceneManager.LoadSceneAsync((int)scene);
     }
