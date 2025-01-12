@@ -6,8 +6,14 @@ public class ObjectDrag : MonoBehaviour
     private Camera m_camera;            // 플레이어의 카메라
     private bool m_isDragging = false;
     private bool m_shiftPressed = false; // Shift 키 상태
+    [SerializeField]
     private Vector3 m_offset;
+    [SerializeField]
+    private float m_dragUpYPos = 0.3f;
+    [SerializeField]
     private Transform m_draggedObject;
+    private Rigidbody m_draggedRigidbody;   // 드래그 중인 오브젝트의 Rigidbody
+    private Card m_draggedCard;             // 드래그 중인 카드
 
     void Start()
     {
@@ -23,12 +29,12 @@ public class ObjectDrag : MonoBehaviour
             Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Vector3 newPosition = hit.point + m_offset;
+                Vector3 newPosition = new Vector3( hit.point.x, m_draggedObject.position.y, hit.point.z); //+ m_offset;
 
-                // Shift 키를 누르지 않았을 경우 Y값 고정
-                if (!m_shiftPressed)
+                // Shift 키를 눌렀을 경우 Y값 변경가능
+                if (m_shiftPressed)
                 {
-                    newPosition.y = m_draggedObject.position.y;
+                    newPosition.y = hit.point.y;
                 }
 
                 m_draggedObject.position = newPosition;
@@ -45,30 +51,60 @@ public class ObjectDrag : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 m_draggedObject = hit.transform;
-                m_offset = m_draggedObject.position - hit.point;
-                m_isDragging = true;
+
+                // 클릭된 오브젝트를 약간 위로 올림
+                m_draggedObject.position = new Vector3(
+                    m_draggedObject.position.x,
+                    m_draggedObject.position.y + m_dragUpYPos,
+                    m_draggedObject.position.z
+                );
+
+                // Rigidbody의 useGravity를 false로 설정
+                Rigidbody rb = m_draggedObject.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    m_draggedRigidbody = rb; // 드래그 중인 Rigidbody 저장
+                    rb.useGravity = false;
+                }
+                Card card = hit.transform.GetComponent<Card>();
+                if (card != null)
+                {
+                    m_draggedCard = card;
+                    card.IsMove(true);
+                }
+                    m_isDragging = true;
             }
         }
         else // 마우스 버튼을 뗄 때
         {
             m_isDragging = false;
+
+            // 드래그 중인 Rigidbody가 있다면 useGravity를 true로 복원
+            if (m_draggedRigidbody != null)
+            {
+                m_draggedRigidbody.useGravity = true;
+                m_draggedRigidbody = null;
+            }
+            if(m_draggedCard != null)
+            {
+                m_draggedCard.IsMove(false);
+                m_draggedCard = null;
+            }
+
             m_draggedObject = null;
         }
     }
-
     // Shift 키 상태 업데이트
     public void OnShift(InputValue value)
     {
         m_shiftPressed = value.isPressed;
     }
 
-    // 우클릭 이벤트 처리
-    public void OnRightClick(InputValue value)
+    // F버튼 이벤트 처리 (카드 뒤집기)  
+    public void OnFlip(InputValue value)
     {
-        
         if (value.isPressed) // 우클릭 시
         {
-            
             Debug.Log("우클릭함");
             Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))

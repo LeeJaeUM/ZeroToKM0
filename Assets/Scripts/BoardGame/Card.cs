@@ -12,6 +12,11 @@ public class Card : NetworkBehaviour
 
     private bool isMoving = false;
 
+    public void IsMove(bool canMove)
+    {
+        isMoving = canMove;
+    }
+
     void Update()
     {
         // 서버에서만 위치와 회전 업데이트 (클라이언트는 읽기만 함)
@@ -59,6 +64,35 @@ public class Card : NetworkBehaviour
     }
     public void FlipCard()              // 카드를 뒤집어주는 함수
     {
-        transform.Rotate(Vector3.right * 180);
+        Debug.Log("FlipCard");
+        //transform.Rotate(Vector3.right * 180);
+        StartCoroutine(FlipAnimation());
+    }
+
+    private IEnumerator FlipAnimation()
+    {
+        isMoving = true;
+        float elapsedTime = 0;
+        float duration = 0.5f;
+        Vector3 startRotation = transform.eulerAngles;
+        Vector3 endRotation = transform.eulerAngles + new Vector3(180, 0, 0);
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            transform.eulerAngles = Vector3.Lerp(startRotation, endRotation, elapsedTime / duration);
+            yield return null;
+        }
+        isMoving = false;
+    }
+
+    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Card"))
+        {
+            
+        }
     }
 }

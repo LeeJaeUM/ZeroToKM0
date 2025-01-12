@@ -1405,10 +1405,13 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_mainCamera: {fileID: 0}
+  m_ingredients:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &172693291
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,10 +5041,13 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_mainCamera: {fileID: 0}
+  m_ingredients:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &663937375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6497,7 +6503,7 @@ PrefabInstance:
     - target: {fileID: 1120672022285219088, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
       propertyPath: NetworkConfig.PlayerPrefab
       value: 
-      objectReference: {fileID: 3972669666073577831, guid: cee4c7b5d403d5349b718503795fa02c, type: 3}
+      objectReference: {fileID: 1721750772155744543, guid: b9eab29df1ae4de43bdfaaba2be3f8d5, type: 3}
     - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 773.225
@@ -10582,10 +10588,13 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_mainCamera: {fileID: 0}
+  m_ingredients:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1713070061
 GameObject:
   m_ObjectHideFlags: 0
@@ -12946,10 +12955,13 @@ MonoBehaviour:
   m_halligalli: {fileID: 441099419}
   nm_isMyTurn:
     m_InternalValue: 0
-  m_layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_mainCamera: {fileID: 0}
+  m_ingredients:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &2112033237
 PrefabInstance:
   m_ObjectHideFlags: 0
