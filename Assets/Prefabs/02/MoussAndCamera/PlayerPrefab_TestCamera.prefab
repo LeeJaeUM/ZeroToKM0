@@ -494,9 +494,9 @@ GameObject:
   - component: {fileID: 7656542828558645011}
   - component: {fileID: 7725535021732815981}
   - component: {fileID: 5194805521812958183}
-  - component: {fileID: 1397866948927761560}
   - component: {fileID: 6665189373425555600}
   - component: {fileID: 4104067616429416792}
+  - component: {fileID: 9166110698299467341}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged
@@ -666,18 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 30
   m_rotationSpeed: 20
---- !u!114 &1397866948927761560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2857587612289322200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61a946847bfec64a870f741b5323cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_isMoveClickHeld: 0
 --- !u!114 &6665189373425555600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,3 +696,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   m_playerCamera: {fileID: 530245754898197131}
+--- !u!114 &9166110698299467341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857587612289322200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbc8ee3746134d4e91fc08dcbb294c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dragUpYPos: 0.1
