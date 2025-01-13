@@ -7,7 +7,7 @@ public class ProgressBarManager : MonoBehaviour
     [SerializeField] ProgressBar m_progressBar;
     
     bool m_isAnimating = false;             // Progress Bar Update Flag
-    float m_animationDuration = 1.75f;     // Animation 길이
+    float m_animationDuration = 1.70f;     // Animation 길이
     float m_elapsedTime = 0f;               // 진행된 시간
     #endregion
 
