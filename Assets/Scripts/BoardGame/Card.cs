@@ -20,7 +20,9 @@ public class Card : NetworkBehaviour
     public bool m_testShuffle;
     public int m_testNum;
     public bool m_printNum;
-    public bool checkOnce;
+    public bool checkOnceShuffle;
+    public bool checkOncePrint;
+
     public void IsMove(bool canMove)
     {
         isMoving = canMove;
@@ -41,15 +43,15 @@ public class Card : NetworkBehaviour
         }
 
         // TODO : 확인용, 나중에 다 지우기.
-        if (m_testShuffle && !checkOnce)
+        if (m_testShuffle && !checkOnceShuffle)
         {
             ShuffleDeck();
-            checkOnce = true;
+            checkOnceShuffle = true;
         }
-        if (m_printNum && !checkOnce)
+        if (m_printNum && !checkOncePrint)
         {
             PrintList();
-            checkOnce = true;
+            checkOncePrint = true;
         }
         //
     }
