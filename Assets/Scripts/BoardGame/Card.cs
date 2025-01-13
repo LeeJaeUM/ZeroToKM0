@@ -146,6 +146,11 @@ public class Card : NetworkBehaviour
         isMoving = false;
     }
 
+    public  void CardSuffleAnimation()
+    {
+
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (!m_isPlaced)
