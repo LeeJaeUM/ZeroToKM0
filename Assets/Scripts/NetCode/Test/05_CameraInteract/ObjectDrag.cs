@@ -64,6 +64,7 @@ public class ObjectDrag : MonoBehaviour
             if (m_draggedCard != null)
             {
                 m_draggedCard.IsMove(true);
+                m_draggedCard.m_isPlaced = false;                          
             }
 
             m_isDragging = true;

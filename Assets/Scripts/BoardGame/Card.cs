@@ -11,7 +11,8 @@ public class Card : NetworkBehaviour
     public NetworkVariable<Quaternion> m_networkRotation = new NetworkVariable<Quaternion>(Quaternion.identity);
 
     private bool isMoving = false;
-
+    public bool m_isPlaced = false;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
+    public float m_cardSpacing = 0.05f;                 // 카드 사이 간격
     public void IsMove(bool canMove)
     {
         isMoving = canMove;
@@ -86,13 +87,31 @@ public class Card : NetworkBehaviour
         isMoving = false;
     }
 
-    
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Card"))
+        if (!m_isPlaced)
         {
-            
+            if (other.collider.CompareTag("Card"))
+            {
+                Debug.Log("Card");
+
+                m_isPlaced = true;  // 카드가 놓였음을 표시
+
+                // 카드 위치를 다른 카드와 일치시킴
+                Vector3 newPos = other.transform.position;
+                newPos.y += m_cardSpacing;  // 높이 조정
+
+                transform.position = newPos;  // 최종 위치 설정
+
+                // 카드의 회전 방향을 맞추고, x축을 기준으로 90도 회전
+                transform.forward = other.transform.forward;
+            }
+            else if (other.collider.CompareTag("Table"))
+            {
+                Debug.Log("Table");
+
+                m_isPlaced = true;  // 테이블 위에 놓였음을 표시
+            }
         }
     }
 }
