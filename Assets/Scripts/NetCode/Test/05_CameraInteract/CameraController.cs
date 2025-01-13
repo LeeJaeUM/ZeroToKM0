@@ -72,7 +72,7 @@ public class CameraController : MonoBehaviour
     public void OnMouseMove(InputValue value)
     {
         m_lookInput = value.Get<Vector2>(); // 마우스 이동 입력
-        Debug.Log($"마우스 위치 바꾸는중 {m_lookInput.x}, {m_lookInput.y}");
+        //Debug.Log($"마우스 위치 바꾸는중 {m_lookInput.x}, {m_lookInput.y}");
     }
 
     // Input System 콜백 함수: 우클릭 상태 확인

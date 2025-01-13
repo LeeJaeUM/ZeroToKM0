@@ -1,13 +1,14 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class KushiExpressCard : Card
 {
-    public KushiExpressIngredient.IngredientType[] m_answer;        // Á¤´äÀ» ³ÖÀ» ¹è¿­
-    public int m_score;                                             // Á¡¼ö, Á¡¼ö°¡ °ğ Àç·áÀÇ °³¼ö
+    public List<KushiExpressIngredient.IngredientType> m_answer;    // ì •ë‹µì„ ë„£ì„ ë°°ì—´
+    public int m_score;                                             // ì ìˆ˜, ì ìˆ˜ê°€ ê³§ ì¬ë£Œì˜ ê°œìˆ˜
 
     public void Intialize(int score)
     {
         m_score = score;
-        m_answer = new KushiExpressIngredient.IngredientType[m_score];        // Á¡¼ö°¡ Àç·áÀÇ °³¼ö¿Í °°À¸¹Ç·Î Á¡¼ö¸¸Å­ ¹è¿­ Å©±â¸¦ ÇÒ´ç
     }
 }

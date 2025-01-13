@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class KushiExpressIngredient : MonoBehaviour
 {
-    public enum IngredientType          // Àç·á Á¾·ù
+    public enum IngredientType          // ì¬ë£Œ ì¢…ë¥˜
     {
-        BellPepper,                     // ÇÇ¸Á
-        Shrimp,                         // »õ¿ì
-        Tomato,                         // Åä¸¶Åä
-        Steak,                          // ½ºÅ×ÀÌÅ©
-        Bacon,                          // º£ÀÌÄÁ
-        Cheese,                         // Ä¡Áî
+        BellPepper,                     // í”¼ë§
+        Shrimp,                         // ìƒˆìš°
+        Tomato,                         // í† ë§ˆí† 
+        Steak,                          // ìŠ¤í…Œì´í¬
+        Bacon_OutSide,                  // ë² ì´ì»¨ ë°”ê¹¥ ë¶€ë¶„( 3ê°œ êµ¬ë© ì¤‘ ë°”ê¹¥ 2ê°œ êµ¬ë© )
+        Bacon_InSide,                   // ë² ì´ì»¨ ì•ˆìª½ ë¶€ë¶„( 3ê°œ êµ¬ë© ì¤‘ ì•ˆìª½ 1ê°œ êµ¬ë© )
+        Cheese_OutSide,                 // ì¹˜ì¦ˆ ë°”ê¹¥ ë¶€ë¶„
+        Cheese_InSide,                  // ì¹˜ì¦ˆ ì•ˆìª½ ë¶€ë¶„
         Max
     }
-    public IngredientType m_type;       // Àç·áÀÇ Á¾·ù
-    public int m_length;                // ±æÀÌ. 1ÀÌ³ª 2. ¸î¹ø ²ÈÀ» ¼ö ÀÖ´ÂÁö.
+    public IngredientType m_type;       // ì¬ë£Œì˜ ì¢…ë¥˜
+    public int m_length;                // ê¸¸ì´. 1ì´ë‚˜ 2. ëª‡ë²ˆ ê½‚ì„ ìˆ˜ ìˆëŠ”ì§€.
 
 }

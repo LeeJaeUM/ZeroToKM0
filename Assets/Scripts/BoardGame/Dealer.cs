@@ -28,18 +28,18 @@ public class Dealer : NetworkBehaviour
     //        obj[j] = temp;
     //    }
     //}
-    public int[] Shuffle(object[] obj)
+    public int[] Shuffle(int length)    // 배열의 길이를 입력받음.
     {
         System.Random random = new System.Random();
-        int[] shuffledIndexes = new int[obj.Length];
+        int[] shuffledIndexes = new int[length];
 
         // 인덱스를 랜덤하게 섞을 배열을 만든다.
-        for (int i = 0; i < obj.Length; i++)
+        for (int i = 0; i < length; i++)
         {
             shuffledIndexes[i] = i;
         }
 
-        for (int i = obj.Length - 1; i > 0; i--)
+        for (int i = length - 1; i > 0; i--)
         {
             int j = random.Next(i + 1); // 0 ~ i 범위에서 랜덤 인덱스
                                         // 인덱스를 섞는다.

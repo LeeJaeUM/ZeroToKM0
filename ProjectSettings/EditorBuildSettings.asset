@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/03_InSession.unity
     guid: 1dbd11db4030e7e49ad1cebdcc725385
+  - enabled: 1
+    path: Assets/Scenes/TestNetCodeScene/05_Test_MouseMove 2.unity
+    guid: 788aad834ec9c254c95b0a8e8415f1f1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1d0e70f8e94bbb94fb81e5891d652f31, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -64,9 +64,13 @@ public class ObjectDrag : MonoBehaviour
             if (m_draggedCard != null)
             {
                 m_draggedCard.IsMove(true);
-                m_draggedCard.m_isPlaced = false;                          
+                m_draggedCard.m_isPlaced = false;        
+                // Card가 Deck에 속해있었다면, 해당 Card를 CardDeck에서 제거.
+                if(m_draggedCard.m_cardDeck.Count != 0)
+                {
+                    m_draggedCard.RemoveFromDeck(m_draggedCard);
+                }
             }
-
             m_isDragging = true;
         }
     }

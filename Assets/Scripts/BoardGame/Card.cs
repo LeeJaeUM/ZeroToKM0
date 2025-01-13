@@ -10,9 +10,17 @@ public class Card : NetworkBehaviour
     public NetworkVariable<Vector3> m_networkPosition = new NetworkVariable<Vector3>(new Vector3(0, 0, 0));
     public NetworkVariable<Quaternion> m_networkRotation = new NetworkVariable<Quaternion>(Quaternion.identity);
 
+    public List<Card> m_cardDeck;
+
     private bool isMoving = false;
     public bool m_isPlaced = false;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
     public float m_cardSpacing = 0.05f;                 // 카드 사이 간격
+
+    // TODO : 확인용, 나중에 다 지우기.
+    public bool m_testShuffle;
+    public int m_testNum;
+    public bool m_printNum;
+    public bool checkOnce;
     public void IsMove(bool canMove)
     {
         isMoving = canMove;
@@ -31,8 +39,57 @@ public class Card : NetworkBehaviour
         {
             TestCardPosChangeServerRpc();
         }
+
+        // TODO : 확인용, 나중에 다 지우기.
+        if (m_testShuffle && !checkOnce)
+        {
+            ShuffleDeck();
+            checkOnce = true;
+        }
+        if (m_printNum && !checkOnce)
+        {
+            PrintList();
+            checkOnce = true;
+        }
+        //
     }
 
+    public void AddToDeck(Card card)
+    {
+        if(m_cardDeck.Count == 0)               // 덱이 없는 경우
+        {
+            m_cardDeck.Add(this);               // m_cardDeck에 자기 자신 추가
+        }
+        m_cardDeck.Add(card);                   // 입력받은 card추가
+        card.m_cardDeck = m_cardDeck;           // card의 m_cardDeck이 이 카드의 m_cardDeck의 참조를 가지도록.
+    }
+    public void RemoveFromDeck(Card card)
+    {
+        m_cardDeck.Remove(card);
+        if(m_cardDeck.Count == 1)               // m_cardDeck에 한장만 남았다면, 아예 삭제.
+        {
+            m_cardDeck.RemoveAt(0);
+        }
+    }
+    public void ShuffleDeck()
+    {
+        List<Card> shuffledCards = new List<Card>();
+        int[] shuffledIndex;
+        shuffledIndex = GameManager.Instance.Shuffle(m_cardDeck.Count);
+        for (int i = 0; i < shuffledIndex.Length; i++)
+        {
+            shuffledCards.Add(m_cardDeck[shuffledIndex[i]]);
+        }
+
+        m_cardDeck = shuffledCards; // 섞인 카드를 m_card에 반영
+    }
+    public void PrintList()
+    {
+        for(int i = 0; i < m_cardDeck.Count ; i++)
+        {
+            print(m_cardDeck[i].m_testNum);
+        }
+    }
     [ServerRpc]
     void TestCardPosChangeServerRpc()
     {
@@ -105,6 +162,10 @@ public class Card : NetworkBehaviour
 
                 // 카드의 회전 방향을 맞추고, x축을 기준으로 90도 회전
                 transform.forward = other.transform.forward;
+
+                // m_cardDeck에 추가
+                Card card = other.gameObject.GetComponent<Card>();
+                card.AddToDeck(this);
             }
             else if (other.collider.CompareTag("Table"))
             {

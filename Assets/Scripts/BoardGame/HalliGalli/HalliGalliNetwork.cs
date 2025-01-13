@@ -38,7 +38,7 @@ public class HalliGalliNetwork : NetworkBehaviour
         if (IsServer)
         {
             Collectcard();          //위치조절함수
-            m_shuffledIndexes = m_gameManager.Shuffle(m_card);   //랜덤으로 섞인 카드의 인덱스를 받아옴
+            m_shuffledIndexes = m_gameManager.Shuffle(m_card.Length);   //랜덤으로 섞인 카드의 인덱스를 받아옴
             ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
         }
         SyncShuffledIndexesToClientRpc(m_shuffledIndexes);          // 클라이언트에게 섞인 인덱스 전달
