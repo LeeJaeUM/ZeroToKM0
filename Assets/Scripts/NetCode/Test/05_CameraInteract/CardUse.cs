@@ -4,19 +4,14 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class CardUse : MonoBehaviour
 {
-    private Camera m_camera; // 메인 카메라 참조
+    private Camera m_camera; // 플레이어 카메라 참조
     private Card m_draggedCard;
 
-    // 마우스 클릭 이벤트 처리
-    public void OnClick(InputValue value)
+    public void OnFlip(InputValue value)
     {
         if (value.isPressed)
         {
-            StartDragging();
-        }
-        else
-        {
-            StopDragging();
+            Flip();
         }
     }
 
@@ -28,8 +23,8 @@ public class CardUse : MonoBehaviour
         }
 
     }
-    // 드래그 시작 처리
-    private void StartDragging()
+ 
+    private void Flip()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -38,19 +33,12 @@ public class CardUse : MonoBehaviour
             m_draggedCard = hit.collider.GetComponent<Card>();
             if (m_draggedCard != null)
             {
-                m_draggedCard.IsMove(true);
-                m_draggedCard.m_isPlaced = false;
-                // Card가 Deck에 속해있었다면, 해당 Card를 CardDeck에서 제거.
-                m_draggedCard.CurrentCardDeck.RemoveFromDeck(m_draggedCard);
+                print("Flip");
+                m_draggedCard.FlipCardAnim();
             }
         }
     }
 
-    // 드래그 중단 처리
-    private void StopDragging()
-    {
-
-    }
     private void Shuffle()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -62,12 +50,12 @@ public class CardUse : MonoBehaviour
             {
                 print("Shuffle");
                 m_draggedCard.CurrentCardDeck.ShuffleDeck();
-                m_draggedCard.CardSuffleAnimation();
+                m_draggedCard.CardShuffleAnim();
             }
         }
     }
     private void Start()
     {
-        m_camera = GetComponent<Camera>(); // 메인 카메라 초기화
+        m_camera = GetComponent<Camera>(); // 플레이어 카메라 초기화
     }
 }
