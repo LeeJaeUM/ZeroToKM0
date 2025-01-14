@@ -8,30 +8,23 @@ using Unity.Netcode.Components;
 public class Card : NetworkBehaviour
 {
 
-    private CardDeck m_myCardDeck;                       // 카드 각각의 카드 덱 클래스, 카드 1장당 1개씩 가지고 있음.(변하지 않음)
-    private CardDeck m_currentCardDeck;                  // 카드가 현재 속해있는 카드 덱의 레퍼런스.(위치가 옮겨질때 마다 변함)
+    private CardDeck m_cardDeck;                       // 이 카드가 속해있는 카드덱의 주소, 카드덱에 속하지 않는 경우 null
 
     public bool m_isPlaced = false;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
     public float m_cardSpacing = 0.1f;                 // 카드 사이 간격
 
     public int m_cardNum;             // 카드번호, Shuffle확인용
                                       // TODO : 나중에 지우기
-    public CardDeck CurrentCardDeck {                   // m_currentCardDeck의 프로퍼티
-        get { return m_currentCardDeck;}                // 현재 이 카드가 속해있는 덱의 주소를 반환.
-        set {                                            
-            if (value == null)                          // 아무값도 입력받지 않으면, m_currentCardDeck의 주소를 myCardDeck의 주소로 초기화.
-                m_currentCardDeck = m_myCardDeck;
-            else                                        // 이 카드가 속해있는 덱의 주소를 설정해줌.
-                m_currentCardDeck = value;
-        }
+    public CardDeck CardDeck                            // m_cardDeck 프로퍼티
+    {
+        get { return m_cardDeck; }                        // 현재 이 카드가 속해있는 덱의 주소를 반환.                      
+        set { m_cardDeck = value; }
     }
 
     private CardAnimation m_cardAnimation;                             // 카드 애니메이션을 위한 클래스
 
     void Start()
     {
-        m_myCardDeck = new CardDeck(this);          // myCardDeck 클래스 생성( 이 카드의 정보를 첫번째로 넣어줌 )
-        CurrentCardDeck = m_myCardDeck;             // 현재 속해있는 덱을 myCardDeck으로 설정.
         m_cardAnimation = GetComponent<CardAnimation>();        // 카드 애니메이션 컴포넌트 참조
     }
     
@@ -85,7 +78,11 @@ public class Card : NetworkBehaviour
 
                 // m_cardDeck에 추가
                 Card card = other.gameObject.GetComponent<Card>();
-                card.CurrentCardDeck.AddToDeck(this);
+                if (card.CardDeck == null)                                  // 부딪힌 card가 속해있는 덱이 없다면, GameManager로부터 deck을 하나 반환받아 저장해줌.
+                {
+                    card.CardDeck = GameManager.Instance.GetCardDeck(card);
+                }
+                card.CardDeck.AddToDeck(this);                              // 그 후 그 deck에 자신도 추가.
             }
             else if (other.collider.CompareTag("Table"))
             {

@@ -356,6 +356,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8788126205895254998, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: m_cardNum
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2358753959
@@ -417,6 +421,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8788126205895254998, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: m_cardNum
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2282901183437933412, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -661,6 +669,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8788126205895254998, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: m_cardNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 631365062
@@ -722,6 +734,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8788126205895254998, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: m_cardNum
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3259025855665057766, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2380701901

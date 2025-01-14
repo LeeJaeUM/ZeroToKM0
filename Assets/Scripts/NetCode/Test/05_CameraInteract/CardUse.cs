@@ -46,10 +46,10 @@ public class CardUse : MonoBehaviour
         {
             // Card 컴포넌트가 있다면 추가 처리
             m_draggedCard = hit.collider.GetComponent<Card>();
-            if (m_draggedCard != null)
+            if (m_draggedCard != null && m_draggedCard.CardDeck != null)
             {
                 print("Shuffle");
-                m_draggedCard.CurrentCardDeck.ShuffleDeck();
+                m_draggedCard.CardDeck.ShuffleDeck();
                 m_draggedCard.CardShuffleAnim();
             }
         }
