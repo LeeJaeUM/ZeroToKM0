@@ -57,6 +57,7 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] GameResultController m_gameResultController;
 
+    #region Public Methods and Operators
     public void SetBoardGame(BoardGameType type)        // 입력 받은 보드게임을 활성화해주는 함수
     {
         // 모든 보드게임 비활성화
@@ -132,6 +133,14 @@ public class GameManager : NetworkBehaviour
         StartCoroutine("CoFinalWinMessage");
         m_finalWinner.SetText(winner + 1);
     }
+    //----
+    public void OpenCard(int playerNum)
+    {
+        m_halligalli.OpenCard(playerNum);
+    }
+    #endregion
+
+    #region Coroutine Methods
     IEnumerator CoRoundWinMessage()
     {
         m_roundWinner.gameObject.SetActive(true);
@@ -144,13 +153,9 @@ public class GameManager : NetworkBehaviour
         yield return new WaitForSeconds(1f);
         m_finalWinner.gameObject.SetActive(false);
     }
+    #endregion
 
-    //----
-    public void OpenCard(int playerNum)
-    {
-        m_halligalli.OpenCard(playerNum);
-    }
-
+ 
     void Update()
     {
         // TODO : 데이터베이스 연결 시 변경필요

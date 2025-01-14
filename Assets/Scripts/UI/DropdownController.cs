@@ -10,7 +10,6 @@ public class DropdownController : MonoBehaviour
     {
         string selectedOption = m_dropdown.selectedText.text;
         
-        // TODO : 추후 해당 씬에 맞게 변경 필요 (2025.01.13)
         switch (selectedOption)
         {
             case "Halli Galli":
