@@ -1279,7 +1279,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   m_sharedMaterial: {fileID: 21918420405216288, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 21918420405216288, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -3635,27 +3636,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  m_fruitSprite:
-  - {fileID: -1810560813, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: -994140163, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: -1248976606, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: 818293304, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: 1256335605, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: -1117358035, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: -2058898577, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: -1086417318, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: 1812912109, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: 1651292194, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
-  - {fileID: 225596509, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: -1376633750, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: 758053663, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: 1056273880, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: -1762840880, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: 1858327317, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: 1666906980, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: 1325432078, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: 1159674612, guid: 0357c37707ee91c468fded36544c5484, type: 3}
-  - {fileID: 259818952, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  m_gameManager: {fileID: 0}
+  m_animalSprite: []
   m_card: []
   m_topCard: []
   m_openedCard: []
@@ -3672,7 +3654,7 @@ MonoBehaviour:
   - {fileID: 1786802792}
   - {fileID: 1536132619}
   m_shuffledIndexes: 
-  m_fruitCount: 0300000003000000030000000300000002000000
+  m_animalCount: 0300000003000000030000000300000002000000
   m_roundCount: 1
 --- !u!4 &441099421
 Transform:
@@ -6408,13 +6390,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  m_dealer: {fileID: 998778490}
-  m_playerManager: {fileID: 389820504}
-  m_halligalli_old: {fileID: 0}
   m_halligalli: {fileID: 441099419}
+  m_skewer: {fileID: 0}
+  m_jenga: {fileID: 0}
   m_boardGame: 0
+  m_dealer: {fileID: 998778490}
+  m_turnManager: {fileID: 0}
   m_roundWinner: {fileID: 235888023}
   m_finalWinner: {fileID: 1189213984}
+  m_gameResultController: {fileID: 0}
 --- !u!114 &841174346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8378,6 +8362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a1cfc2b57f4dc4a9430ed30ba1d75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_cards: []
   m_ingredients:
   - {fileID: 0}
@@ -8405,6 +8390,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_kushi: []
+  m_answerCard: {fileID: 0}
 --- !u!4 &1193039413
 Transform:
   m_ObjectHideFlags: 0

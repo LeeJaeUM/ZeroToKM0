@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -209,6 +213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -279,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -349,6 +361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -419,6 +435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -489,6 +509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -756,7 +780,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   m_sharedMaterial: {fileID: 21918420405216288, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 21918420405216288, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -993,6 +1018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -1063,6 +1092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (51)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -1133,6 +1166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -1372,6 +1409,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -1442,6 +1483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -1614,6 +1659,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -1963,6 +2012,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2033,6 +2086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2103,6 +2160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2329,6 +2390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2524,6 +2589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2594,6 +2663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2721,6 +2794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2791,6 +2868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2861,6 +2942,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -2931,6 +3016,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3110,6 +3199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3180,6 +3273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3250,6 +3347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3320,6 +3421,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3390,6 +3495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3460,6 +3569,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3530,6 +3643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3687,6 +3804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -3911,12 +4032,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  m_halligalli: {fileID: 441099419}
+  m_skewer: {fileID: 0}
+  m_jenga: {fileID: 0}
+  m_boardGame: 0
   m_dealer: {fileID: 998778490}
   m_turnManager: {fileID: 1883519949}
-  m_halligalli: {fileID: 441099419}
-  m_boardGame: 0
   m_roundWinner: {fileID: 235888023}
   m_finalWinner: {fileID: 1189213984}
+  m_gameResultController: {fileID: 0}
 --- !u!114 &841174346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3962,6 +4086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4124,6 +4252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4194,6 +4326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4264,6 +4400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4405,6 +4545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4475,6 +4619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4743,6 +4891,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4892,6 +5044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -4962,6 +5118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5032,6 +5192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5102,6 +5266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5172,6 +5340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5242,6 +5414,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5357,6 +5533,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5569,6 +5749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5639,6 +5823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5709,6 +5897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5888,6 +6080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -5958,6 +6154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -6074,6 +6274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -6216,6 +6420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -6389,6 +6597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -6459,6 +6671,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -6529,6 +6745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -6599,6 +6819,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103
@@ -6669,6 +6893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.103

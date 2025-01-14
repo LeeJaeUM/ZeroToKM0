@@ -368,6 +368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.20200014
@@ -437,6 +441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.46
@@ -616,6 +624,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.439
@@ -681,6 +693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.1269999
@@ -746,6 +762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card_HalliGalli_Test (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5494385068397689319, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8709998
