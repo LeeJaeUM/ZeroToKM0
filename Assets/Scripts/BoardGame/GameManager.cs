@@ -28,8 +28,8 @@ public class GameManager : NetworkBehaviour
             { BoardGameType.Skewer, m_skewer },
             { BoardGameType.Jenga, m_jenga }
         };
+        m_deckManager = new DeckManager(10);
     }
-
     public enum BoardGameType
     {
         HalliGalli,
@@ -49,6 +49,7 @@ public class GameManager : NetworkBehaviour
 
     public Dealer m_dealer;
     public TurnManager m_turnManager;
+    public DeckManager m_deckManager;
 
     // 할리갈리 topcard 정보 체크용
     // 이미지 구해지면 지우기
@@ -84,7 +85,11 @@ public class GameManager : NetworkBehaviour
         // Modal 창 열기
         m_gameResultController.ShowGameResult(results, totalTurns);
     }
-
+    
+    public CardDeck GetCardDeck(Card card)
+    {
+        return m_deckManager.GetDeck(card);
+    }
     public void InitPlayers(int playerCount)
     {
         m_turnManager.InitPlayers(playerCount);
@@ -100,6 +105,14 @@ public class GameManager : NetworkBehaviour
     public void SetCurrentTurn(int turn)
     {
         m_turnManager.CurrentTurn = turn;
+    }
+    public void ArrayShuffle(object[] obj)
+    {
+        m_dealer.ArrayShuffle(obj);
+    }
+    public void ListShuffle(List<Card> card)
+    {
+        m_dealer.ListShuffle(card);
     }
     public int[] Shuffle(int length)
     {

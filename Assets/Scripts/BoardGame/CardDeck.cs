@@ -1,52 +1,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// 카드가 2개 이상 모였을 시 관리하는 클래스.
 public class CardDeck
 {
-    public List<Card> m_cardDeck;
+    private List<Card> m_cardDeck = new List<Card>();
 
+    private DeckManager m_deckManager;
     public int DeckCount
     {
         get { return m_cardDeck.Count; }
     }
-    public CardDeck(Card card)
+    public CardDeck(DeckManager deckManager)
     {
-        m_cardDeck = new List<Card>
-        {
-            card
-        };
+        m_deckManager = deckManager;
     }
     public void AddToDeck(Card card)            // 카드덱에 card를 넣어줌.
     {       
         m_cardDeck.Add(card);                   // 입력받은 card추가
-        card.CurrentCardDeck = this;
+        card.CardDeck = this;
     }
     public void RemoveFromDeck(Card card)       // 카드덱에서 card값 제거.
     {
         m_cardDeck.Remove(card);
-        card.CurrentCardDeck = null;
+        // 덱에 카드가 1장 이하 있다면, 덱이 아니므로 데이터 전부 삭제 후 deckManager에게 반환
+        if(DeckCount <= 1)
+        {
+            m_cardDeck.Clear();
+            m_deckManager.ReturnDeck(this);
+        }
+        card.CardDeck = null;       
     }
     public void ShuffleDeck()                                               // 이 카드덱의 m_cardDeck을 섞어줌.
     {
-        List<Card> shuffledCards = new List<Card>();                        // 섞은 카드의 정보를 저장할 임시 리스트.
-        Vector3[] newPos = new Vector3[m_cardDeck.Count];                   // 카드들의 위치를 저장할 임시 배열.
-        int[] shuffledIndex;                                                // GameManager의 Shuffle함수를 통해 반환될 int형 배열의 정보를 가질 임시 배열.
-        shuffledIndex = GameManager.Instance.Shuffle(m_cardDeck.Count);     // GameManager의 Shuffle함수를 통해 값을 반환받음.
-
-        // 반환받은 shuffledIndex의 데이터를 토대로 shuffleCards에 값을 넣어줌.
-        for (int i = 0; i < m_cardDeck.Count; i++)
+        Vector3[] newPos = new Vector3[DeckCount];                   // 카드들의 위치를 저장할 임시 배열.
+        // 현재 위치 정보 newPos에 저장
+        for (int i = 0; i < DeckCount; i++)
         {
-            shuffledCards.Add(m_cardDeck[shuffledIndex[i]]);
-
             newPos[i] = m_cardDeck[i].transform.position;
         }
+        // m_cardDeck 섞어줌.
+        GameManager.Instance.ListShuffle(m_cardDeck);
         // 카드들의 실제 위치를 옮겨줌.
-        for (int i = 0; i < m_cardDeck.Count; i++)
+        for (int i = 0; i < DeckCount; i++)
         {
-            shuffledCards[i].gameObject.transform.position = newPos[i];
-        }
-        m_cardDeck = shuffledCards; // 섞인 카드를 m_cardDeck에 반영
-
+            m_cardDeck[i].gameObject.transform.position = newPos[i];
+        }    
         // 확인용
         // TODO : 나중에 지우기
         PrintDeck();

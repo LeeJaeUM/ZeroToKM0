@@ -92,7 +92,7 @@ public class HalliGalliNetwork : NetworkBehaviour
             foreach (Card card in m_playerCard[i])
             {
                 SetPos(i, card.gameObject);
-                card.FlipCard();                                    // card를 뒤집어서 방향 맞춤
+                card.FlipCardAnim();                                    // card를 뒤집어서 방향 맞춤
             }
         }
 
