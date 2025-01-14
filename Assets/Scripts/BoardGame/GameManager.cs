@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using Unity.Netcode;
+using System.Collections.Generic;
+using static GameManager;
+
 
 public class GameManager : NetworkBehaviour
 {
@@ -19,19 +22,33 @@ public class GameManager : NetworkBehaviour
         {
             Destroy(gameObject);
         }
+
+        m_boardGames = new Dictionary<BoardGameType, NetworkBehaviour> {
+            { BoardGameType.HalliGalli, m_halligalli },
+            { BoardGameType.Skewer, m_skewer },
+            { BoardGameType.Jenga, m_jenga }
+        };
     }
 
     public enum BoardGameType
     {
         HalliGalli,
-        KushiExpress,
+        Skewer,
+        Jenga,
         Max
     }
+    // 보드게임 종류
+    public HalliGalliNetwork m_halligalli;
+    public Skewer m_skewer;
+    public Jenga m_jenga;
+    
+    // 보드게임 타입과 보드게임 게임오브젝트를 매핑
+    private Dictionary<BoardGameType, NetworkBehaviour> m_boardGames;
+
+    public BoardGameType m_boardGame;                   // 현재 보드게임
+
     public Dealer m_dealer;
     public TurnManager m_turnManager;
-    //public HalliGalli m_halligalli_old;
-    public HalliGalliNetwork m_halligalli;
-    public BoardGameType m_boardGame;                   // 현재 보드게임
 
     // 할리갈리 topcard 정보 체크용
     // 이미지 구해지면 지우기
@@ -40,6 +57,16 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] GameResultController m_gameResultController;
 
+    public void SetBoardGame(BoardGameType type)        // 입력 받은 보드게임을 활성화해주는 함수
+    {
+        // 모든 보드게임 비활성화
+        foreach(var boardGame in m_boardGames.Values)
+        {
+            boardGame.gameObject.SetActive(false);
+        }
+        // 입력받은 보드게임 활성화      
+        m_boardGames[type].gameObject.SetActive(true);      
+    }
     public void EndGame()
     {
         // TODO : 예제 데이터, 데이터베이스 데이터로 변경 필요

@@ -15,17 +15,17 @@ public class DropdownController : MonoBehaviour
         {
             case "Halli Galli":
                 Debug.Log("Halli Galli Scene");
-                LoadScene.Instance.LoadSceneAsync(SceneState.Lobby);
+                GameManager.Instance.SetBoardGame(GameManager.BoardGameType.HalliGalli);
                 break;
 
             case "Skewer":
                 Debug.Log("Skewer Scene");
-                //LoadScene.Instance.LoadSceneAsync(SceneState.Game);
+                GameManager.Instance.SetBoardGame(GameManager.BoardGameType.Skewer);
                 break;
 
             case "Jenga":
                 Debug.Log("Jenga Scene");
-                //LoadScene.Instance.LoadSceneAsync(SceneState.Game);
+                GameManager.Instance.SetBoardGame(GameManager.BoardGameType.Jenga);
                 break;
             default:
                 Debug.LogWarning($"'{selectedOption}'에 해당하는 씬이 정의되지 않았습니다.");

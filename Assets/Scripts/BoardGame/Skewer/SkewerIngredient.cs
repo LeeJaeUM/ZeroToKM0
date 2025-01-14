@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KushiExpressIngredient : MonoBehaviour
+public class SkewerIngredient : MonoBehaviour
 {
     public enum IngredientType          // 재료 종류
     {

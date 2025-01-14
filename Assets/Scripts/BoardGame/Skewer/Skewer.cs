@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Netcode;
 
 // 꼬치의 달인
-public class KushiExpress : MonoBehaviour
+public class Skewer : NetworkBehaviour
 {
-    public KushiExpressCard[] m_cards;
-    public KushiExpressIngredient[] m_ingredients = new KushiExpressIngredient[24];
-    public List<KushiExpressIngredient> m_kushi;
-    public KushiExpressCard m_answerCard;
+    public SkewerCard[] m_cards;
+    public SkewerIngredient[] m_ingredients = new SkewerIngredient[24];
+    public List<SkewerIngredient> m_kushi;
+    public SkewerCard m_answerCard;
     public void GameSetting()
     {
 
@@ -16,8 +17,8 @@ public class KushiExpress : MonoBehaviour
     }
     void Awake()
     {
-        m_cards = GetComponentsInChildren<KushiExpressCard>();
-        m_ingredients = GetComponentsInChildren<KushiExpressIngredient>();
+        m_cards = GetComponentsInChildren<SkewerCard>();
+        m_ingredients = GetComponentsInChildren<SkewerIngredient>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
