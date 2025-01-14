@@ -5,29 +5,38 @@ using UnityEngine.UIElements;
 using Unity.Netcode;
 
 public class Card : NetworkBehaviour
-{  
+{
     // 위치와 회전을 동기화할 네트워크 변수
     public NetworkVariable<Vector3> m_networkPosition = new NetworkVariable<Vector3>(new Vector3(0, 0, 0));
     public NetworkVariable<Quaternion> m_networkRotation = new NetworkVariable<Quaternion>(Quaternion.identity);
 
-    public List<Card> m_cardDeck;
+    private CardDeck m_myCardDeck;                       // 카드 각각의 카드 덱 클래스, 카드 1장당 1개씩 가지고 있음.(변하지 않음)
+    private CardDeck m_currentCardDeck;                  // 카드가 현재 속해있는 카드 덱의 레퍼런스.(위치가 옮겨질때 마다 변함)
 
     private bool isMoving = false;
     public bool m_isPlaced = false;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
-    public float m_cardSpacing = 0.05f;                 // 카드 사이 간격
+    public float m_cardSpacing = 0.1f;                 // 카드 사이 간격
 
-    // TODO : 확인용, 나중에 다 지우기.
-    public bool m_testShuffle;
-    public int m_testNum;
-    public bool m_printNum;
-    public bool checkOnceShuffle;
-    public bool checkOncePrint;
-
+    public int m_cardNum;             // 카드번호, Shuffle확인용
+                                      // TODO : 나중에 지우기
+    public CardDeck CurrentCardDeck {                   // m_currentCardDeck의 프로퍼티
+        get { return m_currentCardDeck;}                // 현재 이 카드가 속해있는 덱의 주소를 반환.
+        set {                                            
+            if (value == null)                          // 아무값도 입력받지 않으면, m_currentCardDeck의 주소를 myCardDeck의 주소로 초기화.
+                m_currentCardDeck = m_myCardDeck;
+            else                                        // 이 카드가 속해있는 덱의 주소를 설정해줌.
+                m_currentCardDeck = value;
+        }
+    }
     public void IsMove(bool canMove)
     {
         isMoving = canMove;
     }
-
+    void Start()
+    {
+        m_myCardDeck = new CardDeck(this);              // myCardDeck 클래스 생성( 이 카드의 정보를 첫번째로 넣어줌 )
+        CurrentCardDeck = m_myCardDeck;                 // 현재 속해있는 덱을 myCardDeck으로 설정.
+    }
     void Update()
     {
         // 서버에서만 위치와 회전 업데이트 (클라이언트는 읽기만 함)
@@ -40,56 +49,6 @@ public class Card : NetworkBehaviour
         else if (IsClient && isMoving)
         {
             TestCardPosChangeServerRpc();
-        }
-
-        // TODO : 확인용, 나중에 다 지우기.
-        if (m_testShuffle && !checkOnceShuffle)
-        {
-            ShuffleDeck();
-            checkOnceShuffle = true;
-        }
-        if (m_printNum && !checkOncePrint)
-        {
-            PrintList();
-            checkOncePrint = true;
-        }
-        //
-    }
-
-    public void AddToDeck(Card card)
-    {
-        if(m_cardDeck.Count == 0)               // 덱이 없는 경우
-        {
-            m_cardDeck.Add(this);               // m_cardDeck에 자기 자신 추가
-        }
-        m_cardDeck.Add(card);                   // 입력받은 card추가
-        card.m_cardDeck = m_cardDeck;           // card의 m_cardDeck이 이 카드의 m_cardDeck의 참조를 가지도록.
-    }
-    public void RemoveFromDeck(Card card)
-    {
-        m_cardDeck.Remove(card);
-        if(m_cardDeck.Count == 1)               // m_cardDeck에 한장만 남았다면, 아예 삭제.
-        {
-            m_cardDeck.RemoveAt(0);
-        }
-    }
-    public void ShuffleDeck()
-    {
-        List<Card> shuffledCards = new List<Card>();
-        int[] shuffledIndex;
-        shuffledIndex = GameManager.Instance.Shuffle(m_cardDeck.Count);
-        for (int i = 0; i < shuffledIndex.Length; i++)
-        {
-            shuffledCards.Add(m_cardDeck[shuffledIndex[i]]);
-        }
-
-        m_cardDeck = shuffledCards; // 섞인 카드를 m_card에 반영
-    }
-    public void PrintList()
-    {
-        for(int i = 0; i < m_cardDeck.Count ; i++)
-        {
-            print(m_cardDeck[i].m_testNum);
         }
     }
     [ServerRpc]
@@ -167,12 +126,12 @@ public class Card : NetworkBehaviour
 
                 transform.position = newPos;  // 최종 위치 설정
 
-                // 카드의 회전 방향을 맞추고, x축을 기준으로 90도 회전
-                transform.forward = other.transform.forward;
+                // 카드의 회전 방향을 맞춤
+                transform.rotation = other.transform.rotation;
 
                 // m_cardDeck에 추가
                 Card card = other.gameObject.GetComponent<Card>();
-                card.AddToDeck(this);
+                card.CurrentCardDeck.AddToDeck(this);
             }
             else if (other.collider.CompareTag("Table"))
             {

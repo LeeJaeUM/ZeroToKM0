@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 6665189373425555600}
   - component: {fileID: 4104067616429416792}
   - component: {fileID: 9166110698299467341}
+  - component: {fileID: 5966332478751904959}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged
@@ -709,3 +710,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_dragUpYPos: 0.1
+--- !u!114 &5966332478751904959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857587612289322200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9238407d70fa44bbc832d60d9acd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

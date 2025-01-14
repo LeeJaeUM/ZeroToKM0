@@ -20,11 +20,11 @@ public class CardUse : MonoBehaviour
         }
     }
 
-    public void OnSuffle(InputValue value)
+    public void OnShuffle(InputValue value)
     {
         if (value.isPressed)
         {
-            m_draggedCard.CardSuffleAnimation();
+            Shuffle();
         }
 
     }
@@ -41,10 +41,7 @@ public class CardUse : MonoBehaviour
                 m_draggedCard.IsMove(true);
                 m_draggedCard.m_isPlaced = false;
                 // Card가 Deck에 속해있었다면, 해당 Card를 CardDeck에서 제거.
-                if (m_draggedCard.m_cardDeck.Count != 0)
-                {
-                    m_draggedCard.RemoveFromDeck(m_draggedCard);
-                }
+                m_draggedCard.CurrentCardDeck.RemoveFromDeck(m_draggedCard);
             }
         }
     }
@@ -54,7 +51,21 @@ public class CardUse : MonoBehaviour
     {
 
     }
-
+    private void Shuffle()
+    {
+        Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            // Card 컴포넌트가 있다면 추가 처리
+            m_draggedCard = hit.collider.GetComponent<Card>();
+            if (m_draggedCard != null)
+            {
+                print("Shuffle");
+                m_draggedCard.CurrentCardDeck.ShuffleDeck();
+                m_draggedCard.CardSuffleAnimation();
+            }
+        }
+    }
     private void Start()
     {
         m_camera = GetComponent<Camera>(); // 메인 카메라 초기화

@@ -114,7 +114,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Suffle",
+                    "name": "Shuffle",
                     "type": "Button",
                     "id": "a1bd2a9a-8e9e-4896-9980-a2286da3c432",
                     "expectedControlType": "",
@@ -571,7 +571,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Suffle",
+                    "action": "Shuffle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
