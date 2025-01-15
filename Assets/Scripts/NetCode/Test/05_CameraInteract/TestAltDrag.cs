@@ -47,6 +47,7 @@ public class TestAltDrag : NetworkBehaviour
         m_draggedNetworkMoves.Clear();
 
         bool isFirstCard = true;
+        Card firstCard = null;
         foreach (RaycastHit hit in hits)
         {
             // Raycast가 맞은 지점이 일정 범위 내에 있고, NetworkMove 컴포넌트를 가지고 있는 경우
@@ -70,11 +71,23 @@ public class TestAltDrag : NetworkBehaviour
             {
                 if (isFirstCard)
                 {
+                    firstCard = card;
                     card.m_isOnCard = false;
+                    isFirstCard = false;
                 }
                 else
                 {
                     card.m_isOnCard = true;
+                    // 카드 위치를 다른 카드와 일치시킴
+                    Vector3 newPos = firstCard.transform.position;
+                    newPos.y += 0.1f;  // 높이 조정
+
+                    card.transform.position = newPos;  // 최종 위치 설정
+
+                    // 카드의 회전 방향을 맞춤
+                    card.transform.rotation = firstCard.transform.rotation;
+
+                    card.m_isPlaced = true;  // 카드가 놓였음을 표시
                 }
                 card.m_isPlaced = false;                
             }
@@ -120,12 +133,14 @@ public class TestAltDrag : NetworkBehaviour
         // 마우스가 평면에 닿는 지점 계산 (y 값을 2로 고정)
         Plane dragPlane = new Plane(Vector3.up, new Vector3(0, 2, 0));  // 평면을 Y=2로 설정
         float distance;
+        float cardGap = 0.1f;
         if (dragPlane.Raycast(ray, out distance))
         {
             Vector3 newPosition = ray.GetPoint(distance); // 레이캐스트가 맞은 월드 좌표
 
             // Y 값 고정 (기존 Y값을 고정시킴)
             newPosition.y = 2f;  // Y 값 고정 (필요시 다른 값으로 수정 가능)
+            newPosition.y += cardGap;
 
             // 서버에서는 위치를 직접 업데이트
             if (IsServer)

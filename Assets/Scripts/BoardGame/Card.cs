@@ -59,34 +59,69 @@ public class Card : NetworkBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (!m_isPlaced && !m_isOnCard)
+        if (m_isPlaced)
         {           
             if (other.collider.CompareTag("Card"))
             {
                 Card card = other.transform.GetComponent<Card>();
                 // 이동을 멈춘 Card에만 붙게
-                if (card != null && card.m_isPlaced)
+                if (card != null && !card.m_isPlaced)
                 {
                     Debug.Log("Card");
 
-                    m_isPlaced = true;  // 카드가 놓였음을 표시
-                    m_isOnCard = true;  // 카드위에 놓였음을 표시
                     // 카드 위치를 다른 카드와 일치시킴
-                    Vector3 newPos = other.transform.position;
+                    Vector3 newPos = transform.position;
                     newPos.y += m_cardSpacing;  // 높이 조정
 
-                    transform.position = newPos;  // 최종 위치 설정
+                    card.transform.position = newPos;  // 최종 위치 설정
 
                     // 카드의 회전 방향을 맞춤
-                    transform.rotation = other.transform.rotation;
+                    card.transform.rotation = transform.rotation;
+
+                    card.m_isPlaced = true;  // 카드가 놓였음을 표시
                 }
             }
-            else if (other.collider.CompareTag("Table"))
+
+        }
+        else
+        {
+            if (other.collider.CompareTag("Table"))
             {
                 Debug.Log("Table");
                 m_isPlaced = true;  // 테이블 위에 놓였음을 표시
-                m_isOnCard = false;
             }
         }
     }
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (!m_isPlaced && !m_isOnCard)
+    //    {
+    //        if (other.collider.CompareTag("Card"))
+    //        {
+    //            Card card = other.transform.GetComponent<Card>();
+    //            // 이동을 멈춘 Card에만 붙게
+    //            if (card != null && card.m_isPlaced)
+    //            {
+    //                Debug.Log("Card");
+
+    //                m_isPlaced = true;  // 카드가 놓였음을 표시
+    //                m_isOnCard = true;  // 카드위에 놓였음을 표시
+    //                // 카드 위치를 다른 카드와 일치시킴
+    //                Vector3 newPos = other.transform.position;
+    //                newPos.y += m_cardSpacing;  // 높이 조정
+
+    //                transform.position = newPos;  // 최종 위치 설정
+
+    //                // 카드의 회전 방향을 맞춤
+    //                transform.rotation = other.transform.rotation;
+    //            }
+    //        }
+    //        else if (other.collider.CompareTag("Table"))
+    //        {
+    //            Debug.Log("Table");
+    //            m_isPlaced = true;  // 테이블 위에 놓였음을 표시
+    //            m_isOnCard = false;
+    //        }
+    //    }
+    //}
 }
