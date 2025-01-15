@@ -89,7 +89,7 @@ public class ObjectDrag : NetworkBehaviour
                     return;
                 }
                 // Card가 Deck에 속해있었다면, 해당 Card를 CardDeck에서 제거.
-                else if(m_draggedCard.CardDeck != null)
+                else if(m_draggedCard.CardDeck != null && !m_isAlt)
                 {
                     m_draggedCard.CardDeck.RemoveFromDeck(m_draggedCard);
                 }
