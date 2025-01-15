@@ -51,7 +51,7 @@ public class GameManager : NetworkBehaviour
 
     public Dealer m_dealer;
     public TurnManager m_turnManager;
-    public DeckManager m_deckManager;
+    //public DeckManager m_deckManager;
 
     // 할리갈리 topcard 정보 체크용
     // 이미지 구해지면 지우기
@@ -86,11 +86,6 @@ public class GameManager : NetworkBehaviour
 
         // Modal 창 열기
         m_gameResultController.ShowGameResult(results, totalTurns);
-    }
-    
-    public CardDeck GetCardDeck(Card card)
-    {
-        return m_deckManager.CreateDeck(card.transform.position);
     }
     public void InitPlayers(int playerCount)
     {

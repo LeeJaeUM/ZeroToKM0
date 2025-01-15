@@ -2,36 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 // CardDeck을 관리하는 스크립트
-public class DeckManager : MonoBehaviour
+public class DeckManager
 {
-    public GameObject m_cardDeckPrefab;
-    public GameObjectPool<CardDeck> m_deckPool;
-    public void RemoveDeck(CardDeck deck)
-    {
-        deck.gameObject.SetActive(false);
-        m_deckPool.Set(deck);
-    }
-    public CardDeck CreateDeck(Vector3 deckPos)
-    {
-        var deck = m_deckPool.Get();
-        deck.gameObject.SetActive(true);
-        deck.transform.position = deckPos;
-
-        return deck;
-    }
-    void Start()
-    {
-        var prefab = m_cardDeckPrefab;
-        m_deckPool = new GameObjectPool<CardDeck>(10, () =>
-        {
-            var obj = Instantiate(prefab);
-            obj.SetActive(false);
-            obj.transform.SetParent(transform);
-            var deck = obj.GetComponent<CardDeck>();
-            deck.Initialize(this);
-            return deck;
-        });        
-    }
     //private Queue<CardDeck> m_cardDeckPool;
 
     //public DeckManager(int count)

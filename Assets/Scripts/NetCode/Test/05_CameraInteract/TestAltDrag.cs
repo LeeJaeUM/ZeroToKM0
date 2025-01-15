@@ -11,36 +11,21 @@ public class TestAltDrag : NetworkBehaviour
     private bool m_isDragging = false; // 드래그 상태 플래그
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
     private Vector3 m_dragOffset = Vector3.zero; // 드래그 시작 위치에 대한 오프셋
-
-    private bool m_isAlt = false; // Alt 키 상태
                                   
     private LayerMask layerMask;// 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
 
-            //if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) 레이어 마스크를 적용하는 예시
+    //if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) 레이어 마스크를 적용하는 예시
 
     // Alt 입력 ( Alt를 한번 누르면 드래그 기능 켜짐, 다시 누르면 꺼짐 )
     public void OnAlt(InputValue value)
     {
         if (value.isPressed)
         {
-            SetIsAlt(); // Alt 키를 눌렀을 때 드래그 모드 토글
-            Debug.Log("현재 alt : " + m_isAlt);
+            StartAltDragging(); // 드래그 시작
         }
-    }
-
-    // 마우스 클릭 이벤트 처리
-    public void OnClick(InputValue value)
-    {
-        if (m_isAlt) // Alt가 켜져있을 때만 드래그 가능
+        else
         {
-            if (value.isPressed)
-            {
-                StartDragging(); // 드래그 시작
-            }
-            else
-            {
-                StopDragging(); // 드래그 중단
-            }
+            StopAltDragging(); // 드래그 중단
         }
     }
 
@@ -52,15 +37,8 @@ public class TestAltDrag : NetworkBehaviour
             UpdateDraggedObjectsPosition(); // 드래그 중인 오브젝트들 위치 업데이트
         }
     }
-
-    // alt를 껐다 켰다 하는 함수
-    private void SetIsAlt()
-    {
-        m_isAlt = !m_isAlt;
-    }
-
     // 드래그 시작 처리
-    private void StartDragging()
+    private void StartAltDragging()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity);
@@ -68,6 +46,7 @@ public class TestAltDrag : NetworkBehaviour
         m_draggedObjects.Clear(); // 기존 드래그 리스트 초기화
         m_draggedNetworkMoves.Clear();
 
+        bool isFirstCard = true;
         foreach (RaycastHit hit in hits)
         {
             // Raycast가 맞은 지점이 일정 범위 내에 있고, NetworkMove 컴포넌트를 가지고 있는 경우
@@ -78,9 +57,28 @@ public class TestAltDrag : NetworkBehaviour
                 {
                     m_draggedObjects.Add(hit.transform); // 드래그 가능한 오브젝트 추가
                     m_draggedNetworkMoves.Add(networkMove);
+                    networkMove.SetGravity(false); // 중력 비활성화
+                    Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
+                    if(rb != null)
+                    {
+                        rb.isKinematic = true;
+                    }
                 }
             }
-        }
+            Card card = hit.transform.GetComponent<Card>();
+            if (card != null)
+            {
+                if (isFirstCard)
+                {
+                    card.m_isOnCard = false;
+                }
+                else
+                {
+                    card.m_isOnCard = true;
+                }
+                card.m_isPlaced = false;                
+            }
+        }       
 
         if (m_draggedObjects.Count > 0)
         {
@@ -92,7 +90,7 @@ public class TestAltDrag : NetworkBehaviour
     }
 
     // 드래그 중단 처리
-    private void StopDragging()
+    private void StopAltDragging()
     {
         m_isDragging = false;
 
@@ -103,56 +101,50 @@ public class TestAltDrag : NetworkBehaviour
             networkMove.SetGravity(true); // 중력 활성화
         }
 
+        foreach (var draggedObject in m_draggedObjects)
+        {
+            Rigidbody rb = draggedObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = false; // 물리 계산을 다시 활성화
+            }
+        }
+
         m_draggedObjects.Clear(); // 드래그된 오브젝트 리스트 초기화
         m_draggedNetworkMoves.Clear();
     }
-    // 드래그 중인 오브젝트들의 위치 업데이트
     private void UpdateDraggedObjectsPosition()
     {
+        // 마우스의 화면 위치를 월드 공간으로 변환
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        Vector3 newPosition = ray.origin + m_dragOffset; // 마우스 위치 + 오프셋 계산
-
-        // y값은 2로 고정
-        newPosition.y = 2f;
-
-        if (IsServer)
+        // 마우스가 평면에 닿는 지점 계산 (y 값을 2로 고정)
+        Plane dragPlane = new Plane(Vector3.up, new Vector3(0, 2, 0));  // 평면을 Y=2로 설정
+        float distance;
+        if (dragPlane.Raycast(ray, out distance))
         {
-            foreach (var draggedObject in m_draggedObjects)
+            Vector3 newPosition = ray.GetPoint(distance); // 레이캐스트가 맞은 월드 좌표
+
+            // Y 값 고정 (기존 Y값을 고정시킴)
+            newPosition.y = 2f;  // Y 값 고정 (필요시 다른 값으로 수정 가능)
+
+            // 서버에서는 위치를 직접 업데이트
+            if (IsServer)
             {
-                draggedObject.position = newPosition; // 서버에서 드래그된 오브젝트 위치 업데이트
+                foreach (var draggedObject in m_draggedObjects)
+                {
+                    draggedObject.position = newPosition; // 오브젝트의 위치 업데이트
+                }
             }
-        }
-        else if (IsClient && !IsHost)
-        {
-            foreach (var networkMove in m_draggedNetworkMoves)
+            else if (IsClient)
             {
-                // 클라이언트에서 서버로 위치 업데이트 요청
-                networkMove.RequestMoveServerRpc(newPosition);
+                // 클라이언트에서는 서버로 위치 업데이트 요청
+                foreach (var networkMove in m_draggedNetworkMoves)
+                {
+                    networkMove.RequestMoveServerRpc(newPosition); // 서버로 위치 전송
+                }
             }
         }
     }
-    //// 드래그 중인 오브젝트들의 위치 업데이트
-    //private void UpdateDraggedObjectsPosition()
-    //{
-    //    Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-    //    Vector3 newPosition = ray.origin + m_dragOffset; // 드래그 위치 업데이트
-
-    //    if (IsServer)
-    //    {
-    //        foreach (var draggedObject in m_draggedObjects)
-    //        {
-    //            draggedObject.position = newPosition; // 서버에서 드래그된 오브젝트 위치 업데이트
-    //        }
-    //    }
-    //    else if (IsClient && !IsHost)
-    //    {
-    //        foreach (var networkMove in m_draggedNetworkMoves)
-    //        {
-    //            // 클라이언트에서 서버로 위치 업데이트 요청
-    //            networkMove.RequestMoveServerRpc(newPosition);
-    //        }
-    //    }
-    //}
 
     private void Start()
     {

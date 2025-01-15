@@ -73,6 +73,9 @@ public class HalliGalliNetwork : NetworkBehaviour
                     m_card[i].Initialize(animal, k + 1);
                     // 카드에 맞게 스프라이트 넣기
                     m_card[i].m_sprite.sprite = m_animalSprite[(int)animal * 5 + k];
+                    // Shuffle확인용으로 번호 넣어줌.
+                    // TODO : 나중에 지우기
+                    m_card[i].m_cardNum = i;
                     i++;
                 }
             }
