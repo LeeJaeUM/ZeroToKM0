@@ -73,14 +73,14 @@ public class Card : NetworkBehaviour
                 // 카드의 회전 방향을 맞춤
                 transform.rotation = other.transform.rotation;
 
-                // m_cardDeck에 추가
-                Card card = other.gameObject.GetComponent<Card>();
-                if (card.CardDeck == null)                                  // 부딪힌 card가 속해있는 덱이 없다면, GameManager로부터 deck을 하나 반환받아 저장해줌.
-                {
-                    card.CardDeck = GameManager.Instance.GetCardDeck(card);
-                }
-                card.CardDeck.AddToDeck(card);                              // 그 후 그 deck에 자신도 추가.
-                card.CardDeck.AddToDeck(this);                              // 그 후 그 deck에 자신도 추가.
+                //// m_cardDeck에 추가
+                //Card card = other.gameObject.GetComponent<Card>();
+                //if (card.CardDeck == null)                                  // 부딪힌 card가 속해있는 덱이 없다면, GameManager로부터 deck을 하나 반환받아 저장해줌.
+                //{
+                //    card.CardDeck = GameManager.Instance.GetCardDeck(card);
+                //}
+                //card.CardDeck.AddToDeck(card);                              // 그 후 그 deck에 자신도 추가.
+                //card.CardDeck.AddToDeck(this);                              // 그 후 그 deck에 자신도 추가.
             }
             else if (other.collider.CompareTag("Table"))
             {
