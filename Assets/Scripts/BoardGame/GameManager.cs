@@ -28,7 +28,9 @@ public class GameManager : NetworkBehaviour
             { BoardGameType.Skewer, m_skewer },
             { BoardGameType.Jenga, m_jenga }
         };
-        m_deckManager = new DeckManager(10);
+        //m_deckManager = new DeckManager(10);
+
+        SetBoardGame(m_boardGame);
     }
     public enum BoardGameType
     {
@@ -88,7 +90,7 @@ public class GameManager : NetworkBehaviour
     
     public CardDeck GetCardDeck(Card card)
     {
-        return m_deckManager.GetDeck(card);
+        return m_deckManager.CreateDeck(card.transform.position);
     }
     public void InitPlayers(int playerCount)
     {

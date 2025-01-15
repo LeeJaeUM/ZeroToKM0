@@ -21,7 +21,7 @@ public class Card : NetworkBehaviour
         set { m_cardDeck = value; }
     }
 
-    private CardAnimation m_cardAnimation;                             // 카드 애니메이션을 위한 클래스
+    public CardAnimation m_cardAnimation;                             // 카드 애니메이션을 위한 클래스
 
     void Start()
     {
@@ -42,7 +42,6 @@ public class Card : NetworkBehaviour
     public void FlipCardAnim()              // 카드를 뒤집어주는 함수
     {
         m_cardAnimation.FlipCardAnim();     // 애니메이션 실행
-        //Debug.Log("FlipCard");
         //m_isOpen = !m_isOpen;               // isOpen값을 반대로 바꿔줌
         //if(IsServer)
         //    m_networkAnimator.Animator.SetBool("isOpen", m_isOpen); // 애니메이션 실행
@@ -63,8 +62,6 @@ public class Card : NetworkBehaviour
         {
             if (other.collider.CompareTag("Card"))
             {
-                Debug.Log("Card");
-
                 m_isPlaced = true;  // 카드가 놓였음을 표시
 
                 // 카드 위치를 다른 카드와 일치시킴
@@ -82,12 +79,11 @@ public class Card : NetworkBehaviour
                 {
                     card.CardDeck = GameManager.Instance.GetCardDeck(card);
                 }
+                card.CardDeck.AddToDeck(card);                              // 그 후 그 deck에 자신도 추가.
                 card.CardDeck.AddToDeck(this);                              // 그 후 그 deck에 자신도 추가.
             }
             else if (other.collider.CompareTag("Table"))
             {
-                Debug.Log("Table");
-
                 m_isPlaced = true;  // 테이블 위에 놓였음을 표시
             }
         }

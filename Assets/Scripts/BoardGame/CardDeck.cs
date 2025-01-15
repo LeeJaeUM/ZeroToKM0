@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 // 카드가 2개 이상 모였을 시 관리하는 클래스.
-public class CardDeck
+public class CardDeck : NetworkBehaviour
 {
     private List<Card> m_cardDeck = new List<Card>();
 
@@ -11,14 +12,35 @@ public class CardDeck
     {
         get { return m_cardDeck.Count; }
     }
-    public CardDeck(DeckManager deckManager)
+    public void Initialize(DeckManager deckManager)
     {
         m_deckManager = deckManager;
     }
+    // 카드 덱에 포함된 카드들을 반환하는 메서드
+    public List<Card> GetCards()
+    {
+        return m_cardDeck;
+    }
+
+    // 덱의 기준 위치를 반환하는 메서드
+    public Vector3 GetDeckPosition()
+    {
+        // 덱의 기준 위치는 첫 번째 카드의 위치로 설정하거나,
+        // 카드들이 모두 있는 중앙 위치 등 원하는 대로 설정할 수 있습니다.
+        if (m_cardDeck.Count > 0)
+        {
+            return m_cardDeck[0].gameObject.transform.position;
+        }
+
+        // 덱에 카드가 없으면 기본값 (0, 0, 0)을 반환
+        return Vector3.zero;
+    }
+
     public void AddToDeck(Card card)            // 카드덱에 card를 넣어줌.
     {       
         m_cardDeck.Add(card);                   // 입력받은 card추가
         card.CardDeck = this;
+        card.transform.SetParent(transform);
     }
     public void RemoveFromDeck(Card card)       // 카드덱에서 card값 제거.
     {
@@ -27,7 +49,7 @@ public class CardDeck
         if(DeckCount <= 1)
         {
             m_cardDeck.Clear();
-            m_deckManager.ReturnDeck(this);
+            m_deckManager.RemoveDeck(this);
         }
         card.CardDeck = null;       
     }

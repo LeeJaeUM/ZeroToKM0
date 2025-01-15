@@ -7,17 +7,27 @@ public class ObjectDrag : NetworkBehaviour
     private Camera m_camera; // 메인 카메라 참조
     [SerializeField]private Transform m_draggedObject; // 드래그 중인 오브젝트
     private Card m_draggedCard; // 드래그 중인 카드
+    private CardDeck m_draggedDeck; // 드래그 중인 카드 덱
     private bool m_isDragging = false; // 드래그 상태 플래그
     [SerializeField] private float m_dragUpYPos = 2f; // 오브젝트를 올릴 높이
     private Vector3 m_newDraggedPos = Vector3.zero;
 
     private NetworkMove m_draggedNetworkMove;
 
-
+    private bool m_isAlt = false;
     // 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
     private LayerMask layerMask; 
 
 
+    // Alt 입력 ( Alt를 한번 누르면 덱을 집는 기능 켜짐, 다시 누르면 꺼짐 )
+    public void OnAlt(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            SetIsAlt();
+            print("현재 alt : " + m_isAlt);
+        }
+    }
     // 마우스 클릭 이벤트 처리
     public void OnClick(InputValue value)
     {
@@ -39,7 +49,11 @@ public class ObjectDrag : NetworkBehaviour
             UpdateDraggedObjectPosition();
         }
     }
-
+    // alt를 껐다 켰다 하는 함수
+    private void SetIsAlt()
+    {
+        m_isAlt = !m_isAlt;
+    }
     // 드래그 시작 처리
     private void StartDragging()
     {
@@ -64,12 +78,22 @@ public class ObjectDrag : NetworkBehaviour
             m_draggedCard = m_draggedObject.GetComponent<Card>();
             if (m_draggedCard != null)
             {
-                m_draggedCard.m_isPlaced = false;
+                // Alt키가 눌려있고, Card가 Deck에 속해있다면, Deck을 움직임.
+                if(m_draggedCard.CardDeck != null && m_isAlt)
+                {
+                    print("덱 집음");
+                    m_draggedDeck = m_draggedCard.CardDeck;
+                    // 첫 번째 카드를 이동 상태로 변경
+                    m_draggedDeck.GetCards()[0].m_isPlaced = false;
+                    m_isDragging = true;
+                    return;
+                }
                 // Card가 Deck에 속해있었다면, 해당 Card를 CardDeck에서 제거.
-                if(m_draggedCard.CardDeck != null)
+                else if(m_draggedCard.CardDeck != null)
                 {
                     m_draggedCard.CardDeck.RemoveFromDeck(m_draggedCard);
                 }
+                m_draggedCard.m_isPlaced = false;
             }
             m_isDragging = true;
         }
@@ -91,7 +115,7 @@ public class ObjectDrag : NetworkBehaviour
         {
             m_draggedCard = null;
         }
-
+        m_draggedDeck = null; // 드래그 중인 카드 덱 초기화
         m_draggedObject = null;
         m_newDraggedPos = Vector3.zero;
     }
@@ -103,13 +127,26 @@ public class ObjectDrag : NetworkBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 newPosition = hit.point; //+ m_offset;
-            newPosition.y = m_newDraggedPos.y; //y값 고정
+            newPosition.y = m_newDraggedPos.y; // y값 고정
 
             if (IsServer)
             {
-                m_draggedObject.position = newPosition;
+                if (m_draggedDeck != null)
+                {
+                    // 카드 덱을 드래그하는 경우, 덱 내 카드들의 위치를 업데이트
+                    foreach (Card card in m_draggedDeck.GetCards())
+                    {
+                        Vector3 cardOffset = card.gameObject.transform.position - m_draggedDeck.GetDeckPosition();
+                        card.gameObject.transform.position = newPosition + cardOffset;
+                    }
+                }
+                else if (m_draggedObject != null)
+                {
+                    // 카드만 드래그하는 경우
+                    m_draggedObject.position = newPosition;
+                }
             }
-            else if (!IsHost &&IsClient)
+            else if (!IsHost && IsClient)
             {
                 if (m_draggedNetworkMove != null)
                 {
@@ -118,6 +155,7 @@ public class ObjectDrag : NetworkBehaviour
             }
         }
     }
+
     private void Start()
     {
         m_camera = GetComponent<Camera>(); // 메인 카메라 초기화
