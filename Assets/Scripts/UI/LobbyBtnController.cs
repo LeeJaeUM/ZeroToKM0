@@ -1,7 +1,10 @@
+using Michsky.MUIP;
 using UnityEngine;
 
 public class LobbyBtnController : MonoBehaviour
 {
+    [SerializeField] WindowManager m_windowManager;
+
     // TODO : 기능 구현 필요 (2025.01.14)
 
     /// <summary>
@@ -10,6 +13,7 @@ public class LobbyBtnController : MonoBehaviour
     public void OnJoinBtnClick()
     {
         Debug.Log("Join Button Clicked");
+        m_windowManager.OpenWindow("RoomList_window");
     }
 
     /// <summary>

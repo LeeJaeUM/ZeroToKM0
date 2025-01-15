@@ -4,77 +4,79 @@ using UnityEngine.UI;
 
 public class RoomListController : MonoBehaviour
 {
-    [Header("Room List Settings")]
-    [SerializeField] private Transform itemListParent; // ItemList (Test Item 부모)
-    //[SerializeField] private Button enterButton;       // Enter 버튼
-    [SerializeField] private Color selectedColor = Color.cyan;  // 선택된 항목 색상
-    [SerializeField] private Color defaultColor = Color.white;  // 기본 항목 색상
+    [Header("Settings")]
+    [SerializeField] GameObject m_itemPrefab;       // Test Item Prefab
 
-    private GameObject selectedItem = null; // 현재 선택된 Room Item
-
-    private void Start()
-    {
-        // 초기 상태에서 Enter 버튼 비활성화
-        //enterButton.interactable = false;
-
-        // Enter 버튼 클릭 이벤트 설정
-        //enterButton.onClick.AddListener(OnEnterButtonClick);
-    }
+    Transform m_itemListParent;                     // ItemList (Test Item 부모)
+    RoomItemController m_selectedItem;              // 현재 선택된 Item
 
     /// <summary>
-    /// Test Item이 클릭되었을 때 호출
+    /// 선택된 Item 설정
     /// </summary>
-    /// <param name="clickedItem">클릭된 Room Item</param>
-    public void OnRoomItemClick(GameObject clickedItem)
+    /// <param name="item">선택된 Room Item</param>
+    public void SetSelectedItem(RoomItemController item)
     {
-        // 이전 선택 항목 초기화
-        if (selectedItem != null)
+        // 이전 선택 항목 해제
+        if (m_selectedItem != null)
         {
-            SetItemColor(selectedItem, defaultColor);
+            m_selectedItem.SetSelected(false);
         }
 
-        // 새로 선택된 항목 업데이트
-        selectedItem = clickedItem;
-        SetItemColor(selectedItem, selectedColor);
-
-        // Enter 버튼 활성화
-        //enterButton.interactable = true;
-
-        Debug.Log($"Selected Room: {selectedItem.name}");
+        // 새로 선택된 항목 설정
+        m_selectedItem = item;
+        m_selectedItem.SetSelected(true);
     }
 
-    /// <summary>
-    /// Enter 버튼 클릭 시 호출
-    /// </summary>
-    private void OnEnterButtonClick()
+    public void AddRoomItem(string roomName)
     {
-        if (selectedItem != null)
+        // Test Item Prefab 생성
+        GameObject newItem = Instantiate(m_itemPrefab, m_itemListParent);
+        newItem.name = roomName;
+
+        // RoomItemController 연결
+        RoomItemController m_itemController = newItem.GetComponent<RoomItemController>();
+        if (m_itemController != null)
         {
-            Debug.Log($"Entering Room: {selectedItem.name}");
-            // 방 입장 처리 로직 추가
-            EnterRoom(selectedItem.name);
+            m_itemController.SetRoomListController(this);
+
+            // TODO : 자식 Row들 값 추가, 매개변수 (2025.01.15)
+            m_itemController.SetRoomData("roomTitle", "gameName", "1/2");
+        }
+
+        // Click Event 연결
+        Button itemButton = newItem.GetComponent<Button>();
+        if (itemButton != null)
+        {
+            itemButton.onClick.AddListener(m_itemController.OnItemSelected);
         }
     }
 
-    /// <summary>
-    /// 선택된 Room Item의 색상을 변경
-    /// </summary>
-    private void SetItemColor(GameObject item, Color color)
+    public void OnEnterBtnClick()
     {
-        Image itemImage = item.GetComponent<Image>();
-        if (itemImage != null)
+        if (m_selectedItem != null)
         {
-            itemImage.color = color;
+            Debug.Log($"Entering Room: {m_selectedItem.name}");
+            // TODO : 해당 방으로 Scene 넘어가도록 추가 필요(data 필요) (2025.01.15)
         }
     }
 
     /// <summary>
-    /// 방 입장 처리 (예제)
+    /// 선택된 Item 반환
     /// </summary>
-    /// <param name="roomName">방 이름</param>
-    private void EnterRoom(string roomName)
+    public RoomItemController GetSelectedItem()
     {
-        Debug.Log($"Room '{roomName}'에 입장했습니다!");
-        // 실제 입장 로직 추가 가능
+        return m_selectedItem;
+    }
+
+    void Start()
+    {
+        m_itemListParent = GetComponent<Transform>();
+
+        // TODO : database 활성화 시 - for문으로 방 개수만큼 호출 및 AddRoomItem 매개변수 추가하여 Row(항목 값) 추가 필요(2025.01.25)
+        AddRoomItem("Room 1");
+        AddRoomItem("Room 2");
+        AddRoomItem("Room 3");
+        AddRoomItem("Room 4");
+        AddRoomItem("Room 5");
     }
 }
