@@ -16,7 +16,9 @@ public class CardUse : MonoBehaviour
     {
         if (value.isPressed)
         {
+            ScanCards();
             Flip();
+            StopScanning();
         }
     }
 
@@ -32,39 +34,28 @@ public class CardUse : MonoBehaviour
  
     private void Flip()
     {
-        Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        foreach(Card card in m_scannedCards)
         {
-            // Card 컴포넌트가 있다면 추가 처리
-            m_draggedCard = hit.collider.GetComponent<Card>();
-            if (m_draggedCard != null)
-            {
-                print("Flip");
-                m_draggedCard.FlipCardAnim();
-            }
+            card.FlipCardAnim();
         }
     }
+
     private void ShuffleDeck()                                               // 이 카드덱의 m_cardDeck을 섞어줌.
     {
         int cardCount = m_scannedCards.Count;
         Vector3[] newPos = new Vector3[cardCount];                   // 카드들의 위치를 저장할 임시 배열.
-        // Shuffle확인용
-        Debug.Log("Shuffle 전 : ");
         // 현재 위치 정보 newPos에 저장
         for (int i = 0; i < cardCount; i++)
         {
             newPos[i] = m_scannedCards[i].transform.position;
-            Debug.Log(m_scannedCards[i].m_cardNum);
         }
         // m_cardDeck 섞어줌.
         GameManager.Instance.ListShuffle(m_scannedCards);
         // 카드들의 실제 위치를 옮겨줌.
-        // Shuffle확인용
-        Debug.Log("Shuffle 후 : ");
         for (int i = 0; i < cardCount; i++)
         {
             m_scannedCards[i].gameObject.transform.position = newPos[i];
-            Debug.Log(m_scannedCards[i].m_cardNum);
+            m_scannedCards[i].CardShuffleAnim();
         }
     }
     // ray를 쏴서 Shuffle할 카드 가져오기

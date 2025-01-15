@@ -49,7 +49,7 @@ public class Card : NetworkBehaviour
 
     }
 
-    public  void CardShuffleAnim()
+    public void CardShuffleAnim()
     {
         m_cardAnimation.CardShuffleAnim();  // 애니메이션 실행
         //m_networkAnimator.SetTrigger("Shuffle");  // 애니메이션 실행
