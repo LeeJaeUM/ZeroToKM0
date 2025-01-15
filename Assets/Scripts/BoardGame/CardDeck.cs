@@ -3,7 +3,7 @@ using Unity.Netcode;
 using UnityEngine;
 
 // 카드가 2개 이상 모였을 시 관리하는 클래스.
-public class CardDeck : NetworkBehaviour
+public class CardDeck : MonoBehaviour
 {
     private List<Card> m_cardDeck = new List<Card>();
 

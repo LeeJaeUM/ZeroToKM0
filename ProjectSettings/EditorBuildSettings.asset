@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/04_OtherGames.unity
     guid: b15156008605fa947a162747f8499d09
+  - enabled: 1
+    path: Assets/Scenes/TestHalliGalliScene/06_TestLocalPlayer.unity
+    guid: bab6f85f2eb8e384ca03fa7d29b16c4b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1d0e70f8e94bbb94fb81e5891d652f31, type: 3}
   m_UseUCBPForAssetBundles: 0
