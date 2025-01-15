@@ -42,17 +42,11 @@ public class Card : NetworkBehaviour
     public void FlipCardAnim()              // 카드를 뒤집어주는 함수
     {
         m_cardAnimation.FlipCardAnim();     // 애니메이션 실행
-        //Debug.Log("FlipCard");
-        //m_isOpen = !m_isOpen;               // isOpen값을 반대로 바꿔줌
-        //if(IsServer)
-        //    m_networkAnimator.Animator.SetBool("isOpen", m_isOpen); // 애니메이션 실행
-
     }
 
     public  void CardShuffleAnim()
     {
         m_cardAnimation.CardShuffleAnim();  // 애니메이션 실행
-        //m_networkAnimator.SetTrigger("Shuffle");  // 애니메이션 실행
     }
 
 
