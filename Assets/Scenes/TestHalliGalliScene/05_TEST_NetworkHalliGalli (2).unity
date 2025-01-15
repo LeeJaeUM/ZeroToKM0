@@ -1401,18 +1401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  m_playerNum: 0
-  m_halligalli: {fileID: 441099419}
-  nm_isMyTurn:
-    m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &172693291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,8 +2333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &327055382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,8 +2861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &382151711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,8 +2905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &387762304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -3173,8 +3155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &395050506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,8 +3835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1001 &461390520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4031,8 +4009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1001 &491530554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4147,8 +4123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1001 &500316528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4385,8 +4359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1001 &526989380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5037,18 +5009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  m_playerNum: 2
-  m_halligalli: {fileID: 441099419}
-  nm_isMyTurn:
-    m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &663937375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5163,8 +5123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &672678596
 GameObject:
   m_ObjectHideFlags: 0
@@ -5209,8 +5167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &679052845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -5540,8 +5496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1001 &770833508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5656,8 +5610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &776642489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -5994,8 +5946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &821561762
 GameObject:
   m_ObjectHideFlags: 0
@@ -7062,8 +7012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &959036074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7108,8 +7056,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &960128612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -7169,8 +7115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &981219074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -7708,7 +7652,8 @@ GameObject:
   - component: {fileID: 1071962391}
   - component: {fileID: 1071962390}
   - component: {fileID: 1071962389}
-  m_Layer: 0
+  - component: {fileID: 1071962392}
+  m_Layer: 7
   m_Name: Bell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7804,6 +7749,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071962387}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1071962392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071962387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2a32a57d2550148a084dc385f9db2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1097825446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -8365,35 +8322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a1cfc2b57f4dc4a9430ed30ba1d75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  m_cards: []
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_kushi: []
-  m_answerCard: {fileID: 0}
 --- !u!4 &1193039413
 Transform:
   m_ObjectHideFlags: 0
@@ -8480,8 +8408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &1217260948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -9177,8 +9103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &1420698170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -9699,8 +9623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &1518689770
 GameObject:
   m_ObjectHideFlags: 0
@@ -10122,8 +10044,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!4 &1595277970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6300364359960561159, guid: 8d46f4749f5a7b040a90af2e3055dab7, type: 3}
@@ -10274,8 +10194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &1632913449
 GameObject:
   m_ObjectHideFlags: 0
@@ -10642,18 +10560,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  m_playerNum: 3
-  m_halligalli: {fileID: 441099419}
-  nm_isMyTurn:
-    m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1713070061
 GameObject:
   m_ObjectHideFlags: 0
@@ -12260,8 +12166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1 &1985927879
 GameObject:
   m_ObjectHideFlags: 0
@@ -12551,8 +12455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1001 &2024625075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13009,18 +12911,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e54bdaaf3e0c649aac2d555ba5432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  m_playerNum: 1
-  m_halligalli: {fileID: 441099419}
-  nm_isMyTurn:
-    m_InternalValue: 0
-  m_ingredients:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &2112033237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13320,8 +13210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c2e03f9bac8404c9b2eef2021d068f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 0
-  m_length: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
