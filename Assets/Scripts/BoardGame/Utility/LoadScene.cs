@@ -5,6 +5,7 @@ public enum SceneState
 {
     None = -1,
     Title,
+    Login,
     Lobby,
     Game,
     Max

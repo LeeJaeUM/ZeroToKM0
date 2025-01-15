@@ -546,7 +546,7 @@
                     "name": "",
                     "id": "44e5041c-5d56-4c69-8c68-ed10527579cc",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "RightClick",
