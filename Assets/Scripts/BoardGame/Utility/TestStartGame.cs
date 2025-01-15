@@ -20,7 +20,7 @@ public class TestStartGame : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) // 2 키를 눌렀을 때
         {
-            GameManager.Instance.OpenCard(m_testplayerNum);
+           // GameManager.Instance.OpenCard(m_testplayerNum);
         }
     }
 

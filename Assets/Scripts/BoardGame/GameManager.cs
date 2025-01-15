@@ -147,9 +147,13 @@ public class GameManager : NetworkBehaviour
         m_finalWinner.SetText(winner + 1);
     }
     //----
-    public void OpenCard(int playerNum)
+    //public void OpenCard(int playerNum)
+    //{
+    //    m_halligalli.OpenCard(playerNum);
+    //} 
+    public void OpenCard(int playerNum, HalliGalliCard halliGalliCard)
     {
-        m_halligalli.OpenCard(playerNum);
+        m_halligalli.OpenCard(playerNum, halliGalliCard);
     }
     #endregion
 
