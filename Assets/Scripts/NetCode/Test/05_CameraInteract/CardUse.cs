@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
 
 public class CardUse : MonoBehaviour
 {
     private Camera m_camera; // 플레이어 카메라 참조
-    private Card m_draggedCard;
 
-    private List<Transform> m_scannedObjects = new List<Transform>(); // 드래그 중인 오브젝트들 리스트
     private List<Card> m_scannedCards = new List<Card>(); // 드래그 중인 오브젝트들의 NetworkMove 컴포넌트들
-    private bool m_isScanning = false; // 드래그 상태 플래그
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
     public void OnFlip(InputValue value)
     {
@@ -18,7 +14,7 @@ public class CardUse : MonoBehaviour
         {
             ScanCards();
             Flip();
-            StopScanning();
+            m_scannedCards.Clear();
         }
     }
 
@@ -28,7 +24,7 @@ public class CardUse : MonoBehaviour
         {
             ScanCards();
             ShuffleDeck();
-            StopScanning();
+            m_scannedCards.Clear();
         }
     }
  
@@ -36,7 +32,9 @@ public class CardUse : MonoBehaviour
     {
         foreach(Card card in m_scannedCards)
         {
-            card.FlipCardAnim();
+            // Card 컴포넌트가 있다면 추가 처리
+            if(card != null)
+                card.FlipCardAnim();
         }
     }
 
@@ -64,7 +62,6 @@ public class CardUse : MonoBehaviour
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity);
 
-        m_scannedObjects.Clear(); // 기존 드래그 리스트 초기화
         m_scannedCards.Clear();
 
         foreach (RaycastHit hit in hits)
@@ -72,29 +69,15 @@ public class CardUse : MonoBehaviour
             // Raycast가 맞은 지점이 일정 범위 내에 있고, NetworkMove 컴포넌트를 가지고 있는 경우
             if (Vector3.Distance(ray.origin, hit.point) <= m_dragRadius)
             {
-                var card = hit.transform.GetComponent<Card>();
+                Card card = hit.transform.GetComponent<Card>();
                 if (card != null)
                 {
-                    m_scannedObjects.Add(hit.transform); // 드래그 가능한 오브젝트 추가
                     m_scannedCards.Add(card);
                 }
             }
         }
-
-        if (m_scannedObjects.Count > 0)
-        {
-            m_isScanning = true;
-        }
     }
 
-    // 드래그 중단 처리
-    private void StopScanning()
-    {
-        m_isScanning = false;
-
-        m_scannedObjects.Clear(); // 드래그된 오브젝트 리스트 초기화
-        m_scannedCards.Clear();
-    }
     private void Start()
     {
         m_camera = GetComponent<Camera>(); // 플레이어 카메라 초기화

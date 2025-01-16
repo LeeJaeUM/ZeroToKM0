@@ -23,6 +23,7 @@ public class CardAnimation : NetworkBehaviour
             // 서버에서 애니메이션을 실행
             isOpen = !isOpen;
             m_networkAnimator.Animator.SetBool("isOpen", isOpen);
+
             // 클라이언트에게 동기화
             FlipCardAnimClientRpc(isOpen);
         }

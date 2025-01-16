@@ -6,7 +6,6 @@ public class ObjectDrag : NetworkBehaviour
 {
     private Camera m_camera; // 메인 카메라 참조
     [SerializeField]private Transform m_draggedObject; // 드래그 중인 오브젝트
-    private Card m_draggedCard; // 드래그 중인 카드
     private bool m_isDragging = false; // 드래그 상태 플래그
     [SerializeField] private float m_dragUpYPos = 2f; // 오브젝트를 올릴 높이
     private Vector3 m_newDraggedPos = Vector3.zero;
@@ -56,13 +55,14 @@ public class ObjectDrag : NetworkBehaviour
                 m_draggedNetworkMove.IsMove(true);
                 m_draggedNetworkMove.SetGravity(false);
             }
-
-            // Card 컴포넌트가 있다면 추가 처리
-            m_draggedCard = m_draggedObject.GetComponent<Card>();
-            if (m_draggedCard != null)
+            Card card = m_draggedObject.GetComponent<Card>();
+            if (card != null) 
             {
-                m_draggedCard.m_isPlaced = false;
-                m_draggedCard.m_isOnCard = false;
+                card.m_isPlaced = false;
+                card.m_frontCard = null;
+                card.m_backCard = null;
+                card.State = Card.CardState.Floating;
+                card.m_frontCard = null;
             }
             m_isDragging = true;
         }
@@ -79,11 +79,6 @@ public class ObjectDrag : NetworkBehaviour
             m_draggedNetworkMove.SetGravity(true);
         }
 
-        // Card 컴포넌트 처리
-        if (m_draggedCard != null)
-        {
-            m_draggedCard = null;
-        }
         m_draggedObject = null;
         m_newDraggedPos = Vector3.zero;
     }

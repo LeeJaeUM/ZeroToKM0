@@ -30,7 +30,7 @@ public class GameManager : NetworkBehaviour
         };
         //m_deckManager = new DeckManager(10);
 
-        SetBoardGame(m_boardGame);
+        //SetBoardGame(m_boardGame);
     }
     public enum BoardGameType
     {
