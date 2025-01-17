@@ -6,7 +6,7 @@ using static UnityEngine.Rendering.DebugUI;
 // Local OpenCard 테스트용.  m_playerNum, camera Inspector에서 설정하고, OpenCard가능.
 public class PlayerInputLocalTest : MonoBehaviour
 {
-    public Camera m_camera; // 플레이어 카메라 참조
+    private Camera m_camera; // 플레이어 카메라 참조
     private Card m_draggedCard;
     private HalliGalliCard m_draggedHalliGalliCard;
     public int m_playerNum;        // player번호
@@ -33,5 +33,9 @@ public class PlayerInputLocalTest : MonoBehaviour
                     m_playerNum = 0;
             }
         }
+    }
+    private void Start()
+    {
+        m_camera = GetComponent<Camera>();
     }
 }
