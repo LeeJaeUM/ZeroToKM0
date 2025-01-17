@@ -36,14 +36,14 @@ public class Card : NetworkBehaviour
         m_cardAnimation.FlipCardAnim();     // 애니메이션 실행
     }
 
-    public  void CardShuffleAnim()
+    public void CardShuffleAnim()
     {
         m_cardAnimation.CardShuffleAnim();  // 애니메이션 실행
     }
 
-    public virtual void OpenCard(int player)
+    public virtual bool OpenCard(int player)
     {
-
+        return true;
     }
 
 

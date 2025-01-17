@@ -31,32 +31,37 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         //int playerCount = NetworkManager.Singleton.ConnectedClients.Count;          // 연결된 플레이어 숫자 가져옴
         int playerCount = 4;          // 로컬 테스트용으로 플레이어 수 자체 할당.
-        m_playerCardCount = new int[playerCount];
-        GameManager.Instance.InitPlayers(playerCount);                              // TurnManager에 플레이어 숫자 할당해줌.
-
-        CreateCard();                                                               // 카드들에 정보+sprite 할당
-        m_gameManager.Calculatecard(m_card.Length, playerCount, m_playerCardCount); // 각 플레이어 별 카드 숫자 계산
-
-        Collectcard();          //위치조절함수
-        m_shuffledIndexes = m_gameManager.Shuffle(m_card.Length);   //랜덤으로 섞인 카드의 인덱스를 받아옴
-        ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
-
-        m_playerCard = new List<HalliGalliCard>[playerCount];
-        for (int i = 0; i < playerCount; i++)                  // m_playerCard 초기화
-        {
-            m_playerCard[i] = new List<HalliGalliCard>();
-        }
-        m_topCards = new HalliGalliCard[playerCount];
-        print("GameStart");
-
-        DistributeCard();       //위치조절함수
-        Dealcard();             //위치조절함수
-
+        InitPlayers(playerCount);
+        InitCards(playerCount);
     }
 
     private void ClientGameSetting()
     {
 
+    }
+    public void InitPlayers(int player)
+    {
+        m_playerCardCount = new int[player];
+        GameManager.Instance.InitPlayers(player);                              // TurnManager에 플레이어 숫자 할당해줌.
+    }
+    public void InitCards(int player)
+    {
+        CreateCard();                                                               // 카드들에 정보+sprite 할당
+        m_gameManager.Calculatecard(m_card.Length, player, m_playerCardCount); // 각 플레이어 별 카드 숫자 계산
+
+        Collectcard();          //위치조절함수
+        m_shuffledIndexes = m_gameManager.Shuffle(m_card.Length);   //랜덤으로 섞인 카드의 인덱스를 받아옴
+        ShuffleCards(m_shuffledIndexes);                            // 카드 섞기
+
+        m_playerCard = new List<HalliGalliCard>[player];
+        for (int i = 0; i < player; i++)                  // m_playerCard 초기화
+        {
+            m_playerCard[i] = new List<HalliGalliCard>();
+        }
+        m_topCards = new HalliGalliCard[player];
+
+        DistributeCard();       //위치조절함수
+        Dealcard();             //위치조절함수
     }
     public void CreateCard()                                                        // 카드 초기화 해주기( type, 숫자 )
     {
@@ -216,6 +221,7 @@ public class HalliGalliNetwork : NetworkBehaviour
         {
             print("Round" + m_roundCount++ + " Winner : Player" + (playernum + 1));
             m_gameManager.RoundWinMessage(playernum + 1);
+            FlipOpenedCards();  // 뒤집혀있는 OpenedCard들을 전부 다시 뒤집어줌
             GiveCard(playernum);
             RoundFinish();
             m_gameManager.SetCurrentTurn(playernum);            // 승자부터 다시 시작
@@ -250,27 +256,20 @@ public class HalliGalliNetwork : NetworkBehaviour
         }
         return false;
     }
+    public void FlipOpenedCards()
+    {
+        // Open되어있는 Card들을 다시 뒤집어줌.
+        for (int i = 0; i < m_openedCard.Count; i++)
+        {
+            m_openedCard[i].FlipCardAnim();
+        }
+    }
     public void GiveCard(int playerNum)                     // 승자에게 open된 카드를 전부 줌.
     {
         for (int i = 0; i < m_openedCard.Count; i++)
         {
             m_playerCard[playerNum].Add(m_openedCard[i]);
         }
-        Dealcard();
-
-        // Open되어있는 Card들을 다시 뒤집어줌.
-        for (int i = 0; i < m_openedCard.Count; i++)
-        {
-            // 현재 openedcard의 회전값을 가져옵니다.
-            Vector3 currentRotation = m_openedCard[i].transform.eulerAngles;
-
-            // x축 회전에 180도를 더합니다.
-            currentRotation.x += 180f;
-
-            // 수정된 회전값을 다시 GameObject에 적용합니다.
-            m_openedCard[i].transform.eulerAngles = currentRotation;
-        }
-
         m_openedCard.Clear();
         m_topCards = null;
         m_topCards = new HalliGalliCard[m_gameManager.GetPlayerCount()];
@@ -296,7 +295,7 @@ public class HalliGalliNetwork : NetworkBehaviour
             print(m_gameManager.GetPlayerCount());
             //Array.Clear(m_topCard, 0, m_topCard.Length);    // topcard초기화
             print("new round");
-
+            Dealcard();
             for (int i = 0; i < m_gameManager.GetPlayerCount(); i++)    // topcard초기화 후 CardInfoCheck에 초기화 된 string값을 액션으로 보냄 
             {
                 OnTopCardChanged?.Invoke(" 라운드 초기화 ", i);

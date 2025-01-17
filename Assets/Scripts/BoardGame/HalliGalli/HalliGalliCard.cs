@@ -39,12 +39,14 @@ public class HalliGalliCard : Card
         m_NetCardIndex.Value = cardIndex;
     }
 
-    public override void OpenCard(int player)
+    public override bool OpenCard(int player)
     {
         if(m_halligalli.OpenCard(player, this))
         {
             FlipCardAnim();
+            return true;
         }
+        return false;
     }
     // 동기화된 값이 변경되면 호출될 함수들
     private void HandleAnimalTypeChanged(int oldValue, int newValue)

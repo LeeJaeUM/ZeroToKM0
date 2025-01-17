@@ -27,8 +27,8 @@ public class PlayerInputLocalTest : MonoBehaviour
             m_draggedCard = hit.collider.GetComponent<Card>();
             if (m_draggedCard != null)
             {
-                m_draggedCard.OpenCard(m_playerNum);
-                m_playerNum++;
+                if(m_draggedCard.OpenCard(m_playerNum))
+                    m_playerNum++;
                 if(m_playerNum == 4)
                     m_playerNum = 0;
             }
