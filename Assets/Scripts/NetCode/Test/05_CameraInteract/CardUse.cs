@@ -13,15 +13,13 @@ public class CardUse : MonoBehaviour
 
     private List<Card> m_scannedCards = new List<Card>(); // 드래그 중인 오브젝트들의 NetworkMove 컴포넌트들
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
-
+    private Card m_draggedCard;
     private float m_cardSpacing = 0.1f;
     public void OnFlip(InputValue value)
     {
         if (value.isPressed)
         {
-            ScanCards();
             Flip();
-            m_scannedCards.Clear();
         }
     }
 
@@ -45,11 +43,16 @@ public class CardUse : MonoBehaviour
     }
     private void Flip()
     {
-        foreach(Card card in m_scannedCards)
+        Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             // Card 컴포넌트가 있다면 추가 처리
-            if(card != null)
-                card.FlipCardAnim();
+            m_draggedCard = hit.collider.GetComponent<Card>();
+            if (m_draggedCard != null)
+            {
+                print("Flip");
+                m_draggedCard.FlipCardAnim();
+            }
         }
     }
 
