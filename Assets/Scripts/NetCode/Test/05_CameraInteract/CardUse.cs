@@ -2,12 +2,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+// 카드관련 기능
+// 1. F로 Flip
+// 2. T로 Shuffle
+// 3. G로 Sort
 public class CardUse : MonoBehaviour
 {
     private Camera m_camera; // 플레이어 카메라 참조
 
     private List<Card> m_scannedCards = new List<Card>(); // 드래그 중인 오브젝트들의 NetworkMove 컴포넌트들
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
+
+    private float m_cardSpacing = 0.1f;
     public void OnFlip(InputValue value)
     {
         if (value.isPressed)
@@ -27,7 +34,15 @@ public class CardUse : MonoBehaviour
             m_scannedCards.Clear();
         }
     }
- 
+    public void OnSort(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            ScanCards();
+            SortDeck();
+            m_scannedCards.Clear();
+        }
+    }
     private void Flip()
     {
         foreach(Card card in m_scannedCards)
@@ -56,7 +71,20 @@ public class CardUse : MonoBehaviour
             m_scannedCards[i].CardShuffleAnim();
         }
     }
-    // ray를 쏴서 Shuffle할 카드 가져오기
+    private void SortDeck()
+    {
+        Vector3 sortPos;
+        // m_scannedCards y축 기준 오름차순 정렬
+        m_scannedCards.Sort((obj1, obj2) => obj1.gameObject.transform.position.y.CompareTo(obj2.gameObject.transform.position.y));
+        sortPos = m_scannedCards[0].transform.position;
+
+        foreach(Card card in m_scannedCards)
+        {
+            sortPos.y += m_cardSpacing;
+            card.gameObject.transform.position = sortPos;
+        }
+    }
+    // ray를 쏴서 맞은 카드들 m_scannedCards로 가져오기
     private void ScanCards()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());

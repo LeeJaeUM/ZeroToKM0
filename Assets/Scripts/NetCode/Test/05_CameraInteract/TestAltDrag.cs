@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using Unity.Services.Multiplayer;
 using UnityEngine;
@@ -11,8 +12,9 @@ public class TestAltDrag : NetworkBehaviour
     private List<NetworkMove> m_draggedNetworkMoves = new List<NetworkMove>(); // 드래그 중인 오브젝트들의 NetworkMove 컴포넌트들
     private bool m_isDragging = false; // 드래그 상태 플래그
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
-    private Vector3 m_dragOffset = Vector3.zero; // 드래그 시작 위치에 대한 오프셋
-                                  
+    private Vector3 m_dragUpYPos = new Vector3(0, 1.5f, 0);
+    private List<Vector3> m_newDraggedPos = new List<Vector3>();
+
     private LayerMask layerMask;// 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
 
     //if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) 레이어 마스크를 적용하는 예시
@@ -66,27 +68,15 @@ public class TestAltDrag : NetworkBehaviour
                 }
             }
         }
-        //Card card = null;
-
-        //int i = 0;
-        //while (card != null)
-        //{
-        //    card = hits[i].transform.GetComponent<Card>();
-        //    i++;
-        //}
-        //card.FindFirstCard();
-        // m_draggedNetworkMoves안에 오브젝트들을 y축 기준으로 정렬해줌( y축 값이 작을수록 앞으로오게)
-        //m_draggedNetworkMoves.Sort((obj1, obj2) => obj1.m_networkPosition.Value.y.CompareTo(obj2.m_networkPosition.Value.y));
-        m_draggedNetworkMoves.Sort((obj1, obj2) => obj1.gameObject.transform.position.y.CompareTo(obj2.gameObject.transform.position.y));
-
-        Card firstCard = m_draggedNetworkMoves[0].transform.GetComponent<Card>();
-        firstCard.State = Card.CardState.Floating;
-        firstCard.m_frontCard = null;
+        // m_draggedNetworkMoves안에 오브젝트들을 y축 기준으로 내림차순 정렬해줌( y축 값이 클수록 앞으로오게)
+        m_draggedObjects.Sort((obj1, obj2) => obj2.gameObject.transform.position.y.CompareTo(obj1.gameObject.transform.position.y));
+        foreach(Transform obj in m_draggedObjects)
+        {
+            Vector3 UpPos = obj.position + m_dragUpYPos;
+            m_newDraggedPos.Add(UpPos);
+        }
         if (m_draggedObjects.Count > 0)
         {
-            // 드래그 시작 시 첫 번째 오브젝트와의 위치 차이를 계산 (오프셋)
-            m_dragOffset = m_draggedObjects[0].position - ray.origin;
-
             m_isDragging = true;
         }
     }
@@ -114,6 +104,7 @@ public class TestAltDrag : NetworkBehaviour
 
         m_draggedObjects.Clear(); // 드래그된 오브젝트 리스트 초기화
         m_draggedNetworkMoves.Clear();
+        m_newDraggedPos.Clear();
     }
     private void UpdateDraggedObjectsPosition()
     {
@@ -127,16 +118,14 @@ public class TestAltDrag : NetworkBehaviour
         {
             Vector3 newPosition = ray.GetPoint(distance); // 레이캐스트가 맞은 월드 좌표
 
-            // Y 값 고정 (기존 Y값을 고정시킴)
-            newPosition.y = 2f;  // Y 값 고정 (필요시 다른 값으로 수정 가능)
-
             // 서버에서는 위치를 직접 업데이트
             if (IsServer)
             {
-                foreach (var draggedObject in m_draggedObjects)
+                for(int i = 0; i < m_draggedObjects.Count; i++)
                 {
-                    newPosition.y += cardGap;
-                    draggedObject.position = newPosition; // 오브젝트의 위치 업데이트
+                    Vector3 newUpPosition = newPosition;
+                    newUpPosition.y = m_newDraggedPos[i].y + cardGap * (m_draggedObjects.Count - i);
+                    m_draggedObjects[i].position = newUpPosition; // 오브젝트의 위치 업데이트
                 }
             }
             else if (IsClient)

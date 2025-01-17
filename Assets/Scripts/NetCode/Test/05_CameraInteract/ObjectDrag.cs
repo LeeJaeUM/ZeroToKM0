@@ -55,15 +55,6 @@ public class ObjectDrag : NetworkBehaviour
                 m_draggedNetworkMove.IsMove(true);
                 m_draggedNetworkMove.SetGravity(false);
             }
-            Card card = m_draggedObject.GetComponent<Card>();
-            if (card != null) 
-            {
-                card.m_isPlaced = false;
-                card.m_frontCard = null;
-                card.m_backCard = null;
-                card.State = Card.CardState.Floating;
-                card.m_frontCard = null;
-            }
             m_isDragging = true;
         }
     }
