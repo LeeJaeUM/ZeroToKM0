@@ -17,10 +17,11 @@ public class SettingsController : MonoBehaviour
     bool m_tempOutlineState;
     bool m_tempUsernameState;
 
+    // 저장된 설정 값 (PlayerPrefs 키)
     const string FULL_VOLUME_KEY = "FullVolume";
-    const string EFFECT_VOLUME_KEY = "FullVolume";
-    const string OUTLINE_TOGGLE_KEY = "FullVolume";
-    const string USERNAME_TOGGLE_KEY = "FullVolume";
+    const string EFFECT_VOLUME_KEY = "EffectVolume";
+    const string OUTLINE_SWITCH_KEY = "OutlineSwitch";
+    const string USERNAME_SWITCH_KEY = "UsernameSwitch";
 
     public void OnSaveSettings()
     {
@@ -29,8 +30,8 @@ public class SettingsController : MonoBehaviour
         PlayerPrefs.SetFloat(EFFECT_VOLUME_KEY, m_effectVolumeSlider.mainSlider.value);
 
         // 스위치 값 저장
-        PlayerPrefs.SetInt(OUTLINE_TOGGLE_KEY, m_outlineSwitch.isOn ? 1 : 0);
-        PlayerPrefs.SetInt(USERNAME_TOGGLE_KEY, m_usernameSwitch.isOn ? 1 : 0);
+        PlayerPrefs.SetInt(OUTLINE_SWITCH_KEY, m_outlineSwitch.isOn ? 1 : 0);
+        PlayerPrefs.SetInt(USERNAME_SWITCH_KEY, m_usernameSwitch.isOn ? 1 : 0);
 
         // 설정 저장 완료
         PlayerPrefs.Save();
