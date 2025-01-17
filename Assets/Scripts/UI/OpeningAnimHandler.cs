@@ -25,7 +25,6 @@ public class OpeningAnimHandler : MonoBehaviour
     // Animation 종료
     public void AnimEvent_FinishAnimation()
     {
-        // TODO : 최종 Scene에 따라 넘어갈 Scene 조정필요 (2024.01.05)
-        LoadScene.Instance.LoadSceneAsync(SceneState.Lobby);
+        LoadScene.Instance.LoadSceneAsync(SceneState.Login);
     }
 }
