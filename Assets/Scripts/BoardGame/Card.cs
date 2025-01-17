@@ -7,7 +7,6 @@ using Unity.Netcode.Components;
 
 public class Card : NetworkBehaviour
 {
-
     private CardDeck m_cardDeck;                       // 이 카드가 속해있는 카드덱의 주소, 카드덱에 속하지 않는 경우 null
 
     public bool m_isPlaced = false;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
@@ -49,6 +48,10 @@ public class Card : NetworkBehaviour
         m_cardAnimation.CardShuffleAnim();  // 애니메이션 실행
     }
 
+    public virtual void OpenCard(int player)
+    {
+
+    }
 
 
     private void OnCollisionEnter(Collision other)

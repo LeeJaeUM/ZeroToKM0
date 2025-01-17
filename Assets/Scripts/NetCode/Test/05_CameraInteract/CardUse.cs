@@ -8,6 +8,7 @@ public class CardUse : MonoBehaviour
     private Camera m_camera; // 플레이어 카메라 참조
     private Card m_draggedCard;
     private HalliGalliCard m_draggedHalliGalliCard;
+    private int m_playerNum;        // player번호
 
     public void OnFlip(InputValue value)
     {
@@ -32,17 +33,17 @@ public class CardUse : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             // HalliGalli Card 컴포넌트가 있다면 추가 처리
-            m_draggedHalliGalliCard = hit.collider.GetComponent<HalliGalliCard>();
-            if (m_draggedHalliGalliCard != null)
-            {
-                GameManager.Instance.OpenCard((int)NetworkManager.Singleton.LocalClientId, m_draggedHalliGalliCard);
-            }
+            //m_draggedHalliGalliCard = hit.collider.GetComponent<HalliGalliCard>();
+            //if (m_draggedHalliGalliCard != null)
+            //{
+            //    GameManager.Instance.OpenCard((int)NetworkManager.Singleton.LocalClientId, m_draggedHalliGalliCard);
+            //}
 
             m_draggedCard = hit.collider.GetComponent<Card>();
             if (m_draggedCard != null)
             {
-                print("Flip");
-                m_draggedCard.FlipCardAnim();
+                //m_draggedCard.FlipCardAnim(m_playerNum);
+                m_draggedCard.OpenCard((int)NetworkManager.Singleton.LocalClientId);
             }
             // Card 컴포넌트가 있다면 추가 처리
 
