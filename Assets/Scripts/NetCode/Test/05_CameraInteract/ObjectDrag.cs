@@ -65,11 +65,6 @@ public class ObjectDrag : NetworkBehaviour
             if (m_draggedCard != null)
             {
                 m_draggedCard.m_isPlaced = false;
-                // Card가 Deck에 속해있었다면, 해당 Card를 CardDeck에서 제거.
-                if(m_draggedCard.CardDeck != null)
-                {
-                    m_draggedCard.CardDeck.RemoveFromDeck(m_draggedCard);
-                }
             }
             m_isDragging = true;
         }

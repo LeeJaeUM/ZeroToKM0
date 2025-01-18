@@ -6,9 +6,9 @@ public class ProgressBarManager : MonoBehaviour
     #region Constants and Fields
     [SerializeField] ProgressBar m_progressBar;
     
-    bool m_isAnimating = false;             // Progress Bar Update Flag
+    bool m_isAnimating = false;            // Progress Bar Update Flag
     float m_animationDuration = 1.70f;     // Animation 길이
-    float m_elapsedTime = 0f;               // 진행된 시간
+    float m_elapsedTime = 0f;              // 진행된 시간
     #endregion
 
     #region Animation Event Methods
@@ -39,12 +39,6 @@ public class ProgressBarManager : MonoBehaviour
         m_progressBar.UpdateUI();
     }
     #endregion
-
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if(m_isAnimating)

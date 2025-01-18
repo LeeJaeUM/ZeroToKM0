@@ -11,7 +11,7 @@
                     "id": "351f2ccd-1f9f-44bf-9bec-d62ac5c5f408",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": true
                 },
                 {
@@ -117,6 +117,33 @@
                     "name": "Shuffle",
                     "type": "Button",
                     "id": "a1bd2a9a-8e9e-4896-9980-a2286da3c432",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TestOpenCard",
+                    "type": "Button",
+                    "id": "f3eac61b-313a-4fcd-ad94-e6159a0d25d7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sort",
+                    "type": "Button",
+                    "id": "e2229c69-3867-4db0-9eb1-63fa7b33fc43",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Alt",
+                    "type": "Button",
+                    "id": "41ebd1ca-98bb-433d-8841-d0aa03236693",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -572,6 +599,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shuffle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46bb4adf-0770-4535-8090-141556a0745f",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestOpenCard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52d909e9-25c1-489a-8d49-82254201e446",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sort",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44b468c6-ba0f-46a6-9ec9-6944ba968738",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Alt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

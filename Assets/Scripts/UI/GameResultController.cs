@@ -2,6 +2,7 @@ using Michsky.MUIP;
 using TMPro;
 using UnityEngine;
 using System;
+using Mono.Cecil.Cil;
 
 [Serializable]
 public class PlayerResult
@@ -14,11 +15,12 @@ public class PlayerResult
 
 public class GameResultController : MonoBehaviour
 {
-    [SerializeField] ModalWindowManager m_modalWindowManager;     // Modal Window Manager
-    [SerializeField] GameObject m_modalWindow;                    // Modal Window
-    [SerializeField] Transform m_listParent;                      // List View의 List (Item 부모)
-    [SerializeField] GameObject m_listItemPrefab;                 // List View Item Prefab (Item)
-    [SerializeField] TMP_Text m_turnsText;                        // 진행한 턴 횟수 텍스트
+    [SerializeField] GameObject m_modalWindow;      // Modal Window
+    [SerializeField] Transform m_listParent;        // List View의 List (Item 부모)
+    [SerializeField] GameObject m_listItemPrefab;   // List View Item Prefab (Item)
+    [SerializeField] TMP_Text m_turnsText;          // 진행한 턴 횟수 텍스트
+    
+    ModalWindowManager m_modalWindowManager;        // Modal Window Manager
 
     /// <summary>
     /// 게임 결과를 표시합니다.
@@ -67,9 +69,23 @@ public class GameResultController : MonoBehaviour
         Debug.Log("Click Confirm");
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public void Test()
+    {
+        // TODO: 예제 데이터 (2025.01.17)
+        PlayerResult[] results = new PlayerResult[]
+        {
+            new PlayerResult { playerName = "Player1", isWinner = true, winCount = 1, totalGames = 3 },
+            new PlayerResult { playerName = "Player2", isWinner = false, winCount = 0, totalGames = 3 },
+            new PlayerResult { playerName = "Player3", isWinner = false, winCount = 0, totalGames = 3 },
+            new PlayerResult { playerName = "Player4", isWinner = false, winCount = 2, totalGames = 3 },
+        };
+
+        ShowGameResult(results, 3);
+    }
+
     void Start()
     {
+        m_modalWindowManager = m_modalWindow.GetComponent<ModalWindowManager>();
         m_modalWindow.SetActive(false);
     }
 }

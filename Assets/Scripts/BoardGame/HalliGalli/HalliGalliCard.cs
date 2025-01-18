@@ -16,15 +16,20 @@ public class HalliGalliCard : Card
         Fox,
         Panda
     }
-
+    public HalliGalliNetwork m_halligalli;
     public AnimalType m_AnimalType;       // 과일 종류
     public int m_fruitNum;                // 과일 개수
     public SpriteRenderer m_sprite;
     public int m_CardIndex;
 
+    // Local Open Test용
+    public bool openCard = false;
+    public int openPlayerNum = 0;
+
     // Initialize 함수에서 값을 설정하고 NetworkVariable로 동기화
-    public void Initialize(AnimalType type, int num, int cardIndex)
+    public void Initialize(AnimalType type, int num, int cardIndex, HalliGalliNetwork halligalli)
     {
+        m_halligalli = halligalli;
         m_AnimalType = type;
         m_fruitNum = num;
 
@@ -34,7 +39,15 @@ public class HalliGalliCard : Card
         m_NetCardIndex.Value = cardIndex;
     }
 
-
+    public override bool OpenCard(int player)
+    {
+        if(m_halligalli.OpenCard(player, this))
+        {
+            FlipCardAnim();
+            return true;
+        }
+        return false;
+    }
     // 동기화된 값이 변경되면 호출될 함수들
     private void HandleAnimalTypeChanged(int oldValue, int newValue)
     {
@@ -82,6 +95,15 @@ public class HalliGalliCard : Card
         m_NetFruitNum.OnValueChanged += HandleFruitNumChanged;
         m_NetSpriteIndex.OnValueChanged += HandleSpriteIndexChanged; // 스프라이트 변경 처리
         m_NetCardIndex.OnValueChanged += OnCardIndexChanged;
+    }
+    // Test
+    // TODO : 지우기
+    private void Update()
+    {
+        if (openCard)
+        {
+            OpenCard(openPlayerNum);
+        }
     }
 }
 
