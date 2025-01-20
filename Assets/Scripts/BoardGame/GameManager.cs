@@ -68,11 +68,6 @@ public class GameManager : NetworkBehaviour
         m_boardGames[type].gameObject.SetActive(true);      
     }
 
-    public void StartHalliGalli()
-    {
-        m_halligalli.InitializeGame();
-    }
-
     public void EndGame()
     {
         // TODO : 예제 데이터, 데이터베이스 데이터로 변경 필요
@@ -89,23 +84,9 @@ public class GameManager : NetworkBehaviour
         // Modal 창 열기
         m_gameResultController.ShowGameResult(results, totalTurns);
     }
-    
-    public void InitPlayers(int playerCount)
-    {
-        m_turnManager.InitPlayers(playerCount);
-    }
-    public int GetPlayerCount()
-    {
-        return m_turnManager.AlivePlayerCount;
-    }
-    public int GetCurrentTurn()                       // 지금 누구의 턴인지, index값 반환
-    {
-        return m_turnManager.CurrentTurn;
-    }
-    public void SetCurrentTurn(int turn)
-    {
-        m_turnManager.CurrentTurn = turn;
-    }
+
+    #region Dealer Function
+
     public void ArrayShuffle(object[] obj)
     {
         m_dealer.ArrayShuffle(obj);
@@ -121,7 +102,29 @@ public class GameManager : NetworkBehaviour
     public void Calculatecard(int cardCount, int playerCount, int[] playerCardCount)
     {
         m_dealer.Calculatecard(cardCount, playerCount, playerCardCount);
-    }    
+    }
+
+    #endregion
+
+
+    #region TurnManager Function
+    public void InitPlayers(int playerCount)
+    {
+        m_turnManager.InitPlayers(playerCount);
+    }
+    public int GetPlayerCount()
+    {
+        return m_turnManager.AlivePlayerCount;
+    }
+    public int GetCurruntTurnPlayerNum()                       // 지금 누구의 턴인지, index값 반환
+    {
+        return m_turnManager.GetCurruntTurnPlayerNum();
+    }
+    public void SetCurruntTurn(int playerNum)
+    {
+        m_turnManager.SetCurruntTurn(playerNum);
+    }
+
     public void RemovePlayer(int player)
     {
         m_turnManager.RemovePlayer(player);
@@ -131,10 +134,40 @@ public class GameManager : NetworkBehaviour
     {
         return m_turnManager.NextTurn();
     }
+    #endregion
+
+    #region HalliGalli Function
+
+    public void StartHalliGalli()
+    {
+        m_halligalli.InitializeGame();
+    }
+
     public void RingBell(int playernum)
     {
         m_halligalli.RingBell(playernum);
     }
+
+    public bool IsMyTurnHalliGalli(int playernum)
+    {
+       return m_halligalli.IsMyTurn(playernum);
+    }
+    #endregion
+
+    public bool IsMyTurn(int playernum)
+    {
+        switch(m_boardGame)
+        {
+            case BoardGameType.HalliGalli:
+                return IsMyTurnHalliGalli(playernum);
+            case BoardGameType.Skewer:
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
     public void RoundWinMessage(int winner)
     {
         StartCoroutine("CoRoundWinMessage");
@@ -142,15 +175,11 @@ public class GameManager : NetworkBehaviour
     }
     public void FinalWinMessage()
     {
-        int winner = m_turnManager.m_alivePlayers[0];
+        int winner = m_turnManager.GetCurruntTurnPlayerNum();
         StartCoroutine("CoFinalWinMessage");
         m_finalWinner.SetText(winner + 1);
     }
-    //----
-    //public void OpenCard(int playerNum)
-    //{
-    //    m_halligalli.OpenCard(playerNum);
-    //} 
+
     public void OpenCard(int playerNum, HalliGalliCard halliGalliCard)
     {
         m_halligalli.OpenCard(playerNum, halliGalliCard);

@@ -28,22 +28,18 @@ public class Card : NetworkBehaviour
     }
     public void FlipCardAnim()              // 카드를 뒤집어주는 함수
     {
-        Debug.Log("여긴가? FlipCardAnim");
         if(m_cardAnimation != null )
             m_cardAnimation.FlipCardAnim();     // 애니메이션 실행
     }
 
     public void CardShuffleAnim()
     {
-        Debug.Log("여긴가? CardShuffleAnim");
         m_cardAnimation.CardShuffleAnim();  // 애니메이션 실행
     }
 
-    public virtual bool OpenCard(int player)
+    public void OpenCardInCard(int player)
     {
-        Debug.Log("여긴가? OpenCard In Card");
         FlipCardAnim();
-        return true;
     }
 
 

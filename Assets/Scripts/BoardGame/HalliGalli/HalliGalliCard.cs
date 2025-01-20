@@ -22,9 +22,6 @@ public class HalliGalliCard : Card
     public SpriteRenderer m_sprite;
     public int m_CardIndex;
 
-    // Local Open Test용
-    public bool openCard = false;
-    public int openPlayerNum = 0;
 
     // Initialize 함수에서 값을 설정하고 NetworkVariable로 동기화
     public void Initialize(AnimalType type, int num, int cardIndex, HalliGalliNetwork halligalli)
@@ -39,18 +36,8 @@ public class HalliGalliCard : Card
         m_NetCardIndex.Value = cardIndex;
     }
 
-    public override bool OpenCard(int player)
-    {
-        //TODO: 아래 OpenCard 수정요망 -> 확인은 여기서 가능
-        FlipCardAnim();
-        return true;
-        if (m_halligalli.OpenCard(player, this))
-        {
-            FlipCardAnim();
-            return true;
-        }
-        return false;
-    }
+    #region Network Functions
+
     // 동기화된 값이 변경되면 호출될 함수들
     private void HandleAnimalTypeChanged(int oldValue, int newValue)
     {
@@ -91,6 +78,8 @@ public class HalliGalliCard : Card
         // 인덱스가 변경되었을 때 클라이언트에서 처리할 추가 작업이 있으면 여기에 추가
         m_CardIndex = newValue;
     }
+
+    #endregion
     void Awake()
     {
         m_sprite = GetComponentInChildren<SpriteRenderer>();
@@ -107,16 +96,6 @@ public class HalliGalliCard : Card
     {
         base.Start();
         m_halligalli = GameManager.Instance.m_halligalli;
-    }
-
-    // Test
-    // TODO : 지우기
-    private void Update()
-    {
-        if (openCard)
-        {
-            OpenCard(openPlayerNum);
-        }
     }
 }
 

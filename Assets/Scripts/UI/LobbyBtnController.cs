@@ -28,14 +28,17 @@ public class LobbyBtnController : MonoBehaviour
         Debug.Log("Join Button Clicked - Switching to Client Mode");
 
         // 씬 로드 후 클라이언트 시작
-        SceneManager.LoadScene(TargetSceneName);
-        SceneManager.sceneLoaded += (scene, mode) =>
-        {
-            if (scene.name == TargetSceneName)
-            {
-                StartClient();
-            }
-        };
+        // 개발 중에 확인할 코드
+        //SceneManager.LoadScene(TargetSceneName);
+        //SceneManager.sceneLoaded += (scene, mode) =>
+        //{
+        //    if (scene.name == TargetSceneName)
+        //    {
+        //        StartClient();
+        //    }
+        //};
+
+        //
 
         // TODO : Client 연결로 변경 해놓으셔서 방목록창으로 변경 할시 아래코드 사용 요망 (2025.01.16)
         /*

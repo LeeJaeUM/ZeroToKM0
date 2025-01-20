@@ -55,6 +55,11 @@ public class CardUse : MonoBehaviour
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
+            if (!GameManager.Instance.IsMyTurn((int)NetworkManager.Singleton.LocalClientId))
+            {
+                Debug.Log("내 턴이 아닐 때 카드를 뒤질을 수 없다.");
+                return;
+            }
             // HalliGalli Card 컴포넌트가 있다면 추가 처리
             //TODO : 네트워크 기능 다시 활성화,  겹치는 함수명 OpenCard 모든 스크립트에서 다르게 변경해야함
             m_draggedHalliGalliCard = hit.collider.GetComponent<HalliGalliCard>();
@@ -71,7 +76,7 @@ public class CardUse : MonoBehaviour
                 //m_draggedCard.FlipCardAnim(m_playerNum);
                 //사용자가 직접 카드에 애니메이션 작동하도록 하는 부분 
                 //그래서 여기서 직접 불러서 사용함
-                m_draggedCard.OpenCard((int)NetworkManager.Singleton.LocalClientId);
+                m_draggedCard.OpenCardInCard((int)NetworkManager.Singleton.LocalClientId);
 
             }
             // Card 컴포넌트가 있다면 추가 처리
