@@ -13,7 +13,8 @@ public class GameBtnController : MonoBehaviour
     }
     public void OnRestartBtnClick()
     {
-        // TODO : Restart 함수 추가 필요 (2025.01.20)
+        // TODO : Restart 함수 추가 필요 (2025.01.20) 임시로 할리갈리만 추가
+        GameManager.Instance.StartHalliGalli();
     }
     public void OnFlipBtnClick()
     {

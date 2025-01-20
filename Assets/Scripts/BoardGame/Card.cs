@@ -13,13 +13,8 @@ public class Card : NetworkBehaviour
     public int m_cardNum;             // 카드번호, Shuffle확인용
                                       // TODO : 나중에 지우기
 
-    private CardAnimation m_cardAnimation;                             // 카드 애니메이션을 위한 클래스
+    [SerializeField]private CardAnimation m_cardAnimation;                             // 카드 애니메이션을 위한 클래스
 
-    void Start()
-    {
-        m_cardAnimation = GetComponent<CardAnimation>();        // 카드 애니메이션 컴포넌트 참조
-    }
-    
     private void HandlePositionChanged(Vector3 oldPosition, Vector3 newPosition)
     {
         // 위치가 변경되면 클라이언트에서 해당 위치로 이동
@@ -33,16 +28,21 @@ public class Card : NetworkBehaviour
     }
     public void FlipCardAnim()              // 카드를 뒤집어주는 함수
     {
-        m_cardAnimation.FlipCardAnim();     // 애니메이션 실행
+        Debug.Log("여긴가? FlipCardAnim");
+        if(m_cardAnimation != null )
+            m_cardAnimation.FlipCardAnim();     // 애니메이션 실행
     }
 
     public void CardShuffleAnim()
     {
+        Debug.Log("여긴가? CardShuffleAnim");
         m_cardAnimation.CardShuffleAnim();  // 애니메이션 실행
     }
 
     public virtual bool OpenCard(int player)
     {
+        Debug.Log("여긴가? OpenCard In Card");
+        FlipCardAnim();
         return true;
     }
 
@@ -74,4 +74,9 @@ public class Card : NetworkBehaviour
             }
         }
     }
+    protected virtual void Start()
+    {
+        m_cardAnimation = GetComponent<CardAnimation>();        // 카드 애니메이션 컴포넌트 참조
+    }
+
 }

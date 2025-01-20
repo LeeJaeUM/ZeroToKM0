@@ -23,6 +23,7 @@ public class HalliGalliNetwork : NetworkBehaviour
                                                                  // => 모든 동물이 카드개수가 같음. 따라서 총 카드 개수는 14 * 4 = 56
 
     public int m_roundCount = 1;
+    public bool isUseTurnMode = false;
 
     // 길이 변경 이벤트
     public event Action<string, int> OnTopCardChanged;
@@ -137,46 +138,53 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         HalliGalliCard card;           // 입력 받은 플레이어의 카드덱에서 가장 위의 카드를 가져옴
 
-        // 룰 추가 : 자신의 턴에만 Open이 가능하게.
-        // playerNum의 턴이 아니라면 false반환
-        if(playerNum != m_gameManager.GetCurrentTurn())
+        if(isUseTurnMode)
         {
-            Debug.Log("Not My Turn");
-            return false;
+            // 룰 추가 : 자신의 턴에만 Open이 가능하게.
+            // playerNum의 턴이 아니라면 false반환
+            if (playerNum != m_gameManager.GetCurrentTurn())
+            {
+                Debug.Log("Not My Turn");
+                return false;
+            }
+            // 룰 추가 : 자신의 카드만 Open이 가능하게.
+            // playerNum의 카드 덱에 halligalliCard가 존재하는지 확인
+            if (m_playerCard[playerNum].Contains(halliGalliCard))
+            {
+                // 있다면 덱에서 제거
+                card = halliGalliCard;
+                m_playerCard[playerNum].Remove(halliGalliCard);
+            }
+            // 없다면 함수 종료
+            else
+            {
+                Debug.Log("Not My Card");
+                return false;
+            }
+
+            m_gameManager.NextTurn();
         }
-        // 룰 추가 : 자신의 카드만 Open이 가능하게.
-        // playerNum의 카드 덱에 halligalliCard가 존재하는지 확인
-        if (m_playerCard[playerNum].Contains(halliGalliCard))
-        {
-            // 있다면 덱에서 제거
-            card = halliGalliCard;
-            m_playerCard[playerNum].Remove(halliGalliCard);
-        }
-        // 없다면 함수 종료
-        else
-        {
-            Debug.Log("Not My Card");
-            return false;
+        else  //턴 제한 없을 시 로직
+        { 
+            if (IsServer)
+            {
+                m_topCards[playerNum] = halliGalliCard;                        // 그 카드를 m_topCard에 추가
+                m_openedCard.Add(halliGalliCard);                             // m_openedCard에 추가
+
+                //SetPos(playerNum + 4, card.gameObject);           // 드래그로 인한 위지 지정 미사용 수정
+
+                //CardInfoCheck에 액션으로 보낼 string값을 현재 Top 카드에서 찾아서 보냄
+                OnTopCardChanged?.Invoke(m_topCards[playerNum].m_AnimalType.ToString() + m_topCards[playerNum].m_fruitNum, playerNum);
+            }
+            else if (IsClient)
+            {
+                // halliGalliCard가 m_card 배열에서 몇 번째 인덱스인지 확인
+                int cardIndex = halliGalliCard.m_CardIndex;
+                // 클라이언트에서 서버로 요청
+                RequestOpenCardServerRpc(playerNum, cardIndex);
+            }
         }
 
-        if (IsServer)
-        {
-            m_topCards[playerNum] = card;                        // 그 카드를 m_topCard에 추가
-            m_openedCard.Add(card);                             // m_openedCard에 추가
-
-            //SetPos(playerNum + 4, card.gameObject);           // 드래그로 인한 위지 지정 미사용 수정
-
-            //CardInfoCheck에 액션으로 보낼 string값을 현재 Top 카드에서 찾아서 보냄
-            OnTopCardChanged?.Invoke(m_topCards[playerNum].m_AnimalType.ToString() + m_topCards[playerNum].m_fruitNum, playerNum);
-        }
-        else if (IsClient)
-        {
-            // halliGalliCard가 m_card 배열에서 몇 번째 인덱스인지 확인
-            int cardIndex = card.m_CardIndex;
-            // 클라이언트에서 서버로 요청
-            RequestOpenCardServerRpc(playerNum, cardIndex);
-        }
-        m_gameManager.NextTurn();
         return true;
     }
 
@@ -367,5 +375,7 @@ public class HalliGalliNetwork : NetworkBehaviour
         m_gameManager = GameManager.Instance;
         m_card = GetComponentsInChildren<HalliGalliCard>();
         m_cardHeight = 0.01f;
+
+        m_cardPos = GetComponentsInChildren<CardPos>();
     }
 }

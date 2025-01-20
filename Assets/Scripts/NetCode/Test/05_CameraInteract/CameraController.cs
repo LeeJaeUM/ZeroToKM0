@@ -65,7 +65,7 @@ public class CameraController : MonoBehaviour
     {
         m_moveInput = value.Get<Vector2>();             // WASD 또는 방향키 입력
         m_isMoveClickHeld = m_moveInput != Vector2.zero;// 입력 값이 (0, 0)이 아니면 이동 중, 아니면 정지 상태
-
+        Debug.Log($"{m_isMoveClickHeld}, moveVec : {m_moveInput.x},{m_moveInput.y}");
     }
 
     // Input System 콜백 함수: 마우스 회전 입력

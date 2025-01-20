@@ -117,7 +117,6 @@ public class ObjectDrag : NetworkBehaviour
     {
         m_camera = GetComponent<Camera>(); // 메인 카메라 초기화
 
-
         // NotMoveObject 레이어의 인덱스를 가져옵니다. (Unity 에디터에서 레이어 이름을 확인할 수 있습니다)
         int notMoveObjectLayer = LayerMask.NameToLayer("NotMoveObject");
         layerMask = ~(1 << notMoveObjectLayer);// ~ (bitwise NOT)을 사용하여 해당 레이어를 제외

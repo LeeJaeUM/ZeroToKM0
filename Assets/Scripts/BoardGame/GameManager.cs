@@ -67,6 +67,12 @@ public class GameManager : NetworkBehaviour
         // 입력받은 보드게임 활성화      
         m_boardGames[type].gameObject.SetActive(true);      
     }
+
+    public void StartHalliGalli()
+    {
+        m_halligalli.InitializeGame();
+    }
+
     public void EndGame()
     {
         // TODO : 예제 데이터, 데이터베이스 데이터로 변경 필요
@@ -166,7 +172,12 @@ public class GameManager : NetworkBehaviour
     }
     #endregion
 
- 
+    private void Start()
+    {
+        m_turnManager = GetComponentInChildren<TurnManager>();
+        m_dealer = GetComponentInChildren<Dealer>();
+    }
+
     void Update()
     {
         // TODO : 데이터베이스 연결 시 변경필요

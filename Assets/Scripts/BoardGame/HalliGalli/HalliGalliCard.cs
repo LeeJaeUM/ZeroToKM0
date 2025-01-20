@@ -41,7 +41,10 @@ public class HalliGalliCard : Card
 
     public override bool OpenCard(int player)
     {
-        if(m_halligalli.OpenCard(player, this))
+        //TODO: 아래 OpenCard 수정요망 -> 확인은 여기서 가능
+        FlipCardAnim();
+        return true;
+        if (m_halligalli.OpenCard(player, this))
         {
             FlipCardAnim();
             return true;
@@ -80,7 +83,9 @@ public class HalliGalliCard : Card
         {
             m_NetSpriteIndex.Value = spriteIndex; // 서버에서 스프라이트 인덱스를 설정하여 클라이언트로 동기화
         }
-    }    // 카드 인덱스가 변경되었을 때 호출되는 함수
+    }    
+    
+    // 서버에서 카드 인덱스가 변경되었을 때, 클라이언트에서 호출되는 함수
     private void OnCardIndexChanged(int oldValue, int newValue)
     {
         // 인덱스가 변경되었을 때 클라이언트에서 처리할 추가 작업이 있으면 여기에 추가
@@ -96,6 +101,14 @@ public class HalliGalliCard : Card
         m_NetSpriteIndex.OnValueChanged += HandleSpriteIndexChanged; // 스프라이트 변경 처리
         m_NetCardIndex.OnValueChanged += OnCardIndexChanged;
     }
+
+
+    protected override void Start()
+    {
+        base.Start();
+        m_halligalli = GameManager.Instance.m_halligalli;
+    }
+
     // Test
     // TODO : 지우기
     private void Update()
