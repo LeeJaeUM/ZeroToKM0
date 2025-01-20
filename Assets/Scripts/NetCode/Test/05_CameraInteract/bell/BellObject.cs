@@ -1,7 +1,5 @@
 using Unity.Netcode;
 using UnityEngine;
-using Unity.Netcode;
-using UnityEditor.PackageManager;
 
 public class BellObject : NetworkBehaviour
 {

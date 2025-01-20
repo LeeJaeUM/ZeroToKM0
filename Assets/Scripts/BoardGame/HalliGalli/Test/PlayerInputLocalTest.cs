@@ -21,18 +21,18 @@ public class PlayerInputLocalTest : MonoBehaviour
 
     private void TestFlip()
     {
-        Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            m_draggedCard = hit.collider.GetComponent<Card>();
-            if (m_draggedCard != null)
-            {
-                if(m_draggedCard.OpenCard(m_playerNum))
-                    m_playerNum++;
-                if(m_playerNum == 4)
-                    m_playerNum = 0;
-            }
-        }
+        //Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        //if (Physics.Raycast(ray, out RaycastHit hit))
+        //{
+        //    m_draggedCard = hit.collider.GetComponent<Card>();
+        //    if (m_draggedCard != null)
+        //    {
+        //        if(m_draggedCard.OpenCardInCard(m_playerNum))
+        //            m_playerNum++;
+        //        if(m_playerNum == 4)
+        //            m_playerNum = 0;
+        //    }
+        //}
     }
     private void Start()
     {
