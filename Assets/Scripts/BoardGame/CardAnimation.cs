@@ -10,7 +10,7 @@ public class CardAnimation : NetworkBehaviour
 
     void Start()
     {
-        m_networkAnimator = GetComponent<NetworkAnimator>();
+        m_networkAnimator = GetComponentInParent<NetworkAnimator>();
     }
 
     // 클라이언트가 애니메이션 실행을 서버에 요청
@@ -23,7 +23,11 @@ public class CardAnimation : NetworkBehaviour
             // 서버에서 애니메이션을 실행
             isOpen = !isOpen;
             m_networkAnimator.Animator.SetBool("isOpen", isOpen);
+<<<<<<< Updated upstream
 
+=======
+            m_networkAnimator.SetTrigger("Open");
+>>>>>>> Stashed changes
             // 클라이언트에게 동기화
             FlipCardAnimClientRpc(isOpen);
         }
@@ -56,6 +60,7 @@ public class CardAnimation : NetworkBehaviour
         // 서버에서 애니메이션 상태 변경 및 클라이언트에게 동기화
         isOpen = !isOpen;
         m_networkAnimator.Animator.SetBool("isOpen", isOpen);
+        m_networkAnimator.SetTrigger("Open");
         FlipCardAnimClientRpc(isOpen);  // 클라이언트들에게 동기화
     }
 
@@ -74,6 +79,7 @@ public class CardAnimation : NetworkBehaviour
     {
         isOpen = isOpenState;  // 서버에서 받은 값으로 상태 업데이트
         m_networkAnimator.Animator.SetBool("isOpen", isOpen);  // 클라이언트 애니메이션 실행
+        m_networkAnimator.SetTrigger("Open");
     }
 
     // 셔플 애니메이션을 클라이언트에게 동기화하는 ClientRpc

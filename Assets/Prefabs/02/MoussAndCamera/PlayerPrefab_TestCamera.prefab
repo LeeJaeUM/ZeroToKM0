@@ -498,7 +498,12 @@ GameObject:
   - component: {fileID: 4104067616429416792}
   - component: {fileID: 9166110698299467341}
   - component: {fileID: 5966332478751904959}
+<<<<<<< Updated upstream
   - component: {fileID: 5563928761011734245}
+=======
+  - component: {fileID: 4489816920735559123}
+  - component: {fileID: 6580186050792135902}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged

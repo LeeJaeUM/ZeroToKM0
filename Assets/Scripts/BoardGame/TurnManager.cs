@@ -21,7 +21,7 @@ public class TurnManager : MonoBehaviour
         m_alivePlayers = new List<int>();
         for(int i = 0; i < playerCount; i++)
         {
-            m_alivePlayers.Add(i);
+            m_alivePlayers.Add(0);
         }
     }
     public int NextTurn()                                                 // 다음 차례로 넘기기

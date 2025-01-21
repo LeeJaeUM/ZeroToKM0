@@ -28,9 +28,16 @@ public class HalliGalliNetwork : NetworkBehaviour
 
     public void GameSetting()                                                       // 게임 시작 전 실행
     {
+<<<<<<< Updated upstream
         int playerCount = NetworkManager.Singleton.ConnectedClients.Count;          // 연결된 플레이어 숫자 가져옴
         InitializePlayers(playerCount);
         InitializeCards(playerCount);
+=======
+        int playerCount = 4;//NetworkManager.Singleton.ConnectedClients.Count;          // 연결된 플레이어 숫자 가져옴
+        InitPlayers(playerCount);
+        InitCards(playerCount);
+    }
+>>>>>>> Stashed changes
 
         if (IsServer)
         {
@@ -96,9 +103,13 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         for (int i = 0; i < m_playerCard.Length; i++)
         {
-            foreach (Card card in m_playerCard[i])
+            foreach (HalliGalliCard card in m_playerCard[i])
             {
+<<<<<<< Updated upstream
                 SetPos(i, card.gameObject);
+=======
+                SetPos(i * 2 + 1, card);
+>>>>>>> Stashed changes
                 //card.FlipCardAnim();                                    // card를 뒤집어서 방향 맞춤
             }
         }
@@ -108,21 +119,20 @@ public class HalliGalliNetwork : NetworkBehaviour
             m_cardPos[i].m_cardCount = 0;
         }
     }
-    public void SetPos(int playerNum, GameObject gameobj)       // 카드를 배치해주는 함수(누구의 카드를, 몇번째에 놓을지, 어떤 카드인지)
+    public void SetPos(int playerNum, HalliGalliCard card)       // 카드를 배치해주는 함수(누구의 카드를, 몇번째에 놓을지, 어떤 카드인지)
     {
         Vector3 cardPos = m_cardPos[playerNum].transform.position;
         cardPos.y += m_cardHeight * m_cardPos[playerNum].m_cardCount++;
 
-        gameobj.transform.position = cardPos;
-        gameobj.transform.forward = m_cardPos[playerNum].transform.forward;
-        gameobj.transform.Rotate(Vector3.right * 90);
-
+        card.transform.position = cardPos;
+        card.transform.forward = m_cardPos[playerNum].transform.forward;
+        //card.transform.Rotate(Vector3.left * 90);
     }
     public void Collectcard()                          // 모든 카드 딜러가 가져오기
     {
         for (int i = 0; i < m_card.Length; i++)
         {
-            SetPos(8, m_card[i].gameObject);
+            SetPos(8, m_card[i]);
         }
     }
 
