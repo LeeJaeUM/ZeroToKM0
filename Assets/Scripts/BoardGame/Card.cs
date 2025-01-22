@@ -42,15 +42,14 @@ public class Card : NetworkBehaviour
     {
         FlipCardAnim();
     }
-    /// <summary>
-    /// 카드 두개를 입력 받아 둘을 쌓아주는 함수
-    /// </summary>
-    /// <param name="upCard">위에 올릴 카드</param>
-    /// <param name="downCard">밑에 있을 카드</param>
+/// <summary>
+/// 입력 받은 카드 위에 이 카드를 올려줌
+/// </summary>
+/// <param name="downCard">아래 카드</param>
     public void SetCardOnCard(Card downCard)
     {
         Vector3 newPos = downCard.transform.position;
-        //newPos.y += m_cardSpacing;
+        newPos.y += m_cardSpacing;
         transform.position = newPos;
         transform.rotation = downCard.transform.rotation;
     }
@@ -69,14 +68,12 @@ public class Card : NetworkBehaviour
                     m_isPlaced = true;  // 카드가 놓였음을 표시
 
                     SetCardOnCard(otherCard);
-                    Vector3 newPos = otherCard.transform.position;
-                    newPos.y += m_cardSpacing;
-                    transform.position = newPos;
                 }
 
             }
             else if (other.collider.CompareTag("Table"))
             {
+                print("table");
                 m_isPlaced = true;  // 테이블 위에 놓였음을 표시
             }
         }

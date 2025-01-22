@@ -6,7 +6,7 @@ using Unity.Services.Multiplayer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TestAltDrag : NetworkBehaviour
+public class AltDrag : NetworkBehaviour
 {
     private Camera m_camera; // 메인 카메라 참조
     private List<Transform> m_draggedObjects = new List<Transform>(); // 드래그 중인 오브젝트들 리스트
@@ -16,7 +16,6 @@ public class TestAltDrag : NetworkBehaviour
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
     private Vector3 m_dragUpYPos = new Vector3(0, 1.5f, 0);
     private List<Vector3> m_newDraggedPos = new List<Vector3>();
-    private float m_cardSpacing = 0.2f;
     private LayerMask layerMask;// 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
     //if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) 레이어 마스크를 적용하는 예시
     Card m_firstCard;
@@ -63,13 +62,13 @@ public class TestAltDrag : NetworkBehaviour
                     m_draggedNetworkMoves.Add(networkMove);
                     //networkMove.SetGravity(false); // 중력 비활성화
                     Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
-                    if(rb != null)
+                    if (rb != null)
                     {
                         rb.isKinematic = true;
                     }
                 }
                 Card card = hit.transform.GetComponent<Card>();
-                if(card != null)
+                if (card != null)
                 {
                     card.m_isPlaced = true;
                     m_draggedCards.Add(card);
@@ -78,7 +77,7 @@ public class TestAltDrag : NetworkBehaviour
         }
         // m_draggedNetworkMoves안에 오브젝트들을 y축 기준으로 내림차순 정렬해줌( y축 값이 클수록 앞으로오게)
         m_draggedObjects.Sort((obj1, obj2) => obj2.gameObject.transform.position.y.CompareTo(obj1.gameObject.transform.position.y));
-        foreach(Transform obj in m_draggedObjects)
+        foreach (Transform obj in m_draggedObjects)
         {
             Vector3 UpPos = obj.position + m_dragUpYPos;
             m_newDraggedPos.Add(UpPos);
@@ -145,7 +144,7 @@ public class TestAltDrag : NetworkBehaviour
             // 서버에서는 위치를 직접 업데이트
             if (IsServer)
             {
-                for(int i = 0; i < m_draggedObjects.Count; i++)
+                for (int i = 0; i < m_draggedObjects.Count; i++)
                 {
                     Vector3 newUpPosition = newPosition;
                     newUpPosition.y = m_newDraggedPos[i].y + cardGap * (m_draggedObjects.Count - i);
@@ -166,7 +165,7 @@ public class TestAltDrag : NetworkBehaviour
     {
         // 아래로 쏘는 방향 (Vector3.down)
         Vector3 direction = Vector3.down;
-        
+
         // 박스의 크기
         Vector3 boxHalfExtents = new Vector3(0.2f, 0.005f, 0.3f);
         // 박스 캐스트의 최대 거리

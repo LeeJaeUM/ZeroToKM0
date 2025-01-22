@@ -76,8 +76,7 @@ GameObject:
   - component: {fileID: 9166110698299467341}
   - component: {fileID: 5966332478751904959}
   - component: {fileID: 4489816920735559123}
-  - component: {fileID: 6580186050792135902}
-  - component: {fileID: 6439276508400923883}
+  - component: {fileID: 8575301055250254301}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged
@@ -302,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629553fbf13f1bb479dd58551ed08f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6580186050792135902
+--- !u!114 &8575301055250254301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,21 +310,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2857587612289322200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea675797ae49d34db102e46486af629, type: 3}
+  m_Script: {fileID: 11500000, guid: fb4f1f834ec795c479863d1797055674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   m_dragRadius: 5
---- !u!114 &6439276508400923883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2857587612289322200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe7855f6cba80540b3d52065632be28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_playerNum: 0

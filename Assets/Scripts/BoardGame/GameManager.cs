@@ -180,9 +180,9 @@ public class GameManager : NetworkBehaviour
         m_finalWinner.SetText(winner + 1);
     }
 
-    public void OpenCard(int playerNum, HalliGalliCard halliGalliCard)
+    public void OpenCard(int playerNum, int cardIndex)
     {
-        m_halligalli.OpenCard(playerNum, halliGalliCard);
+        m_halligalli.OpenCard(playerNum, cardIndex);
     }
     #endregion
 

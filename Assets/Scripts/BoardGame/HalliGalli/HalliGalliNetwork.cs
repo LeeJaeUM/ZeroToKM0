@@ -167,11 +167,12 @@ public class HalliGalliNetwork : NetworkBehaviour
     //턴이 있는 OpenCard
     //자신의 턴인지, 자신의 카드인지를 확인해서 맞다면 정상 진행하고 true반환
     //아니라면 함수를 중단하고 false반환
-    public void OpenCard(int playerNum, HalliGalliCard halliGalliCard)
+    public void OpenCard(int playerNum, int cardIndex)
     {
+        HalliGalliCard card = m_card[cardIndex];
         if (isUseTurnMode)//턴 제한 있을 때 로직
         {
-            if (!IsOpenableCard(playerNum, halliGalliCard))
+            if (!IsOpenableCard(playerNum, card))
             {
                 Debug.Log("내 카드가 아니면 카드를 오픈할 수 없음");
                 return;
@@ -179,8 +180,8 @@ public class HalliGalliNetwork : NetworkBehaviour
         }
         if (IsServer)
         {
-            m_topCards[playerNum] = halliGalliCard;                        // 그 카드를 m_topCard에 추가
-            m_openedCard.Add(halliGalliCard);                             // m_openedCard에 추가
+            m_topCards[playerNum] = card;                        // 그 카드를 m_topCard에 추가
+            m_openedCard.Add(card);                             // m_openedCard에 추가
 
             //SetPos(playerNum + 4, card.gameObject);           // 드래그로 인한 위지 지정 미사용 수정
 
@@ -190,7 +191,6 @@ public class HalliGalliNetwork : NetworkBehaviour
         else if (IsClient)
         {
             // halliGalliCard가 m_card 배열에서 몇 번째 인덱스인지 확인
-            int cardIndex = halliGalliCard.m_CardIndex;
             // 클라이언트에서 서버로 요청
             RequestOpenCardServerRpc(playerNum, cardIndex);
         }

@@ -70,7 +70,7 @@ public class CardUse : MonoBehaviour
             {
                 //이 OpenCard는 GameManager에 연결된 HalliGalliNetwork의 Open카드를 실행시키는 함수
                 //그래서 자기 아이디와 현재 카드를 보냄
-                GameManager.Instance.OpenCard((int)NetworkManager.Singleton.LocalClientId, m_draggedHalliGalliCard);
+                GameManager.Instance.OpenCard((int)NetworkManager.Singleton.LocalClientId, m_draggedHalliGalliCard.m_CardIndex);
             }
 
             m_draggedCard = hit.collider.GetComponent<Card>();
