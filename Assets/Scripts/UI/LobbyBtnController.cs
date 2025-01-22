@@ -2,7 +2,6 @@ using Michsky.MUIP;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LobbyBtnController : MonoBehaviour
 {
@@ -10,13 +9,14 @@ public class LobbyBtnController : MonoBehaviour
     [SerializeField] GameObject m_lobbyWindow;    // Lobby Window GameObject
     [SerializeField] GameObject m_roomListWindow; // Room List Window GameObject
 
-    // 이동할 씬 이름
-    private const string TargetSceneName = "04_OtherGames";
+
 
     Animator m_lobbyAnimator;
     Animator m_roomListAnimator;
 
     bool isTransitioning = false; // 전환 중인지 확인
+
+    [SerializeField] WidgetController m_widgetController;
     #endregion
 
     #region Public Methods and Operators
@@ -50,6 +50,9 @@ public class LobbyBtnController : MonoBehaviour
 
         // RoomListWindow 활성화 후 Fade-In 시작
         StartCoroutine(TransitionToRoomList());*/
+
+        //relay 사용
+        m_widgetController.JoinSessionClick();
     }
 
     /// <summary>
@@ -59,15 +62,19 @@ public class LobbyBtnController : MonoBehaviour
     {
         Debug.Log("Create Button Clicked - Switching to Host Mode");
 
-        // 씬 로드 후 호스트 시작
-        SceneManager.LoadScene(TargetSceneName);
-        SceneManager.sceneLoaded += (scene, mode) =>
-        {
-            if (scene.name == TargetSceneName)
-            {
-                StartHost();
-            }
-        };
+        // 씬 로드 후 호스트 시작 (개발용)
+        //SceneManager.LoadScene(TargetSceneName);
+        //SceneManager.sceneLoaded += (scene, mode) =>
+        //{
+        //    if (scene.name == TargetSceneName)
+        //    {
+        //        //
+        //        StartHost();
+        //    }
+        //};
+
+        //relay 사용
+        m_widgetController.CreateSessionClick();
     }
 
     /// <summary>
@@ -86,7 +93,7 @@ public class LobbyBtnController : MonoBehaviour
 
     #region Methods
     /// <summary>
-    /// 클라이언트 시작
+    /// 개발용 클라이언트 시작
     /// </summary>
     private void StartClient()
     {
@@ -102,7 +109,7 @@ public class LobbyBtnController : MonoBehaviour
     }
 
     /// <summary>
-    /// 호스트 시작
+    /// 개발용 호스트 시작
     /// </summary>
     private void StartHost()
     {

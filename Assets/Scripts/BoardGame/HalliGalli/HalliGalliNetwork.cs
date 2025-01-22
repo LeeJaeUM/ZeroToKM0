@@ -135,6 +135,7 @@ public class HalliGalliNetwork : NetworkBehaviour
     {
         // 룰 추가 : 자신의 턴에만 Open이 가능하게.
         // playerNum의 턴이 아니라면 false반환
+ 
         if (playerNum == m_gameManager.GetCurruntTurnPlayerNum())
         {
             return true;
