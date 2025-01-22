@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Firebase;
 using Firebase.Auth;
-//using Firebase.Database;
+using Firebase.Database;
 using Firebase.Extensions;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
@@ -21,7 +21,7 @@ public class FBManager : MonoBehaviour
     [SerializeField] GameObject nameWindow;
     FirebaseAuth auth;
     FirebaseUser user;
-    //DatabaseReference dbReference;
+    DatabaseReference dbReference;
     string LobbyScene = "02_Lobby";
 
     public static FBManager _instance
@@ -35,18 +35,18 @@ public class FBManager : MonoBehaviour
         DontDestroyOnLoad(this);
         auth = FirebaseAuth.DefaultInstance;        // 로그인 인증을 관리할 객체를 먼저 선언
         // Firebase 초기화
-        //FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
-        //{
-        //    if (task.Result == DependencyStatus.Available)
-        //    {
-        //        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        //        Debug.Log("Firebase 초기화 완료!");
-        //    }
-        //    else
-        //    {
-        //        Debug.LogError("Firebase 초기화 실패: " + task.Result);
-        //    }
-        //});
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.Result == DependencyStatus.Available)
+            {
+                dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+                Debug.Log("Firebase 초기화 완료!");
+            }
+            else
+            {
+                Debug.LogError("Firebase 초기화 실패: " + task.Result);
+            }
+        });
     }
 
     public void OnClickEmailSignInButton()       // 이메일 로그인
@@ -118,37 +118,33 @@ public class FBManager : MonoBehaviour
 
         if (nameField.text == null)
         {
-            //dbReference.Child("Users").Child(user.Email).Child("Name").SetValueAsync(user.Email).ContinueWithOnMainThread(task =>
-            //{
-            //    if (task.IsCompleted)
-            //    {
-            //        Debug.Log("유저정보 저장 성공");
-            //        SceneManager.LoadScene(LobbyScene);
-            //    }
-            //    else
-            //    {
-            //        Debug.LogError("유저정보 저장 실패: " + task.Exception);
-            //    }
-            //});
-            // 임시 주석
-            SceneManager.LoadScene(LobbyScene);
+            dbReference.Child("Users").Child(user.Email).Child("Name").SetValueAsync(user.Email).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    Debug.Log("유저정보 저장 성공");
+                    SceneManager.LoadScene(LobbyScene);
+                }
+                else
+                {
+                    Debug.LogError("유저정보 저장 실패: " + task.Exception);
+                }
+            });
         }
         else
         {
-            //dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(nameField.text).ContinueWithOnMainThread(task =>
-            //{
-            //    if (task.IsCompleted)
-            //    {
-            //        Debug.Log("유저정보 저장 성공");
-            //        SceneManager.LoadScene(LobbyScene);
-            //    }
-            //    else
-            //    {
-            //        Debug.LogError("유저정보 저장 실패: " + task.Exception);
-            //    }
-            //});
-            // 임시 주석
-            SceneManager.LoadScene(LobbyScene);
+            dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(nameField.text).ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompleted)
+                {
+                    Debug.Log("유저정보 저장 성공");
+                    SceneManager.LoadScene(LobbyScene);
+                }
+                else
+                {
+                    Debug.LogError("유저정보 저장 실패: " + task.Exception);
+                }
+            });
         }
     }
 
