@@ -150,14 +150,15 @@ public class HalliGalliNetwork : NetworkBehaviour
     /// <param name="playerNum"></param>
     /// <param name="halliGalliCard"></param>
     /// <returns></returns>
-    public bool IsOpenableCard(int playerNum, HalliGalliCard halliGalliCard)
+    public bool IsOpenableCard(int playerNum, int cardIndex)
     {
+        HalliGalliCard card = m_card[cardIndex];
         // 룰 추가 : 자신의 카드만 Open이 가능하게.
         // playerNum의 카드 덱에 halligalliCard가 존재하는지 확인
-        if (m_playerCard[playerNum].Contains(halliGalliCard))
+        if (m_playerCard[playerNum].Contains(card))
         {
             // 있다면 덱에서 제거
-            m_playerCard[playerNum].Remove(halliGalliCard);
+            m_playerCard[playerNum].Remove(card);
             return true;
         }
         // 없다면 return false;
@@ -172,7 +173,7 @@ public class HalliGalliNetwork : NetworkBehaviour
         HalliGalliCard card = m_card[cardIndex];
         if (isUseTurnMode)//턴 제한 있을 때 로직
         {
-            if (!IsOpenableCard(playerNum, card))
+            if (!IsOpenableCard(playerNum, cardIndex))
             {
                 Debug.Log("내 카드가 아니면 카드를 오픈할 수 없음");
                 return;
