@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
@@ -10,15 +11,15 @@ public class TestAltDrag : NetworkBehaviour
     private Camera m_camera; // 메인 카메라 참조
     private List<Transform> m_draggedObjects = new List<Transform>(); // 드래그 중인 오브젝트들 리스트
     private List<NetworkMove> m_draggedNetworkMoves = new List<NetworkMove>(); // 드래그 중인 오브젝트들의 NetworkMove 컴포넌트들
+    private List<Card> m_draggedCards = new List<Card>();
     private bool m_isDragging = false; // 드래그 상태 플래그
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
     private Vector3 m_dragUpYPos = new Vector3(0, 1.5f, 0);
     private List<Vector3> m_newDraggedPos = new List<Vector3>();
-
+    private float m_cardSpacing = 0.1f;
     private LayerMask layerMask;// 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
-
     //if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) 레이어 마스크를 적용하는 예시
-
+    Card m_firstCard;
     // Alt 입력
     public void OnAlt(InputValue value)
     {
@@ -66,6 +67,12 @@ public class TestAltDrag : NetworkBehaviour
                         rb.isKinematic = true;
                     }
                 }
+                Card card = hit.transform.GetComponent<Card>();
+                if(card != null)
+                {
+                    card.m_isPlaced = false;
+                    m_draggedCards.Add(card);
+                }
             }
         }
         // m_draggedNetworkMoves안에 오브젝트들을 y축 기준으로 내림차순 정렬해줌( y축 값이 클수록 앞으로오게)
@@ -79,6 +86,8 @@ public class TestAltDrag : NetworkBehaviour
         {
             m_isDragging = true;
         }
+        m_draggedCards.Sort((obj1, obj2) => obj2.gameObject.transform.position.y.CompareTo(obj1.gameObject.transform.position.y));
+
     }
 
     // 드래그 중단 처리
@@ -101,6 +110,7 @@ public class TestAltDrag : NetworkBehaviour
                 rb.isKinematic = false; // 물리 계산을 다시 활성화
             }
         }
+        StartCoroutine(CoSortCards());
 
         m_draggedObjects.Clear(); // 드래그된 오브젝트 리스트 초기화
         m_draggedNetworkMoves.Clear();
@@ -138,7 +148,23 @@ public class TestAltDrag : NetworkBehaviour
             }
         }
     }
-
+    IEnumerator CoSortCards()
+    {
+        m_firstCard = m_draggedCards[m_draggedCards.Count - 1];
+        while (!m_firstCard.m_isPlaced)
+        {
+            yield return null;
+        }
+        float cardSpacing = 0.1f;
+        for(int i = 0; i <m_draggedCards.Count; i++)
+        {
+            Vector3 newPos = m_firstCard.transform.position;
+            newPos.y += cardSpacing * (m_draggedCards.Count - i);
+            m_draggedCards[i].transform.position = newPos;
+            m_draggedCards[i].transform.rotation = m_firstCard.transform.rotation;
+        }
+        m_draggedCards.Clear();
+    }
     private void Start()
     {
         m_camera = GetComponent<Camera>(); // 메인 카메라 초기화        
