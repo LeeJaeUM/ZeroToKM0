@@ -7,7 +7,7 @@ using Unity.Netcode.Components;
 
 public class Card : NetworkBehaviour
 {
-    public bool m_isPlaced = false;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
+    public bool m_isPlaced = true;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
     public float m_cardSpacing = 0.1f;                 // 카드 사이 간격
 
     public int m_cardNum;             // 카드번호, Shuffle확인용
@@ -61,7 +61,6 @@ public class Card : NetworkBehaviour
         {
             if (other.collider.CompareTag("Card"))
             {
-                Debug.Log("Card");
 
                 Card otherCard = other.transform.GetComponent<Card>();
 
@@ -78,8 +77,6 @@ public class Card : NetworkBehaviour
             }
             else if (other.collider.CompareTag("Table"))
             {
-                Debug.Log("Table");
-
                 m_isPlaced = true;  // 테이블 위에 놓였음을 표시
             }
         }

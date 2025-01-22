@@ -16,11 +16,12 @@ public class TestAltDrag : NetworkBehaviour
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
     private Vector3 m_dragUpYPos = new Vector3(0, 1.5f, 0);
     private List<Vector3> m_newDraggedPos = new List<Vector3>();
-    private float m_cardSpacing = 0.1f;
+    private float m_cardSpacing = 0.2f;
     private LayerMask layerMask;// 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
     //if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) 레이어 마스크를 적용하는 예시
     Card m_firstCard;
     // Alt 입력
+    MousePositionSync m_mousePos;
     public void OnAlt(InputValue value)
     {
         if (value.isPressed && !m_isDragging)
@@ -70,7 +71,7 @@ public class TestAltDrag : NetworkBehaviour
                 Card card = hit.transform.GetComponent<Card>();
                 if(card != null)
                 {
-                    card.m_isPlaced = false;
+                    card.m_isPlaced = true;
                     m_draggedCards.Add(card);
                 }
             }
@@ -88,6 +89,7 @@ public class TestAltDrag : NetworkBehaviour
         }
         m_draggedCards.Sort((obj1, obj2) => obj2.gameObject.transform.position.y.CompareTo(obj1.gameObject.transform.position.y));
 
+        m_firstCard = m_draggedCards[m_draggedCards.Count - 1];
     }
 
     // 드래그 중단 처리
@@ -110,8 +112,20 @@ public class TestAltDrag : NetworkBehaviour
                 rb.isKinematic = false; // 물리 계산을 다시 활성화
             }
         }
-        StartCoroutine(CoSortCards());
+        Card card = BoxCastDown(m_firstCard.transform.position);
+        if (card != null)
+        {
+            float cardSpacing = 0.01f;
 
+            for (int i = 0; i < m_draggedCards.Count; i++)
+            {
+                Vector3 newPos = card.transform.position;
+                newPos.y += cardSpacing * (m_draggedCards.Count - i);
+                m_draggedCards[i].transform.position = newPos;
+                m_draggedCards[i].transform.rotation = m_firstCard.transform.rotation;
+            }
+        }
+        m_draggedCards.Clear();
         m_draggedObjects.Clear(); // 드래그된 오브젝트 리스트 초기화
         m_draggedNetworkMoves.Clear();
         m_newDraggedPos.Clear();
@@ -148,22 +162,45 @@ public class TestAltDrag : NetworkBehaviour
             }
         }
     }
-    IEnumerator CoSortCards()
+    public Card BoxCastDown(Vector3 from)
     {
-        m_firstCard = m_draggedCards[m_draggedCards.Count - 1];
-        while (!m_firstCard.m_isPlaced)
+        // 아래로 쏘는 방향 (Vector3.down)
+        Vector3 direction = Vector3.down;
+        
+        // 박스의 크기
+        Vector3 boxHalfExtents = new Vector3(0.2f, 0.005f, 0.3f);
+        // 박스 캐스트의 최대 거리
+        float maxDistance = 10f;
+
+        // 충돌 정보 저장 변수
+        RaycastHit hit;
+
+        // BoxCast를 수행
+        if (Physics.BoxCast(from, boxHalfExtents, direction, out hit, Quaternion.identity, maxDistance))
         {
-            yield return null;
+            Debug.Log("Hit object: " + hit.collider.name);
+
+            // 박스 캐스트 가시화 (디버그 박스 그리기)
+            Debug.DrawRay(from, direction * maxDistance, Color.red);
+            Debug.DrawLine(from, hit.point, Color.red);
+
+            // 충돌한 오브젝트에서 Card 컴포넌트 가져오기
+            Card card = hit.transform.GetComponent<Card>();
+            if (card != null)
+            {
+                return card;
+            }
+            else
+            {
+                return null;
+            }
         }
-        float cardSpacing = 0.1f;
-        for(int i = 0; i <m_draggedCards.Count; i++)
+        else
         {
-            Vector3 newPos = m_firstCard.transform.position;
-            newPos.y += cardSpacing * (m_draggedCards.Count - i);
-            m_draggedCards[i].transform.position = newPos;
-            m_draggedCards[i].transform.rotation = m_firstCard.transform.rotation;
+            // 충돌이 없을 경우 가시화
+            Debug.DrawRay(from, direction * maxDistance, Color.green);
+            return null;
         }
-        m_draggedCards.Clear();
     }
     private void Start()
     {

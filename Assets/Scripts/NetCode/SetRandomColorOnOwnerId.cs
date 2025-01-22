@@ -40,5 +40,6 @@ public class SetRandomColor : NetworkBehaviour
         //GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
         bodyRenderer.material.color = UnityEngine.Random.ColorHSV();
     }
+
 }
 

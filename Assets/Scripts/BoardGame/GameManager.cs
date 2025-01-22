@@ -130,9 +130,9 @@ public class GameManager : NetworkBehaviour
         m_turnManager.RemovePlayer(player);
     }
 
-    public int NextTurn()
+    public void NextTurn()
     {
-        return m_turnManager.NextTurn();
+        m_turnManager.NextTurn();
     }
     #endregion
 
