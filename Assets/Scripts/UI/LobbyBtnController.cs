@@ -85,8 +85,10 @@ public class LobbyBtnController : MonoBehaviour
         Debug.Log("Exiting the game");
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
+        FBManager._instance.UserLogout();
 #else
         Application.Quit();
+        FBManager._instance.UserLogout();
 #endif
     }
 

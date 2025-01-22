@@ -151,4 +151,9 @@ public class FBManager : MonoBehaviour
             SceneManager.LoadScene(LobbyScene);
         }
     }
+
+    public void UserLogout()
+    {
+        FirebaseAuth.DefaultInstance.SignOut();
+    }
 }
