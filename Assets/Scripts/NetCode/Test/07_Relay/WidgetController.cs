@@ -8,7 +8,7 @@ public class WidgetController : MonoBehaviour
     public GameObject m_createSession;
     public GameObject m_showSessionList;
     public GameObject m_joinSessionList;
-    public Button m_cancelBtn;    
+    public GameObject m_cancelBtn;    
     
     // 이동할 씬 이름
     private const string TargetSceneName = "04_OtherGames";
@@ -24,7 +24,7 @@ public class WidgetController : MonoBehaviour
 
     public void JoinSessionClick()
     {
-        m_background.enabled = true;
+        //m_background.enabled = true;
         m_createSession.SetActive(false);
         m_showSessionList.SetActive(true);
         m_joinSessionList.SetActive(true);
@@ -45,20 +45,14 @@ public class WidgetController : MonoBehaviour
     public void SceneChange()
     {
         SceneManager.LoadScene(TargetSceneName);
-        //SceneManager.sceneLoaded += (scene, mode) =>
-        //{
-        //    if (scene.name == TargetSceneName)
-        //    {
-        //    }
-        //};
     }
 
     private void Start()
     {
        AllHide();
 
-        if(m_cancelBtn != null)
-            m_cancelBtn.onClick.AddListener(AllHide);
+        //if(m_cancelBtn != null)
+        //    m_cancelBtn.onClick.AddListener(AllHide);
     }
 
 }

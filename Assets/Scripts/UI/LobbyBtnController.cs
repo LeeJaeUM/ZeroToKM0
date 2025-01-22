@@ -41,7 +41,7 @@ public class LobbyBtnController : MonoBehaviour
         //
 
         // TODO : Client 연결로 변경 해놓으셔서 방목록창으로 변경 할시 아래코드 사용 요망 (2025.01.16)
-        /*
+        
         if (isTransitioning) return; // 이미 전환 중이면 중복 실행 방지
         isTransitioning = true;
 
@@ -49,7 +49,7 @@ public class LobbyBtnController : MonoBehaviour
         m_lobbyAnimator.Play("Fade-out");
 
         // RoomListWindow 활성화 후 Fade-In 시작
-        StartCoroutine(TransitionToRoomList());*/
+        StartCoroutine(TransitionToRoomList());
 
         //relay 사용
         m_widgetController.JoinSessionClick();
@@ -88,6 +88,11 @@ public class LobbyBtnController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void OnCancelBtnClick()
+    {
+        StartCoroutine(TransitionToLobbyWindow());
     }
     #endregion
 
@@ -157,6 +162,25 @@ public class LobbyBtnController : MonoBehaviour
 
         // RoomListWindow의 Fade-In 애니메이션 시간 대기
         yield return new WaitForSecondsRealtime(GetAnimationClipLength(m_roomListAnimator, "Fade-in"));
+
+        isTransitioning = false; // 전환 종료
+    }
+
+    IEnumerator TransitionToLobbyWindow()
+    {
+        yield return new WaitForSecondsRealtime(GetAnimationClipLength(m_roomListAnimator, "Fade-out"));
+
+        // RoomListWindow 비활성화
+        m_roomListWindow.SetActive(false);
+
+        // LobbyWindow 활성화
+        m_lobbyWindow.SetActive(true);
+
+        // RoomListWindow Fade-In 애니메이션 재생
+        m_lobbyAnimator.Play("Fade-in");
+
+        // RoomListWindow의 Fade-In 애니메이션 시간 대기
+        yield return new WaitForSecondsRealtime(GetAnimationClipLength(m_lobbyAnimator, "Fade-in"));
 
         isTransitioning = false; // 전환 종료
     }
