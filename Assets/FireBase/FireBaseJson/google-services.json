@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "760326917255",
+    "firebase_url": "https://fbunitydb-default-rtdb.firebaseio.com",
     "project_id": "fbunitydb",
     "storage_bucket": "fbunitydb.firebasestorage.app"
   },

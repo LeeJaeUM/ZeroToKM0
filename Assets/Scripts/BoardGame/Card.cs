@@ -7,12 +7,13 @@ using Unity.Netcode.Components;
 
 public class Card : NetworkBehaviour
 {
-    public bool m_isPlaced = false;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
+    public bool m_isPlaced = true;                    // 테이블이나 카드위에 올려져있는지 확인하는 변수. Drag하고 있는중에 false가됨.
     public float m_cardSpacing = 0.1f;                 // 카드 사이 간격
 
     public int m_cardNum;             // 카드번호, Shuffle확인용
                                       // TODO : 나중에 지우기
 
+    public GameObject m_cardSkin;
     [SerializeField]private CardAnimation m_cardAnimation;                             // 카드 애니메이션을 위한 클래스
 
     private void HandlePositionChanged(Vector3 oldPosition, Vector3 newPosition)
@@ -41,7 +42,18 @@ public class Card : NetworkBehaviour
     {
         FlipCardAnim();
     }
-
+    /// <summary>
+    /// 카드 두개를 입력 받아 둘을 쌓아주는 함수
+    /// </summary>
+    /// <param name="upCard">위에 올릴 카드</param>
+    /// <param name="downCard">밑에 있을 카드</param>
+    public void SetCardOnCard(Card downCard)
+    {
+        Vector3 newPos = downCard.transform.position;
+        //newPos.y += m_cardSpacing;
+        transform.position = newPos;
+        transform.rotation = downCard.transform.rotation;
+    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -49,23 +61,22 @@ public class Card : NetworkBehaviour
         {
             if (other.collider.CompareTag("Card"))
             {
-                Debug.Log("Card");
 
-                m_isPlaced = true;  // 카드가 놓였음을 표시
+                Card otherCard = other.transform.GetComponent<Card>();
 
-                // 카드 위치를 다른 카드와 일치시킴
-                Vector3 newPos = other.transform.position;
-                newPos.y += m_cardSpacing;  // 높이 조정
+                if (otherCard.m_isPlaced)
+                {
+                    m_isPlaced = true;  // 카드가 놓였음을 표시
 
-                transform.position = newPos;  // 최종 위치 설정
+                    SetCardOnCard(otherCard);
+                    Vector3 newPos = otherCard.transform.position;
+                    newPos.y += m_cardSpacing;
+                    transform.position = newPos;
+                }
 
-                // 카드의 회전 방향을 맞춤
-                transform.rotation = other.transform.rotation;
             }
             else if (other.collider.CompareTag("Table"))
             {
-                Debug.Log("Table");
-
                 m_isPlaced = true;  // 테이블 위에 놓였음을 표시
             }
         }
