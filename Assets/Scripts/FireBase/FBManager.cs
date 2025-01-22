@@ -22,6 +22,7 @@ public class FBManager : MonoBehaviour
     FirebaseAuth auth;
     FirebaseUser user;
     //DatabaseReference dbReference;
+    string LobbyScene = "02_Lobby";
 
     public static FBManager _instance
     {
@@ -74,7 +75,7 @@ public class FBManager : MonoBehaviour
             if (task.IsCompleted)
             {
                 Debug.Log("Task가 성공적으로 완료되었습니다.");
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(LobbyScene);
             }
         });
     }
@@ -122,7 +123,7 @@ public class FBManager : MonoBehaviour
             //    if (task.IsCompleted)
             //    {
             //        Debug.Log("유저정보 저장 성공");
-            //        SceneManager.LoadScene(1);
+            //        SceneManager.LoadScene(LobbyScene);
             //    }
             //    else
             //    {
@@ -130,7 +131,7 @@ public class FBManager : MonoBehaviour
             //    }
             //});
             // 임시 주석
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(LobbyScene);
         }
         else
         {
@@ -139,7 +140,7 @@ public class FBManager : MonoBehaviour
             //    if (task.IsCompleted)
             //    {
             //        Debug.Log("유저정보 저장 성공");
-            //        SceneManager.LoadScene(1);
+            //        SceneManager.LoadScene(LobbyScene);
             //    }
             //    else
             //    {
@@ -147,7 +148,7 @@ public class FBManager : MonoBehaviour
             //    }
             //});
             // 임시 주석
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(LobbyScene);
         }
     }
 }
