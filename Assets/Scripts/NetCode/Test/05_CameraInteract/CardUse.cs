@@ -50,6 +50,9 @@ public class CardUse : MonoBehaviour
             m_scannedCards.Clear();
         }
     }
+    /// <summary>
+    /// 카드를 뒤집는 함수 OnFlip (키보드 f)으로 호출
+    /// </summary>
     private void Flip()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -91,6 +94,7 @@ public class CardUse : MonoBehaviour
         }
     }
 
+
     private void ShuffleDeck()                                               // 이 카드덱의 m_cardDeck을 섞어줌.
     {
         int cardCount = m_scannedCards.Count;
@@ -122,8 +126,10 @@ public class CardUse : MonoBehaviour
             card.gameObject.transform.position = sortPos;
         }
     }
-    // ray를 쏴서 맞은 카드들 m_scannedCards로 가져오기
-    // 카드가 맞았으면 true, 맞지 않았으면 false반환 
+    /// <summary>
+    /// ray를 쏴서 맞은 카드들 m_scannedCards로 가져오기
+    /// </summary>
+    /// <returns>카드가 맞았으면 true, 맞지 않았으면 false반환 </returns>
     private bool ScanCards()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());

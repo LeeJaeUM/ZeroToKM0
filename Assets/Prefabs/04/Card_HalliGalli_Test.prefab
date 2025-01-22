@@ -138,9 +138,12 @@ MonoBehaviour:
   m_isPlaced: 0
   m_cardSpacing: 0.1
   m_cardNum: 0
+  m_cardAnimation: {fileID: 0}
+  m_halligalli: {fileID: 0}
   m_AnimalType: 2
   m_fruitNum: 4
   m_sprite: {fileID: 0}
+  m_CardIndex: 0
 --- !u!65 &6231944225524336307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -224,7 +227,7 @@ MonoBehaviour:
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
-  SlerpPosition: 0
+  SlerpPosition: 1
 --- !u!114 &8989061190217945727
 MonoBehaviour:
   m_ObjectHideFlags: 0

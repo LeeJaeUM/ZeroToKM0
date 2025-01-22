@@ -19,6 +19,10 @@ public class LoadScene : SingletonDontDestroy<LoadScene>
 
     public SceneState GetScene { get { return m_state; } }
 
+    /// <summary>
+    /// enum타입 SceneState의 현재 상태에 따라 씬 이등
+    /// </summary>
+    /// <param name="scene"></param>
     public void LoadSceneAsync(SceneState scene)
     {
         m_loadScene = scene;

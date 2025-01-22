@@ -5,17 +5,18 @@ using Unity.Netcode;
 public class ObjectDrag : NetworkBehaviour
 {
     private Camera m_camera; // 메인 카메라 참조
-    [SerializeField]private Transform m_draggedObject; // 드래그 중인 오브젝트
+    [SerializeField] private Transform m_draggedObject; // 드래그 중인 오브젝트
     private Card m_draggedCard; // 드래그 중인 카드
     private bool m_isDragging = false; // 드래그 상태 플래그
     [SerializeField] private float m_dragUpYPos = 2f; // 오브젝트를 올릴 높이
     private Vector3 m_newDraggedPos = Vector3.zero;
 
     private NetworkMove m_draggedNetworkMove;
-
+    private float m_waitingTime = 0.2f; // 마커 동기화 대기 시간
+    private float m_nextSyncTime = 0.3f; // 다음 동기화 가능 시간
 
     // 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
-    private LayerMask layerMask; 
+    private LayerMask layerMask;
 
 
     // 마우스 클릭 이벤트 처리
@@ -39,8 +40,9 @@ public class ObjectDrag : NetworkBehaviour
             UpdateDraggedObjectPosition();
         }
     }
-
-    // 드래그 시작 처리
+    /// <summary>
+    ///드래그 시작 처리 
+    /// </summary>
     private void StartDragging()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -56,8 +58,14 @@ public class ObjectDrag : NetworkBehaviour
             m_draggedNetworkMove = m_draggedObject.GetComponent<NetworkMove>();
             if (m_draggedNetworkMove != null)
             {
-                m_draggedNetworkMove.IsMove(true);
-                m_draggedNetworkMove.SetGravity(false);
+                if (IsServer)
+                {
+                    m_draggedNetworkMove.IsMove(true);
+                }
+                else if (IsClient && !IsHost)
+                {
+                    m_draggedNetworkMove.RequestIsMovingChangeServerRpc(true);
+                }
             }
 
             // Card 컴포넌트가 있다면 추가 처리
@@ -69,16 +77,23 @@ public class ObjectDrag : NetworkBehaviour
             m_isDragging = true;
         }
     }
-
-    // 드래그 중단 처리
+    /// <summary>
+    /// 드래그 중단 처리 
+    /// </summary>
     private void StopDragging()
     {
         m_isDragging = false;
 
         if (m_draggedNetworkMove != null)
         {
-            m_draggedNetworkMove.IsMove(false);
-            m_draggedNetworkMove.SetGravity(true);
+            if (IsServer)
+            {
+                m_draggedNetworkMove.IsMove(false);
+            }
+            else if (IsClient && !IsHost)
+            {
+                m_draggedNetworkMove.RequestIsMovingChangeServerRpc(false);
+            }
         }
 
         // Card 컴포넌트 처리
@@ -90,8 +105,9 @@ public class ObjectDrag : NetworkBehaviour
         m_draggedObject = null;
         m_newDraggedPos = Vector3.zero;
     }
-
-    // 드래그 중인 오브젝트 위치 업데이트
+    /// <summary>
+    /// 드래그 중인 오브젝트 위치 업데이트 
+    /// </summary>
     private void UpdateDraggedObjectPosition()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -99,16 +115,20 @@ public class ObjectDrag : NetworkBehaviour
         {
             Vector3 newPosition = hit.point; //+ m_offset;
             newPosition.y = m_newDraggedPos.y; //y값 고정
-
             if (IsServer)
             {
                 m_draggedObject.position = newPosition;
             }
-            else if (!IsHost &&IsClient)
+            else if (!IsHost && IsClient)
             {
-                if (m_draggedNetworkMove != null)
+                if (Time.time >= m_nextSyncTime)
                 {
-                    m_draggedNetworkMove.RequestMoveServerRpc(newPosition);
+                    m_nextSyncTime = Time.time + m_waitingTime; // 다음 호출 시간 갱신
+
+                    if (m_draggedNetworkMove != null)
+                    {
+                        m_draggedNetworkMove.RequestMoveServerRpc(newPosition);
+                    }
                 }
             }
         }

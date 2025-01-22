@@ -13,6 +13,9 @@ public class WidgetController : MonoBehaviour
     // 이동할 씬 이름
     private const string TargetSceneName = "04_OtherGames";
 
+    /// <summary>
+    /// 세션 생성 버튼 클릭
+    /// </summary>
     public void CreateSessionClick()
     {
         m_background.enabled = true;
@@ -22,6 +25,9 @@ public class WidgetController : MonoBehaviour
         m_cancelBtn.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// 세션 입장 버튼 클릭
+    /// </summary>
     public void JoinSessionClick()
     {
         //m_background.enabled = true;

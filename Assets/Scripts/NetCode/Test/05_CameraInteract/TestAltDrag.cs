@@ -59,7 +59,7 @@ public class TestAltDrag : NetworkBehaviour
                 {
                     m_draggedObjects.Add(hit.transform); // 드래그 가능한 오브젝트 추가
                     m_draggedNetworkMoves.Add(networkMove);
-                    networkMove.SetGravity(false); // 중력 비활성화
+                    //networkMove.SetGravity(false); // 중력 비활성화
                     Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
                     if(rb != null)
                     {
@@ -90,7 +90,7 @@ public class TestAltDrag : NetworkBehaviour
         foreach (var networkMove in m_draggedNetworkMoves)
         {
             networkMove.IsMove(false); // 움직임 비활성화
-            networkMove.SetGravity(true); // 중력 활성화
+            //networkMove.SetGravity(true); // 중력 활성화
         }
 
         foreach (var draggedObject in m_draggedObjects)

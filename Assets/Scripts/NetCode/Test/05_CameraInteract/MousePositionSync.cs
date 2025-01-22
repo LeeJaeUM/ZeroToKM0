@@ -80,7 +80,10 @@ public class MousePositionSync : NetworkBehaviour
         }
     }
 
-    // 서버 RPC: 서버가 호출하여 모든 클라이언트에게 마우스 위치 전달
+    /// <summary>
+    /// 서버 RPC: 서버가 호출하여 모든 클라이언트에게 마우스 위치 전달
+    /// </summary>
+    /// <param name="mousePosition">업데이트 할 새로운 위치</param>
     [ServerRpc(RequireOwnership = false)] // 소유권을 필요로 하지 않음
     private void UpdateMousePositionServerRpc(Vector3 mousePosition)
     {
@@ -88,7 +91,10 @@ public class MousePositionSync : NetworkBehaviour
         UpdateMousePositionClientRpc(mousePosition);
     }
 
-    // 클라이언트 RPC: 마우스 위치를 받은 클라이언트에서 처리
+    /// <summary>
+    /// 클라이언트 RPC: 마우스 위치를 받은 클라이언트에서 처리
+    /// </summary>
+    /// <param name="mousePosition">업데이트 할 새로운 위치</param>
     [ClientRpc]
     public void UpdateMousePositionClientRpc(Vector3 mousePosition)
     {
@@ -105,6 +111,12 @@ public class MousePositionSync : NetworkBehaviour
             SetTargetPosition(mousePosition);
         }
     }
+
+    /// <summary>
+    /// 입력받은 위치로 부드럽게 이동
+    /// </summary>
+    /// <param name="targetPosition">새 위치</param>
+    /// <returns></returns>
     private IEnumerator SmoothMoveToPosition(Vector3 targetPosition)
     {
         Vector3 startPosition = m_markerInstance.transform.position;
@@ -125,6 +137,10 @@ public class MousePositionSync : NetworkBehaviour
         m_markerInstance.transform.position = targetPosition;
     }
 
+    /// <summary>
+    /// 새 위치를 설정할 때 이전과 같은 값이라면 실행하지 않는 함수
+    /// </summary>
+    /// <param name="targetPosition"></param>
     private void SetTargetPosition(Vector3 targetPosition)
     {
         if(targetPosition != m_targetPosition)
