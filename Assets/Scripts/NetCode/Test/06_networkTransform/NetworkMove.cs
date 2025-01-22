@@ -10,7 +10,8 @@ public class NetworkMove : NetworkBehaviour
     public NetworkVariable<bool> m_networkIsMoving = new NetworkVariable<bool>();
     private Rigidbody rigidbody;
     private bool isMoving = false;
-    private float moveDuration = 0.1f;
+    [SerializeField]private float moveDuration = 0.08f;
+    public AnimationCurve smoothCurve; // 인스펙터에서 커브를 설정할 수 있도록
 
     public void IsMove(bool canMove)
     {
@@ -57,8 +58,8 @@ public class NetworkMove : NetworkBehaviour
 
     private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
     {
-       transform.position = newPosition;
-        //StartCoroutine(SmoothMoveToPosition(newPosition));
+       //transform.position = newPosition;
+        StartCoroutine(SmoothMoveToPosition(newPosition));
     }
 
     /// <summary>
@@ -66,6 +67,23 @@ public class NetworkMove : NetworkBehaviour
     /// </summary>
     /// <param name="targetPosition">새 위치</param>
     /// <returns></returns>
+    //private IEnumerator SmoothMoveToPosition(Vector3 targetPosition)
+    //{
+    //    Vector3 startPosition = transform.position;
+    //    float elapsedTime = 0f;
+
+    //    while (elapsedTime < moveDuration)
+    //    {
+    //        elapsedTime += Time.deltaTime;
+    //        float t = elapsedTime / moveDuration;
+    //        t = Mathf.SmoothStep(0, 1, t); // 부드러운 곡선 비율 계산 (ease-in/out)
+
+    //        transform.position = Vector3.Lerp(startPosition, targetPosition, t); // 보간
+
+    //        yield return null; // 한 프레임 대기
+    //    }
+
+    //}
     private IEnumerator SmoothMoveToPosition(Vector3 targetPosition)
     {
         Vector3 startPosition = transform.position;
@@ -75,17 +93,15 @@ public class NetworkMove : NetworkBehaviour
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / moveDuration;
-            t = Mathf.SmoothStep(0, 1, t); // 부드러운 곡선 비율 계산 (ease-in/out)
+
+            // 애니메이션 커브를 사용하여 t 값을 계산
+            t = smoothCurve.Evaluate(t); // 커브에 따라 t 값 계산
 
             transform.position = Vector3.Lerp(startPosition, targetPosition, t); // 보간
 
             yield return null; // 한 프레임 대기
         }
-
-        // 목표 위치에 정확히 도달
-        //transform.position = targetPosition;
     }
-
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
