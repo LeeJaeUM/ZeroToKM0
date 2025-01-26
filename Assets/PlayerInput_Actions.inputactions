@@ -123,15 +123,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TestOpenCard",
-                    "type": "Button",
-                    "id": "f3eac61b-313a-4fcd-ad94-e6159a0d25d7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Sort",
                     "type": "Button",
                     "id": "e2229c69-3867-4db0-9eb1-63fa7b33fc43",
@@ -144,6 +135,33 @@
                     "name": "Alt",
                     "type": "Button",
                     "id": "41ebd1ca-98bb-433d-8841-d0aa03236693",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MakeBoxshape",
+                    "type": "Button",
+                    "id": "daec4ada-c399-45f2-a7c1-1c8f0b21a698",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MakeSshape",
+                    "type": "Button",
+                    "id": "191e3c8a-ae60-4b1a-8271-95e660c34a75",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MakeIdleshape",
+                    "type": "Button",
+                    "id": "32c03b83-0212-400f-9c5e-03d402fe44ce",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -604,17 +622,6 @@
                 },
                 {
                     "name": "",
-                    "id": "46bb4adf-0770-4535-8090-141556a0745f",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TestOpenCard",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "52d909e9-25c1-489a-8d49-82254201e446",
                     "path": "<Keyboard>/g",
                     "interactions": "",
@@ -632,6 +639,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Alt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cbec283-5754-4063-b73e-dea855a7e425",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MakeBoxshape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec631362-884e-4dce-9f83-d93ba53878ac",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MakeSshape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bcadced6-edf1-41d2-a5cf-00f9b440eaaa",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MakeIdleshape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

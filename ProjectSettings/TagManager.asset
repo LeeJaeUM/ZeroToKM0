@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Card
   - Table
+  - SkewerStick
   layers:
   - Default
   - TransparentFX

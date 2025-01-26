@@ -6,29 +6,29 @@ using Unity.Netcode;
 // 꼬치의 달인
 public class Skewer : NetworkBehaviour
 {
-    public SkewerCard[] m_cards;
-    public SkewerIngredient[] m_ingredients = new SkewerIngredient[24];
-    public List<SkewerIngredient> m_kushi;
-    public SkewerCard m_answerCard;
-    public void GameSetting()
-    {
+    [SerializeField] private GameObject[] m_skewerObjects;
+    private int m_playerCount;
 
-                                                    //GameManager.Instance.Shuffle(m_cards);  // 카드 섞기
+    /// <summary>
+    /// skewer게임을 시작할때 호출할 함수
+    /// </summary>
+    public void GameSetting()
+    {                          
+        m_playerCount = NetworkManager.Singleton.ConnectedClients.Count;
+        PrepareObjects();
     }
-    void Awake()
+    /// <summary>
+    /// Skewer게임을 하기 위해 필요한 오브젝트들을 플레이어수만큼 세팅
+    /// </summary>
+    private void PrepareObjects()
     {
-        m_cards = GetComponentsInChildren<SkewerCard>();
-        m_ingredients = GetComponentsInChildren<SkewerIngredient>();
+        for(int i = 0 ; i < m_playerCount; i++)
+        {
+            m_skewerObjects[i].SetActive(true);
+        }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
         GameSetting();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
