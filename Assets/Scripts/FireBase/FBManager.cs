@@ -107,7 +107,7 @@ public class FBManager : MonoBehaviour
             }
         });
     }
-    public void SvaeUserInfo()
+    public void SvaeUserInfo()      // 회원가입시 파이어베이스에 유저데이터 정보저장
     {
         user = FirebaseAuth.DefaultInstance.CurrentUser;
         if (user == null)
@@ -118,7 +118,7 @@ public class FBManager : MonoBehaviour
 
         if (nameField.text == null)
         {
-            dbReference.Child("Users").Child(user.Email).Child("Name").SetValueAsync(user.Email).ContinueWithOnMainThread(task =>
+            dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(user.Email).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
                 {
@@ -148,8 +148,13 @@ public class FBManager : MonoBehaviour
         }
     }
 
-    public void UserLogout()
+    public void UserLogout()        // 로그아웃 함수
     {
         FirebaseAuth.DefaultInstance.SignOut();
+    }
+
+    public void UserDataLoad()
+    {
+
     }
 }
