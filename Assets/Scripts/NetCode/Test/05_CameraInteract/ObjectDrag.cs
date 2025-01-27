@@ -79,6 +79,10 @@ public class ObjectDrag : NetworkBehaviour
 
             // SkewerIngredient 컴포넌트가 있는지 확인용
             m_draggedIngredient = m_draggedObject.GetComponent<SkewerIngredient>();
+            if(m_draggedIngredient != null && m_draggedIngredient.m_touchedStick != null)
+            {
+
+            }
         }
     }
     /// <summary>
@@ -119,6 +123,16 @@ public class ObjectDrag : NetworkBehaviour
         {
             Vector3 newPosition = hit.point; //+ m_offset;
             newPosition.y = m_newDraggedPos.y; //y값 고정
+
+            if (m_draggedIngredient != null && m_draggedIngredient.m_touchedStick != null)
+            {
+                // 꼬치에 닿았을 때, 꼬치의 forward 방향으로만 이동하도록 제한
+
+                // 꼬치에 닿았으면, 꼬치의 forward 방향으로만 이동
+                Vector3 skewerForward = m_draggedIngredient.m_touchedStick.transform.forward;
+                newPosition = m_draggedIngredient.m_touchedStick.transform.position + skewerForward * Vector3.Dot(newPosition - m_draggedIngredient.m_touchedStick.transform.position, skewerForward);
+
+            }
             if (IsServer)
             {
                 m_draggedObject.position = newPosition;
@@ -142,8 +156,8 @@ public class ObjectDrag : NetworkBehaviour
                 if(m_draggedIngredient.m_touchedStick != null)
                 {
                     // Dragging을 멈추고 이 오브젝트를 꼬치에 추가
-                    StopDragging();
-                    m_draggedIngredient.m_touchedStick.AddToSkewerStick(m_draggedIngredient);
+                    m_draggedIngredient.m_touchedStick.AddToSkewerStick(m_draggedIngredient);                  
+                    //StopDragging();
                 }
             }
         }

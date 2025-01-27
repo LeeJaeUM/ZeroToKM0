@@ -17,9 +17,16 @@ public class SkewerIngredient : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("SkewerStick"))
+        if (other.collider.CompareTag("SkewerStickTip"))
         {
-            m_touchedStick = other.transform.GetComponent<SkewerStick>();
+            m_touchedStick = other.transform.GetComponentInParent<SkewerStick>();
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SkewerStick"))
+        {
+            m_touchedStick = null;
         }
     }
 }
