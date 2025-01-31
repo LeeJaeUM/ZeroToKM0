@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using NUnit.Framework;
 
-public class HalliGalliNetwork : NetworkBehaviour
+public class HalliGalliNetwork : BoardGame
 {
     public GameManager m_gameManager;
     public Sprite[] m_animalSprite;                      // 동물 이미지
@@ -311,9 +311,13 @@ public class HalliGalliNetwork : NetworkBehaviour
     }
 
     //게임 시작 시 호출할 함수
-    public void InitializeGame()  //기존 Start 유니티 함수에 있던걸 직접 눌러서 실행하도록 함수로 뺌
+    public override void InitializeGame()  //기존 Start 유니티 함수에 있던걸 직접 눌러서 실행하도록 함수로 뺌
     {
         ServerGameSetting();
+    }
+    public override void EndGame()
+    {
+
     }
 
     #region NetworkFunction

@@ -2,17 +2,14 @@ using Unity.Netcode;
 using UnityEngine;
 
 // 임시 Jenga 스크립트
-public class Jenga : NetworkBehaviour
+public class Jenga : BoardGame
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void InitializeGame()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    public override void EndGame()
     {
-        
+
     }
 }

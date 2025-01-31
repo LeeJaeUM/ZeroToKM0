@@ -23,7 +23,7 @@ public class GameManager : NetworkBehaviour
             Destroy(gameObject);
         }
 
-        m_boardGames = new Dictionary<BoardGameType, NetworkBehaviour> {
+        m_boardGames = new Dictionary<BoardGameType, BoardGame> {
             { BoardGameType.HalliGalli, m_halligalli },
             { BoardGameType.Skewer, m_skewer },
             { BoardGameType.Jenga, m_jenga }
@@ -42,9 +42,9 @@ public class GameManager : NetworkBehaviour
     public Jenga m_jenga;
     
     // 보드게임 타입과 보드게임 게임오브젝트를 매핑
-    private Dictionary<BoardGameType, NetworkBehaviour> m_boardGames;
+    private Dictionary<BoardGameType, BoardGame> m_boardGames;
 
-    public BoardGameType m_boardGame;                   // 현재 보드게임
+    public BoardGameType m_currentBoardGame;                   // 현재 보드게임
 
     public Dealer m_dealer;
     public TurnManager m_turnManager;
@@ -59,15 +59,20 @@ public class GameManager : NetworkBehaviour
     #region Public Methods and Operators
     public void SetBoardGame(BoardGameType type)        // 입력 받은 보드게임을 활성화해주는 함수
     {
+        m_currentBoardGame = type;
         // 모든 보드게임 비활성화
-        foreach(var boardGame in m_boardGames.Values)
+        foreach (BoardGame boardGame in m_boardGames.Values)
         {
+            boardGame.EndGame();
             boardGame.gameObject.SetActive(false);
         }
         // 입력받은 보드게임 활성화      
-        m_boardGames[type].gameObject.SetActive(true);      
+        m_boardGames[type].gameObject.SetActive(true);
     }
-
+    public void StartGame()
+    {
+        m_boardGames[m_currentBoardGame].InitializeGame();
+    }
     public void EndGame()
     {
         // TODO : 예제 데이터, 데이터베이스 데이터로 변경 필요
@@ -137,12 +142,6 @@ public class GameManager : NetworkBehaviour
     #endregion
 
     #region HalliGalli Function
-
-    public void StartHalliGalli()
-    {
-        m_halligalli.InitializeGame();
-    }
-
     public void RingBell(int playernum)
     {
         m_halligalli.RingBell(playernum);
@@ -161,7 +160,7 @@ public class GameManager : NetworkBehaviour
     #endregion
     public bool IsMyTurn(int playernum)
     {
-        switch(m_boardGame)
+        switch(m_currentBoardGame)
         {
             case BoardGameType.HalliGalli:
                 return IsMyTurnHalliGalli(playernum);

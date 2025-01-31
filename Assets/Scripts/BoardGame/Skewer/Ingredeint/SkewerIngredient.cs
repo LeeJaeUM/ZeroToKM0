@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class SkewerIngredient : MonoBehaviour
+public class SkewerIngredient : NetworkBehaviour
 {
     public enum IngredientType          // 재료 종류
     {

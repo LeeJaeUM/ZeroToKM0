@@ -2,9 +2,10 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.Netcode;
 
 // 꼬치
-public class SkewerStick : MonoBehaviour
+public class SkewerStick : NetworkBehaviour
 {
     [SerializeField] private Transform m_start;
     [SerializeField] private Transform m_end;
