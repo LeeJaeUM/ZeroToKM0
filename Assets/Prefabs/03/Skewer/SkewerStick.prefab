@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5369806364069918645}
   - component: {fileID: 8095150228135132686}
   m_Layer: 0
-  m_Name: End
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd45d6233d4ca245a7ce994bd54e098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_start: {fileID: 1624617962927374256}
-  m_end: {fileID: 5369806364069918645}
+  m_start: {fileID: 5369806364069918645}
+  m_end: {fileID: 1624617962927374256}
   m_skewerIngredients: []
   checkAnswer: 0
   playeOnce: 1
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 1624617962927374256}
   - component: {fileID: 2730558466301527736}
   m_Layer: 0
-  m_Name: Start
+  m_Name: End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

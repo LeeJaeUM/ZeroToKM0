@@ -153,7 +153,12 @@ public class GameManager : NetworkBehaviour
        return m_halligalli.IsMyTurn(playernum);
     }
     #endregion
-
+    #region Skewer Function
+    public bool SkewerIsCorrect(List<SkewerIngredient.IngredientType> ingredientList)
+    {
+        return m_skewer.IsCorrect(ingredientList);
+    }
+    #endregion
     public bool IsMyTurn(int playernum)
     {
         switch(m_boardGame)

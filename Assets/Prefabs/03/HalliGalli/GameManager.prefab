@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1145773973
+  GlobalObjectIdHash: 1057137185
   InScenePlacedSourceGlobalObjectIdHash: 1145773973
   DeferredDespawnTick: 0
   Ownership: 1
@@ -132,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7755439442871292467
 Transform:
   m_ObjectHideFlags: 0
@@ -192,6 +192,8 @@ MonoBehaviour:
   - {fileID: 2718074147880378831}
   - {fileID: 4620436418754646417}
   - {fileID: 3761602761240199684}
+  m_allAnswers: []
+  m_currentAnswer: {fileID: 0}
 --- !u!1 &5612517402092734193
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9889802387089368
 Transform:
   m_ObjectHideFlags: 0

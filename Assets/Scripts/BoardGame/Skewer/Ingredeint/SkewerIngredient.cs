@@ -10,6 +10,8 @@ public class SkewerIngredient : MonoBehaviour
         Meat,                          // 고기
         Bacon,                          // 베이컨
         Cheese,                         // 치즈
+        Bacon_Piece,                    // 베이컨 조각
+        Cheese_Piece,                   // 치즈 조각
         Max
     }
     public IngredientType m_ingredientType;

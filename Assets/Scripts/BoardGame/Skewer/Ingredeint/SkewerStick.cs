@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 // 꼬치
 public class SkewerStick : MonoBehaviour
@@ -8,7 +9,7 @@ public class SkewerStick : MonoBehaviour
     [SerializeField] private Transform m_start;
     [SerializeField] private Transform m_end;
 
-    public List<SkewerIngredient> m_skewerIngredients = new List<SkewerIngredient>();
+    public List<SkewerIngredient.IngredientType> m_skewerIngredients = new List<SkewerIngredient.IngredientType>();
 
     public bool checkAnswer = false;
     public bool playeOnce = true;
@@ -47,6 +48,9 @@ public class SkewerStick : MonoBehaviour
         // Ray를 쏘아서 결과를 배열로 저장
         RaycastHit[] hits = Physics.RaycastAll(m_start.position, (m_end.position - m_start.position).normalized, Vector3.Distance(m_start.position, m_end.position));
 
+        // 거리순으로 정렬
+        Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
         // 충돌된 객체들 확인
         foreach (RaycastHit hit in hits)
         {
@@ -54,9 +58,20 @@ public class SkewerStick : MonoBehaviour
             if (ingredient != null)
             {
                 // skewerIngredient 스크립트를 가진 객체를 리스트에 추가
-                m_skewerIngredients.Add(ingredient);
+                m_skewerIngredients.Add(ingredient.m_ingredientType);
             }
         }
+        // GameManager의 IsCorrect함수를 통해 내 m_skwerIngredients리스트가 정답이 맞는지 확인
+        if (GameManager.Instance.SkewerIsCorrect(m_skewerIngredients))
+        {
+            Debug.Log("정답입니다.");
+        }
+        else
+        {
+            Debug.Log("정답이 아닙니다.");
+        }
+        // m_skewerIngredients 초기화
+        m_skewerIngredients.Clear();
     }
     private void Update()
     {
