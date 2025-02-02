@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Firebase;
 using Firebase.Auth;
-using Firebase.Database;
+//using Firebase.Database;
 using Firebase.Extensions;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
@@ -21,7 +21,7 @@ public class FBManager : MonoBehaviour
     [SerializeField] GameObject nameWindow;
     FirebaseAuth auth;
     FirebaseUser user;
-    DatabaseReference dbReference;
+    //DatabaseReference dbReference; // TODO: 에러로 인한 주석처리
     string LobbyScene = "02_Lobby";
 
     public static FBManager _instance
@@ -39,7 +39,7 @@ public class FBManager : MonoBehaviour
         {
             if (task.Result == DependencyStatus.Available)
             {
-                dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+                //dbReference = FirebaseDatabase.DefaultInstance.RootReference; // TODO: 에러로 인한 주석처리
                 Debug.Log("Firebase 초기화 완료!");
             }
             else
@@ -118,7 +118,8 @@ public class FBManager : MonoBehaviour
 
         if (nameField.text == null)
         {
-            dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(user.Email).ContinueWithOnMainThread(task =>
+            // TODO: 에러로 인한 주석처리
+            /*dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(user.Email).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
                 {
@@ -129,11 +130,12 @@ public class FBManager : MonoBehaviour
                 {
                     Debug.LogError("유저정보 저장 실패: " + task.Exception);
                 }
-            });
+            });*/
         }
         else
         {
-            dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(nameField.text).ContinueWithOnMainThread(task =>
+            // TODO: 에러로 인한 주석처리
+            /*dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(nameField.text).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
                 {
@@ -144,7 +146,7 @@ public class FBManager : MonoBehaviour
                 {
                     Debug.LogError("유저정보 저장 실패: " + task.Exception);
                 }
-            });
+            });*/
         }
     }
 

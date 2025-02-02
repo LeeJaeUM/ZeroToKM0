@@ -8,8 +8,7 @@ public class LobbyBtnController : MonoBehaviour
     #region Contants and Fields
     [SerializeField] GameObject m_lobbyWindow;    // Lobby Window GameObject
     [SerializeField] GameObject m_roomListWindow; // Room List Window GameObject
-
-
+    [SerializeField] ModalWindowManager m_userInfoWindow; // User Info Window GameObject
 
     Animator m_lobbyAnimator;
     Animator m_roomListAnimator;
@@ -92,9 +91,21 @@ public class LobbyBtnController : MonoBehaviour
 #endif
     }
 
+    /// <summary>
+    /// Cancel 버튼 클릭 시 Lobby로 돌아가기
+    /// </summary>
     public void OnCancelBtnClick()
     {
         StartCoroutine(TransitionToLobbyWindow());
+    }
+
+    /// <summary>
+    /// UserInfo 클릭 시 UserInfo Window Open
+    /// </summary>
+    public void OnUserInfoClick()
+    {
+        // User Info 창 띄우기
+        m_userInfoWindow.OpenWindow();
     }
     #endregion
 

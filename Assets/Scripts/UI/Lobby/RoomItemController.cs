@@ -21,7 +21,7 @@ public class RoomItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// Room 데이터를 UI에 적용합니다.
+    /// Room 데이터를 UI에 적용
     /// </summary>
     /// <param name="roomTitle">방 제목</param>
     /// <param name="playerCount">현재 인원 수</param>
