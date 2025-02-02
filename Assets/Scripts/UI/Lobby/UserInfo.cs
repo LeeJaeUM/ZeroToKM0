@@ -33,21 +33,27 @@ public class UserInfo : MonoBehaviour
         // 텍스트 변경
         if (m_userName != null)
         {
-            m_userName.text = $"User Name : {userName}\n\n" +
+            // Lobby Window의 UserInfo 경우
+            if(wins < 0)
+            {
+                m_userName.text = userName;
+            }
+            // UserInfo Window의 UserInfo 경우
+            else
+            {
+                m_userName.text = $"User Name : {userName}\n\n" +
                                 $"Record\u2003\u2002\u2002 : {wins} win {losses} Lose\n\n" +
                                 $"Coin\u2003\u2003\u2003\u2002: {coin}";
+            }
         }
     }
     #endregion
 
-    void Start()
+    void Awake()
     {
         // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
         string playerName = "Player1";
-        int playerWins = 10;
-        int playerLosses = 3;
-        int playerCoin = 500;
 
-        SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, playerWins, playerLosses, playerCoin);
+        SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, -1, -1, -1);
     }
 }

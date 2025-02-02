@@ -6,9 +6,14 @@ using UnityEngine;
 public class LobbyBtnController : MonoBehaviour
 {
     #region Contants and Fields
-    [SerializeField] GameObject m_lobbyWindow;    // Lobby Window GameObject
-    [SerializeField] GameObject m_roomListWindow; // Room List Window GameObject
-    [SerializeField] ModalWindowManager m_userInfoWindow; // User Info Window GameObject
+    [SerializeField] GameObject m_lobbyWindow;              // Lobby Window GameObject
+    [SerializeField] GameObject m_roomListWindow;           // Room List Window GameObject
+    [SerializeField] ModalWindowManager m_userInfoWindow;   // User Info Window ModalWindowManager
+    [SerializeField] UserInfo m_userInfo;                   // UserInfo
+
+    // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
+    [SerializeField] Sprite m_sampleIcon;
+    [SerializeField] Sprite m_sampleOutline;
 
     Animator m_lobbyAnimator;
     Animator m_roomListAnimator;
@@ -106,6 +111,14 @@ public class LobbyBtnController : MonoBehaviour
     {
         // User Info 창 띄우기
         m_userInfoWindow.OpenWindow();
+
+        // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
+        string playerName = "Player1";
+        int playerWins = 10;
+        int playerLosses = 3;
+        int playerCoin = 500;
+
+        m_userInfo.SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, playerWins, playerLosses, playerCoin);
     }
     #endregion
 
