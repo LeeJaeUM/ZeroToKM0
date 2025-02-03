@@ -8,9 +8,9 @@ public class NetworkMove : NetworkBehaviour
 {
     public NetworkVariable<Vector3> m_networkPosition = new NetworkVariable<Vector3>();
     public NetworkVariable<bool> m_networkIsMoving = new NetworkVariable<bool>();
-    private Rigidbody rigidbody;
+    private NetworkRigidbody rigid;
     private bool isMoving = false;
-    [SerializeField]private float moveDuration = 0.08f;
+    private float moveDuration = 0.08f;
     public AnimationCurve smoothCurve; // 인스펙터에서 커브를 설정할 수 있도록
 
     public void IsMove(bool canMove)
@@ -26,7 +26,7 @@ public class NetworkMove : NetworkBehaviour
     {
         // 서버에서 위치 변경
         m_networkPosition.Value = position;
-        Debug.Log("클라이언트가 드래그중임");
+        //Debug.Log("클라이언트가 드래그중임");
     }
 
     [ServerRpc(RequireOwnership = false)] // 소유권 없이도 서버에 요청 가능
@@ -53,7 +53,8 @@ public class NetworkMove : NetworkBehaviour
     private void OnBoolChanged(bool previousValue, bool newValue)
     {
         isMoving = newValue;
-        rigidbody.useGravity = !newValue;
+        //rigidbody.useGravity = !newValue;
+        rigid.Rigidbody.useGravity = !newValue;
     }
 
     private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
@@ -67,23 +68,6 @@ public class NetworkMove : NetworkBehaviour
     /// </summary>
     /// <param name="targetPosition">새 위치</param>
     /// <returns></returns>
-    //private IEnumerator SmoothMoveToPosition(Vector3 targetPosition)
-    //{
-    //    Vector3 startPosition = transform.position;
-    //    float elapsedTime = 0f;
-
-    //    while (elapsedTime < moveDuration)
-    //    {
-    //        elapsedTime += Time.deltaTime;
-    //        float t = elapsedTime / moveDuration;
-    //        t = Mathf.SmoothStep(0, 1, t); // 부드러운 곡선 비율 계산 (ease-in/out)
-
-    //        transform.position = Vector3.Lerp(startPosition, targetPosition, t); // 보간
-
-    //        yield return null; // 한 프레임 대기
-    //    }
-
-    //}
     private IEnumerator SmoothMoveToPosition(Vector3 targetPosition)
     {
         Vector3 startPosition = transform.position;
@@ -104,11 +88,7 @@ public class NetworkMove : NetworkBehaviour
     }
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigid = GetComponent<NetworkRigidbody>();
     }
 
-    //public void SetGravity(bool useGravity)
-    //{
-    //    rigidbody.useGravity = useGravity;
-    //}
 }

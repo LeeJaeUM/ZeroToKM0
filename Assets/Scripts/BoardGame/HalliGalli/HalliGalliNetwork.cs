@@ -23,7 +23,9 @@ public class HalliGalliNetwork : BoardGame
                                                                  // => 모든 동물이 카드개수가 같음. 따라서 총 카드 개수는 14 * 4 = 56
 
     public int m_roundCount = 1;
-    public bool isUseTurnMode = false;
+    public bool isUsePrivateMode = false;
+
+    public bool isOpenable = false;
 
     // 길이 변경 이벤트
     public event Action<string, int> OnTopCardChanged;
@@ -35,10 +37,6 @@ public class HalliGalliNetwork : BoardGame
         InitCards(playerCount);
     }
 
-    private void ClientGameSetting()
-    {
-
-    }
     public void InitPlayers(int player)
     {
         m_playerCardCount = new int[player];
@@ -152,17 +150,26 @@ public class HalliGalliNetwork : BoardGame
     /// <returns></returns>
     public bool IsOpenableCard(int playerNum, int cardIndex)
     {
-        HalliGalliCard card = m_card[cardIndex];
-        // 룰 추가 : 자신의 카드만 Open이 가능하게.
-        // playerNum의 카드 덱에 halligalliCard가 존재하는지 확인
-        if (m_playerCard[playerNum].Contains(card))
+        if(IsServer)
         {
-            // 있다면 덱에서 제거
-            m_playerCard[playerNum].Remove(card);
-            return true;
+            HalliGalliCard card = m_card[cardIndex];
+            // 룰 추가 : 자신의 카드만 Open이 가능하게.
+            // playerNum의 카드 덱에 halligalliCard가 존재하는지 확인
+            if (m_playerCard[playerNum].Contains(card))
+            {
+                // 있다면 덱에서 제거
+                m_playerCard[playerNum].Remove(card);
+                isOpenable = true;
+            }
+            else
+                isOpenable= false;
         }
-        // 없다면 return false;
-        return false;
+        else if(!IsHost && IsClient)
+        {
+            RequestIsOpenableServerRpc(playerNum,cardIndex);
+        }
+
+        return isOpenable;
     }
 
     //턴이 있는 OpenCard
@@ -170,8 +177,7 @@ public class HalliGalliNetwork : BoardGame
     //아니라면 함수를 중단하고 false반환
     public void OpenCard(int playerNum, int cardIndex)
     {
-        HalliGalliCard card = m_card[cardIndex];
-        if (isUseTurnMode)//턴 제한 있을 때 로직
+        if (isUsePrivateMode)//턴 제한 있을 때 로직
         {
             if (!IsOpenableCard(playerNum, cardIndex))
             {
@@ -181,15 +187,22 @@ public class HalliGalliNetwork : BoardGame
         }
         if (IsServer)
         {
-            m_topCards[playerNum] = card;                        // 그 카드를 m_topCard에 추가
-            m_openedCard.Add(card);                             // m_openedCard에 추가
+            HalliGalliCard findcard = null;
+            foreach (HalliGalliCard _card in m_card)
+            {
+                if (_card.m_CardIndex == cardIndex)
+                    findcard = _card;
+            }
+            if (findcard != null)
+            {
+                m_topCards[playerNum] = findcard;                        // 그 카드를 m_topCard에 추가
+                m_openedCard.Add(findcard);                             // m_openedCard에 추가
 
-            //SetPos(playerNum + 4, card.gameObject);           // 드래그로 인한 위지 지정 미사용 수정
-
-            //CardInfoCheck에 액션으로 보낼 string값을 현재 Top 카드에서 찾아서 보냄
-            OnTopCardChanged?.Invoke(m_topCards[playerNum].m_AnimalType.ToString() + m_topCards[playerNum].m_fruitNum, playerNum);
+                // OnTopCardChanged 이벤트 호출 : 텍스트 확인용 액션 - 할리갈리 개발 완료 시 삭제예정
+                OnTopCardChanged?.Invoke(m_topCards[playerNum].m_AnimalType.ToString() + m_topCards[playerNum].m_fruitNum, playerNum);
+            }
         }
-        else if (IsClient)
+        else if (!IsHost&&IsClient)
         {
             // halliGalliCard가 m_card 배열에서 몇 번째 인덱스인지 확인
             // 클라이언트에서 서버로 요청
@@ -320,6 +333,11 @@ public class HalliGalliNetwork : BoardGame
 
     }
 
+    public bool GetIsOpenable()
+    {
+        return isOpenable;
+    }
+
     #region NetworkFunction
 
     // 클라이언트에서 서버로 카드 오픈 요청을 보내는 ServerRpc
@@ -339,7 +357,6 @@ public class HalliGalliNetwork : BoardGame
         {
             if (card.m_CardIndex == cardIndex)
                 findcard = card;
-
         }
         if (findcard != null)
         {
@@ -355,7 +372,40 @@ public class HalliGalliNetwork : BoardGame
         }
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    private void RequestIsOpenableServerRpc(int playerNum, int cardIndex)
+    {
+        IsOpenableOnServer(playerNum, cardIndex); 
+        SendMessageToClientRpc(isOpenable, new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new ulong[] { (ulong)playerNum }
+            }
+        });
+    }
+
+    [ClientRpc]
+    private void SendMessageToClientRpc(bool _isOpenable, ClientRpcParams clientRpcParams)
+    {
+        isOpenable = _isOpenable;
+    }
+
+    private void IsOpenableOnServer(int playerNum, int cardIndex)
+    {
+        HalliGalliCard card = m_card[cardIndex];
+        // 룰 추가 : 자신의 카드만 Open이 가능하게.
+        // playerNum의 카드 덱에 halligalliCard가 존재하는지 확인
+        if (m_playerCard[playerNum].Contains(card))
+        {
+            // 있다면 덱에서 제거
+            m_playerCard[playerNum].Remove(card);
+            isOpenable = true;
+        }
+    }
+
     #endregion
+
     private void Start()
     {
         m_gameManager = GameManager.Instance;
