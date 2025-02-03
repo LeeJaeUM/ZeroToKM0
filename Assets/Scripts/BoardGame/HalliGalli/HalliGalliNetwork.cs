@@ -117,7 +117,6 @@ public class HalliGalliNetwork : BoardGame
 
         card.transform.position = cardPos;
         card.transform.forward = m_cardPos[playerNum].transform.forward;
-        //card.transform.Rotate(Vector3.right * 90);
 
     }
     public void Collectcard()                          // 모든 카드 딜러가 가져오기
