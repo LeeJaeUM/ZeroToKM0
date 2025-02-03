@@ -30,7 +30,7 @@ public class WidgetController : MonoBehaviour
     /// </summary>
     public void JoinSessionClick()
     {
-        //m_background.enabled = true;
+        m_background.enabled = true;
         m_createSession.SetActive(false);
         m_showSessionList.SetActive(true);
         m_joinSessionList.SetActive(true);

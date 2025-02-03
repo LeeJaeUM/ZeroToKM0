@@ -101,6 +101,7 @@ public class LobbyBtnController : MonoBehaviour
     /// </summary>
     public void OnCancelBtnClick()
     {
+        m_widgetController.AllHide();
         StartCoroutine(TransitionToLobbyWindow());
     }
 
