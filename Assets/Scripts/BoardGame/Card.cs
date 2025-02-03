@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
 using Unity.Netcode.Components;
+using UnityEngine.Animations.Rigging;
 
 public class Card : NetworkBehaviour
 {
@@ -15,6 +16,16 @@ public class Card : NetworkBehaviour
 
     public GameObject m_cardSkin;
     [SerializeField]private CardAnimation m_cardAnimation;                             // 카드 애니메이션을 위한 클래스
+
+    public void SetIsPlaced(bool value)
+    {
+        if(IsServer)
+            m_isPlaced=value;
+        else if(!IsHost && IsClient)
+        {
+            RequestIsPlacedServerRpc(value);
+        }
+    }
 
     private void HandlePositionChanged(Vector3 oldPosition, Vector3 newPosition)
     {
@@ -54,6 +65,12 @@ public class Card : NetworkBehaviour
         transform.rotation = downCard.transform.rotation;
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    private void RequestIsPlacedServerRpc(bool value)
+    {
+        SetIsPlaced(value);
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (!m_isPlaced)
@@ -78,6 +95,7 @@ public class Card : NetworkBehaviour
             }
         }
     }
+
     protected virtual void Start()
     {
         m_cardAnimation = GetComponent<CardAnimation>();        // 카드 애니메이션 컴포넌트 참조

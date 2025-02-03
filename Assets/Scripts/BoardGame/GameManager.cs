@@ -151,6 +151,11 @@ public class GameManager : NetworkBehaviour
     {
        return m_halligalli.IsMyTurn(playernum);
     }
+
+    public bool IsOpenable()
+    {
+        return m_halligalli.GetIsOpenable();
+    }
     #endregion
     #region Skewer Function
     public bool SkewerIsCorrect(List<SkewerIngredient.IngredientType> ingredientList)

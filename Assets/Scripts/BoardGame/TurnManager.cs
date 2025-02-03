@@ -51,18 +51,15 @@ public class TurnManager : NetworkBehaviour
     }
     public void NextTurn()                                                 // 다음 차례로 넘기기
     {
-        if(!IsHost&&IsClient)
+        if(IsServer)
+        {
+            m_currentTurn = (m_currentTurn + 1) % AlivePlayerCount;            // 마지막 차례인 플레이어일때, 다시 처음으로 돌아감.
+            m_NetCurrentTurnPlayerNum.Value = m_alivePlayers[m_currentTurn];   // 네트워크상에서 동기화
+        }
+        else if(!IsHost&&IsClient)
         {
             ServerNextTurnServerRpc();
-            return;
         }
-        m_currentTurn = (m_currentTurn + 1) % AlivePlayerCount;            // 마지막 차례인 플레이어일때, 다시 처음으로 돌아감.
-
-        //OnCurTurnNum?.Invoke(m_currentTurn);        //플레이어에게 턴 넘어갈 때 보낼 액션 (LJW)----
-
-        m_NetCurrentTurnPlayerNum.Value = m_alivePlayers[m_currentTurn];   // 네트워크상에서 동기화
-
-       // return m_alivePlayers[m_currentTurn];       // 다음 차례인 플레이어 인덱스 반환
     }
     public void RemovePlayer(int target)                                   // 인자로 player의 index를 받아서 그 player를 제거. 
     {

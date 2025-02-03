@@ -13,7 +13,7 @@ public class ObjectDrag : NetworkBehaviour
     private Vector3 m_newDraggedPos = Vector3.zero;
 
     private NetworkMove m_draggedNetworkMove;
-    private float m_waitingTime = 0.2f; // 마커 동기화 대기 시간
+    private float m_waitingTime = 0.15f; // 마커 동기화 대기 시간
     private float m_nextSyncTime = 0.3f; // 다음 동기화 가능 시간
 
     // 레이캐스트를 수행할 때 해당 레이어를 제외한 모든 레이어를 대상으로 할 LayerMask를 설정합니다.
@@ -73,7 +73,7 @@ public class ObjectDrag : NetworkBehaviour
             m_draggedCard = m_draggedObject.GetComponent<Card>();
             if (m_draggedCard != null)
             {
-                m_draggedCard.m_isPlaced = false;
+                m_draggedCard.SetIsPlaced(false);
             }
             m_isDragging = true;
 
