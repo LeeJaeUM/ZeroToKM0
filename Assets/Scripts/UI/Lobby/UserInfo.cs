@@ -53,7 +53,7 @@ public class UserInfo : MonoBehaviour
     {
         // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
         string playerName = "Player1";
-
+        FBManager._instance.UserInfoLoad();
         SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, -1, -1, -1);
     }
 }
