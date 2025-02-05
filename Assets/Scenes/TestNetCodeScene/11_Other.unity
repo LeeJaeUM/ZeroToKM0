@@ -12837,6 +12837,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152782663}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1158459419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8053407111575923582, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
+  m_PrefabInstance: {fileID: 8293024036563770722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1158459423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158459419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e87508c2f327240a328eba339022d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  m_card: []
+  playerCount: 0
+  halliGalliNetwork: {fileID: 0}
 --- !u!1 &1164460827
 GameObject:
   m_ObjectHideFlags: 0
@@ -24526,7 +24547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2671071079964981449, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3056021460
+      value: 1350989344
       objectReference: {fileID: 0}
     - target: {fileID: 2829817197967053197, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -24771,7 +24792,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8053407111575923582, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1158459423}
   m_SourcePrefab: {fileID: 100100000, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
