@@ -32,5 +32,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestHalliGalliScene/05_TEST_NetworkHalliGalli.unity
     guid: 6a82d4c00dfef474092845d3d14a9405
+  - enabled: 1
+    path: Assets/Scenes/TestNetCodeScene/11_Other.unity
+    guid: c2b9005b0f0c0854fa6755a8964f6ce5
+  - enabled: 1
+    path: Assets/Scenes/TestNetCodeScene/05_Test_MouseMove.unity
+    guid: 3fb27107fb9805f4791083b7aa9d0dba
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
