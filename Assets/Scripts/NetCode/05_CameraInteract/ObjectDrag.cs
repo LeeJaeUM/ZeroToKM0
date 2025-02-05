@@ -79,7 +79,7 @@ public class ObjectDrag : NetworkBehaviour
 
             // SkewerIngredient 컴포넌트가 있는지 확인용
             m_draggedIngredient = m_draggedObject.GetComponent<SkewerIngredient>();
-            if(m_draggedIngredient != null && m_draggedIngredient.m_touchedStick != null)
+            if (m_draggedIngredient != null && m_draggedIngredient.m_touchedStick != null)
             {
 
             }
@@ -153,10 +153,10 @@ public class ObjectDrag : NetworkBehaviour
             if (m_draggedIngredient != null)
             {
                 // 이 오브젝트가 꼬치에 닿았다면
-                if(m_draggedIngredient.m_touchedStick != null)
+                if (m_draggedIngredient.m_touchedStick != null)
                 {
                     // Dragging을 멈추고 이 오브젝트를 꼬치에 추가
-                    m_draggedIngredient.m_touchedStick.AddToSkewerStick(m_draggedIngredient);                  
+                    m_draggedIngredient.m_touchedStick.AddToSkewerStick(m_draggedIngredient);
                     //StopDragging();
                 }
             }

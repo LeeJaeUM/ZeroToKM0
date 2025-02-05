@@ -1,66 +1,90 @@
-using UnityEngine;
-using Unity.Netcode;
 using Unity.Netcode.Components;
+using Unity.Netcode;
+using UnityEngine;
 using System.Collections;
 using System;
 
-public class NetworkMove : NetworkBehaviour
+
+public class TestNetworkMove : NetworkBehaviour
 {
-    public NetworkVariable<Vector3> m_networkPosition = new NetworkVariable<Vector3>();
-    public NetworkVariable<bool> m_networkIsMoving = new NetworkVariable<bool>();
     private NetworkRigidbody rigid;
     private bool isMoving = false;
     private float moveDuration = 0.08f;
     public AnimationCurve smoothCurve; // 인스펙터에서 커브를 설정할 수 있도록
+    public Coroutine cor;
 
     public void IsMove(bool canMove)
     {
+        //if (IsOwner)
         if (IsServer)
         {
-            m_networkIsMoving.Value = canMove;
+            IsMoveClientRpc(canMove);
+        }
+        else if (IsOwner)
+        {
+            RequestIsMovingChangeServerRpc(canMove);
         }
     }
-
-    [ServerRpc(RequireOwnership = false)] // 소유권 없이도 서버에 요청 가능
+    [ServerRpc] // 소유권 없이도 서버에 요청 가능
     public void RequestMoveServerRpc(Vector3 position)
     {
         // 서버에서 위치 변경
-        m_networkPosition.Value = position;
+        MovedClientRpc(position);
         //Debug.Log("클라이언트가 드래그중임");
     }
+    [ClientRpc]
+    public void MovedClientRpc(Vector3 position)
+    {
+        OnPositionChanged(position);
+    }
 
-    [ServerRpc(RequireOwnership = false)] // 소유권 없이도 서버에 요청 가능
+    [ServerRpc]
     public void RequestIsMovingChangeServerRpc(bool canMove)
     {
         // 서버에서 위치 변경
-        m_networkIsMoving.Value = canMove;
+        IsMoveClientRpc(canMove);
         Debug.Log("클라이언트가 드래그중임");
     }
-
-    private void OnEnable()
+    [ClientRpc]
+    public void IsMoveClientRpc(bool canMove)
     {
-        m_networkPosition.OnValueChanged += OnPositionChanged;
-        m_networkIsMoving.OnValueChanged += OnBoolChanged;
+        OnBoolChanged(canMove);
     }
 
 
-
-    private void OnDisable()
+    public void StartSmoothMove(Vector3 newPosition)
     {
-        m_networkIsMoving.OnValueChanged -= OnBoolChanged;
-        m_networkPosition.OnValueChanged -= OnPositionChanged;
+        if (cor != null)
+        {
+            StopCoroutine(cor);
+        }
+        cor = StartCoroutine(SmoothMoveToPosition(newPosition));
     }
-    private void OnBoolChanged(bool previousValue, bool newValue)
+    private void OnBoolChanged(bool newValue)
     {
         isMoving = newValue;
         //rigidbody.useGravity = !newValue;
         rigid.Rigidbody.useGravity = !newValue;
     }
 
-    private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
+    public void OnPositionChanged(Vector3 newPosition)
     {
-       //transform.position = newPosition;
-        StartCoroutine(SmoothMoveToPosition(newPosition));
+        StartSmoothMove(newPosition);
+    }
+
+    public void PositionChanged(Vector3 newPosition)
+    {
+        //transform.position = newPosition;
+        if (IsServer && IsHost)
+        {
+            Debug.Log("내꺼 : 서버에서");
+            transform.position = newPosition;
+        }
+        else
+        {
+            Debug.Log("내꺼 : 클라이언트에서");
+            RequestMoveServerRpc(newPosition);
+        }
     }
 
     /// <summary>

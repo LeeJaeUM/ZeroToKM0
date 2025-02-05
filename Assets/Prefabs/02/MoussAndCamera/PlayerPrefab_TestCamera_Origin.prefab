@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3146900088386063424}
   - component: {fileID: 3006783376618289451}
   m_Layer: 0
-  m_Name: PlayerPrefab_TestCamera
+  m_Name: PlayerPrefab_TestCamera_Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,10 +73,11 @@ GameObject:
   - component: {fileID: 7725535021732815981}
   - component: {fileID: 5194805521812958183}
   - component: {fileID: 4104067616429416792}
+  - component: {fileID: 9166110698299467341}
   - component: {fileID: 5966332478751904959}
   - component: {fileID: 4489816920735559123}
+  - component: {fileID: 8575301055250254301}
   - component: {fileID: 1797845579112552966}
-  - component: {fileID: 2004134585276714280}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged
@@ -261,6 +262,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   m_playerCamera: {fileID: 530245754898197131}
+--- !u!114 &9166110698299467341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857587612289322200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbc8ee3746134d4e91fc08dcbb294c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  m_draggedObject: {fileID: 0}
+  m_dragUpYPos: 0.1
 --- !u!114 &5966332478751904959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +302,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629553fbf13f1bb479dd58551ed08f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8575301055250254301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857587612289322200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4f1f834ec795c479863d1797055674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  m_dragRadius: 5
 --- !u!114 &1797845579112552966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,15 +331,3 @@ MonoBehaviour:
   skewerLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &2004134585276714280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2857587612289322200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95f5db12ba7c65c4cb8780aa0912198f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
