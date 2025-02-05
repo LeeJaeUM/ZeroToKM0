@@ -1374,8 +1374,8 @@ MonoBehaviour:
   _zoom: 1
   _effectGradient:
     serializedVersion: 2
-    key0: {r: 0, g: 0.02631569, b: 1, a: 1}
-    key1: {r: 0.514151, g: 0.5240813, b: 1, a: 1}
+    key0: {r: 0.9258137, g: 0, b: 1, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -158641437, guid: 5d1cbf3e20779d943963d780d1d3aba2, type: 3}
+  m_Sprite: {fileID: 1207241473, guid: 31ca4b67affb78649a0b65c8e60120be, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
