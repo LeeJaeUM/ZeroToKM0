@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FinalWinner : MonoBehaviour
 {
-    public Text m_text;
+    public TextMeshProUGUI m_text;
 
     public void SetText(int winner)
     {
@@ -11,6 +12,6 @@ public class FinalWinner : MonoBehaviour
     }
     void Awake()
     {
-        m_text = GetComponentInChildren<Text>();
+        m_text = GetComponentInChildren<TextMeshProUGUI>();
     }
 }
