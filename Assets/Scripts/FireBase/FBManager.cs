@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Firebase;
 using Firebase.Auth;
-using Firebase.Database;
+//using Firebase.Database;
 using Firebase.Extensions;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
@@ -22,7 +22,7 @@ public class FBManager : MonoBehaviour
     [SerializeField] GameObject nameWindow;
     FirebaseAuth auth;
     FirebaseUser user;
-    DatabaseReference dbReference; // TODO: 에러로 인한 주석처리 > FirebaseDatabase SDK 설치 해줘야함
+    //DatabaseReference dbReference; // TODO: 에러로 인한 주석처리 > FirebaseDatabase SDK 설치 해줘야함
     string LobbyScene = "02_Lobby";
 
     public static FBManager _instance
@@ -40,7 +40,7 @@ public class FBManager : MonoBehaviour
         {
             if (task.Result == DependencyStatus.Available)
             {
-                dbReference = FirebaseDatabase.DefaultInstance.RootReference; // TODO: 에러로 인한 주석처리 > FirebaseDatabase SDK 설치 해줘야함
+                //dbReference = FirebaseDatabase.DefaultInstance.RootReference; // TODO: 에러로 인한 주석처리 > FirebaseDatabase SDK 설치 해줘야함
                 Debug.Log("Firebase 초기화 완료!");
             }
             else
@@ -125,7 +125,7 @@ public class FBManager : MonoBehaviour
             name = nameDefault[0];
             // TODO: 에러로 인한 주석처리 > FirebaseDatabase SDK 설치 해줘야함
             // 닉네임을 안적고 회원가입을 하면 이메일을 닉네임으로 함
-            dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(name).ContinueWithOnMainThread(task =>
+            /*dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(name).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
                 {
@@ -136,12 +136,12 @@ public class FBManager : MonoBehaviour
                 {
                     Debug.LogError("유저정보 저장 실패: " + task.Exception);
                 }
-            });
+            });*/
         }
         else
         {
             // TODO: 에러로 인한 주석처리 > FirebaseDatabase SDK 설치 해줘야함
-            dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(nameField.text).ContinueWithOnMainThread(task =>
+            /*dbReference.Child("Users").Child(user.UserId).Child("Name").SetValueAsync(nameField.text).ContinueWithOnMainThread(task =>
             {
                 if (task.IsCompleted)
                 {
@@ -152,7 +152,7 @@ public class FBManager : MonoBehaviour
                 {
                     Debug.LogError("유저정보 저장 실패: " + task.Exception);
                 }
-            });
+            });*/
         }
     }
 
@@ -174,7 +174,7 @@ public class FBManager : MonoBehaviour
         string record;
         string coin;
 
-        dbReference.Child("Users").Child(user.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
+        /*dbReference.Child("Users").Child(user.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
         {
             Debug.Log("데이타베이스 접근");
             if (task.IsCompleted)
@@ -216,6 +216,6 @@ public class FBManager : MonoBehaviour
             {
                 Debug.LogError("유저 정보 로드 실패: " + task.Exception);
             }
-        });
+        });*/
     }
 }
