@@ -5076,7 +5076,19 @@ MonoBehaviour:
   WidgetConfiguration: {fileID: 11400000, guid: 0bb760a1872b76f4b9332066bb013369, type: 2}
   JoiningSession:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 382706443}
+        m_TargetAssemblyTypeName: WidgetController, Assembly-CSharp
+        m_MethodName: SceneChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   JoinedSession:
     m_PersistentCalls:
       m_Calls: []
@@ -9772,7 +9784,19 @@ MonoBehaviour:
   WidgetConfiguration: {fileID: 11400000, guid: 0bb760a1872b76f4b9332066bb013369, type: 2}
   JoiningSession:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 382706443}
+        m_TargetAssemblyTypeName: WidgetController, Assembly-CSharp
+        m_MethodName: SceneChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   JoinedSession:
     m_PersistentCalls:
       m_Calls: []
@@ -10971,6 +10995,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058383950}
   m_CullTransparentMesh: 0
+--- !u!1001 &1065707177
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 773.225
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 246
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131848519565395284, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959403018012598911, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
+      propertyPath: m_Name
+      value: NetworkManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5af6fa7cc23e0b4f971d815791c15f3, type: 3}
 --- !u!1 &1072221488
 GameObject:
   m_ObjectHideFlags: 0
@@ -18516,7 +18597,19 @@ MonoBehaviour:
   WidgetConfiguration: {fileID: 11400000, guid: 0bb760a1872b76f4b9332066bb013369, type: 2}
   JoiningSession:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 382706443}
+        m_TargetAssemblyTypeName: WidgetController, Assembly-CSharp
+        m_MethodName: SceneChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   JoinedSession:
     m_PersistentCalls:
       m_Calls: []
@@ -23424,3 +23517,4 @@ SceneRoots:
   - {fileID: 744151628}
   - {fileID: 382706447}
   - {fileID: 1876131736}
+  - {fileID: 1065707177}

@@ -23,22 +23,30 @@ public class ObjectDrag : NetworkBehaviour
     // 마우스 클릭 이벤트 처리
     public void OnClick(InputValue value)
     {
-        if (value.isPressed)
+        if (IsOwner)
         {
-            StartDragging();
-        }
-        else
-        {
-            StopDragging();
+
+            if (value.isPressed)
+            {
+                StartDragging();
+            }
+            else
+            {
+                StopDragging();
+            }
         }
     }
 
     // 마우스 이동 이벤트 처리
     public void OnMouseMove(InputValue value)
     {
-        if (m_isDragging && m_draggedObject != null)
+        if (IsOwner)
         {
-            UpdateDraggedObjectPosition();
+
+            if (m_isDragging && m_draggedObject != null)
+            {
+                UpdateDraggedObjectPosition();
+            }
         }
     }
     /// <summary>
@@ -139,15 +147,17 @@ public class ObjectDrag : NetworkBehaviour
             }
             else if (!IsHost && IsClient)
             {
-                if (Time.time >= m_nextSyncTime)
-                {
-                    m_nextSyncTime = Time.time + m_waitingTime; // 다음 호출 시간 갱신
+                //if (Time.time >= m_nextSyncTime)
+                //{
+                //    m_nextSyncTime = Time.time + m_waitingTime; // 다음 호출 시간 갱신
 
-                    if (m_draggedNetworkMove != null)
-                    {
-                        m_draggedNetworkMove.RequestMoveServerRpc(newPosition);
-                    }
-                }
+                //    if (m_draggedNetworkMove != null)
+                //    {
+                //        m_draggedNetworkMove.RequestMoveServerRpc(newPosition);
+                //    }
+                //}
+                //TODO : 제한 해제       
+                m_draggedNetworkMove.RequestMoveServerRpc(newPosition);
             }
             // SkewerIngredient 컴포넌트가 있다면 추가 처리
             if (m_draggedIngredient != null)

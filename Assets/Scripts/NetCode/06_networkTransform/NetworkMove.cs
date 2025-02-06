@@ -60,8 +60,9 @@ public class NetworkMove : NetworkBehaviour
 
     private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
     {
-       //transform.position = newPosition;
-        StartCoroutine(SmoothMoveToPosition(newPosition));
+       transform.position = newPosition;
+       // StartCoroutine(SmoothMoveToPosition(newPosition));
+       //TODO : 제한 해제
     }
 
     /// <summary>
