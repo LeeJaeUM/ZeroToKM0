@@ -63,7 +63,7 @@ public class CardUse : MonoBehaviour
             isMyTurn = GameManager.Instance.IsMyTurn(playerNum);
             Debug.Log($"현재 플레이어 넘버 : {playerNum}, 내턴 인지? = {isMyTurn}");
             //isMyTurn = GameManager.Instance.IsMyTurn((int)NetworkManager.Singleton.LocalClientId);
-            if (isMyTurn)
+            if (true)
             {            
                 // HalliGalli Card 컴포넌트가 있다면 추가 처리
                 m_draggedHalliGalliCard = hit.collider.GetComponent<HalliGalliCard>();
