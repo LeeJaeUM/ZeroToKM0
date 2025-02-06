@@ -98,9 +98,9 @@ public class HalliGalliNetwork : BoardGame
     {
         for (int i = 0; i < m_playerCard.Length; i++)
         {
-            foreach (Card card in m_playerCard[i])
+            foreach (HalliGalliCard card in m_playerCard[i])
             {
-                SetPos(i * 2 + 1, card);
+                SetPos(i * 2 + 1, card.m_CardIndex);
                 //card.FlipCardAnim();                                    // card를 뒤집어서 방향 맞춤
             }
         }
@@ -110,20 +110,36 @@ public class HalliGalliNetwork : BoardGame
             m_cardPos[i].m_cardCount = 0;
         }
     }
-    public void SetPos(int playerNum, Card card)       // 카드를 배치해주는 함수(누구의 카드를, 몇번째에 놓을지, 어떤 카드인지)
+    public void SetPos(int cardPosNum, int cardIndex)       // 카드를 배치해주는 함수(누구의 카드를, 몇번째에 놓을지, 어떤 카드인지)
     {
-        Vector3 cardPos = m_cardPos[playerNum].transform.position;
-        cardPos.y += m_cardHeight * m_cardPos[playerNum].m_cardCount++;
+        Vector3 cardPos = m_cardPos[cardPosNum].transform.position;
+        cardPos.y += m_cardHeight * m_cardPos[cardPosNum].m_cardCount++;
 
-        card.transform.position = cardPos;
-        card.transform.forward = m_cardPos[playerNum].transform.forward;
+       /// card.transform.position = cardPos;
+       // card.transform.forward = m_cardPos[cardPosIndex].transform.forward;
+        m_card[cardIndex].transform.position = cardPos;
+        m_card[cardIndex].transform.forward = m_cardPos[cardPosNum].transform.forward;
 
+       // if (cardPosNum >4)
+       // {
+            //5, 7 일때 플레이어 3, 4번째의 카드임
+      
+          // SetPosClientRpc(cardPosNum, cardIndex);
+        //}
     }
+
+    [ClientRpc]
+    private void SetPosClientRpc(int cardPosNum, int cardIndex)
+    {
+        Card card = m_card[cardIndex];
+        card.transform.forward = m_cardPos[cardPosNum].transform.forward;
+    }
+
     public void Collectcard()                          // 모든 카드 딜러가 가져오기
     {
         for (int i = 0; i < m_card.Length; i++)
         {
-            SetPos(8, m_card[i]);
+            SetPos(0,i);
         }
     }
 

@@ -214,7 +214,8 @@ public class MousePositionSync : NetworkBehaviour
                 }
 
                 // 다른 클라이언트에게 마우스 위치를 전송
-                UpdateMousePositionServerRpc(hitInfo.point);
+                UpdateMousePositionServerRpc(hitInfo.point,
+                (int)NetworkManager.Singleton.LocalClientId);
             }
             else if (new Plane(Vector3.up, new Vector3(0, fixedY, 0)).Raycast(ray, out float distance))
             {
@@ -228,27 +229,32 @@ public class MousePositionSync : NetworkBehaviour
                 }
 
                 // 다른 클라이언트에게 마우스 위치를 전송
-                UpdateMousePositionServerRpc(pointOnPlane);
+                UpdateMousePositionServerRpc(pointOnPlane,
+                (int)NetworkManager.Singleton.LocalClientId);
             }
         }
     }
 
     // 서버 RPC: 서버가 호출하여 모든 클라이언트에게 마우스 위치 전달
     [ServerRpc(RequireOwnership = false)] // 소유권을 필요로 하지 않음
-    private void UpdateMousePositionServerRpc(Vector3 mousePosition)
+    private void UpdateMousePositionServerRpc(Vector3 mousePosition, int playerNum)
     {
         // 다른 클라이언트에게 마우스 위치 전송 (ClientRpc)
-        UpdateMousePositionClientRpc(mousePosition);
+        UpdateMousePositionClientRpc(mousePosition, playerNum); 
+        SetRandomColor setRandom = m_markerInstance.GetComponent<SetRandomColor>();
+        setRandom.AssignColor(playerNum);
     }
 
     // 클라이언트 RPC: 마우스 위치를 받은 클라이언트에서 처리
     [ClientRpc]
-    public void UpdateMousePositionClientRpc(Vector3 mousePosition)
+    public void UpdateMousePositionClientRpc(Vector3 mousePosition, int playerNum)
     {
         // 마커 오브젝트가 없는 경우 생성
         if (m_markerInstance == null)
         {
             m_markerInstance = Instantiate(m_markerPrefab);
+            SetRandomColor setRandom = m_markerInstance.GetComponent<SetRandomColor>();
+            setRandom.AssignColor(playerNum);
         }
 
         // 클라이언트에서 마우스 위치 업데이트
