@@ -24978,6 +24978,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3045996395
       objectReference: {fileID: 0}
+    - target: {fileID: 1517024775060207231, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1810560813, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
     - target: {fileID: 1533625599943254225, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
       propertyPath: SyncRotAngleX
       value: 0
@@ -25014,6 +25018,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1942673267
       objectReference: {fileID: 0}
+    - target: {fileID: 1622937751092298295, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1810560813, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
     - target: {fileID: 1639539978232108185, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
       propertyPath: SyncRotAngleX
       value: 0
@@ -25130,6 +25138,10 @@ PrefabInstance:
       propertyPath: SyncRotAngleZ
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3010273553531844733, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1810560813, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
     - target: {fileID: 3029795325229996699, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
       propertyPath: SyncRotAngleX
       value: 0
@@ -25622,6 +25634,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1959514057
       objectReference: {fileID: 0}
+    - target: {fileID: 7688798947507993777, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1810560813, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
     - target: {fileID: 7842448780918807035, guid: 4b560ee16b382ed46a53d54b13d93591, type: 3}
       propertyPath: SyncRotAngleX
       value: 0
