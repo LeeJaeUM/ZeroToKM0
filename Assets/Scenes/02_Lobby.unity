@@ -17401,8 +17401,32 @@ MonoBehaviour:
   m_userName: {fileID: 929106068}
   m_sampleIcon: {fileID: -3425362, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
   m_sampleOutline: {fileID: 1867022078, guid: 57095637ce292744eb212718477c6b91, type: 3}
-  m_SpritesIcon: []
-  m_SpritesOutline: []
+  m_SpritesIcon:
+  - {fileID: -846952398, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: -3425362, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 1372239955, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: -1911600504, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 2096267775, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 321287846, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 2047538360, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 914808766, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 1176962610, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: -1106208784, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 883926788, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 1645579132, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: -1335577314, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 784788650, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  - {fileID: 134042200, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
+  m_SpritesOutline:
+  - {fileID: 2088035661, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: -636848414, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: -1740393005, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: 496373839, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: 1192621632, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: 1315419330, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: 1424059024, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: 1882888173, guid: 57095637ce292744eb212718477c6b91, type: 3}
+  - {fileID: 1867022078, guid: 57095637ce292744eb212718477c6b91, type: 3}
 --- !u!1 &1514390109
 GameObject:
   m_ObjectHideFlags: 0
