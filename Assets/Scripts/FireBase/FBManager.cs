@@ -26,6 +26,14 @@ public class FBManager : MonoBehaviour
     DatabaseReference dbReference; // TODO: 에러로 인한 주석처리 > FirebaseDatabase SDK 설치 해줘야함
     string LobbyScene = "02_Lobby";
 
+    public string m_name {  get; set; }
+    public int m_win {  get; set; }
+    public int m_loss { get; set; }
+    public int m_coin { get; set; }
+    public int m_icon { get; set; }
+    public int m_outline { get; set; }
+
+
     public static FBManager _instance
     {
         get { return _uniqInstance; }
@@ -34,7 +42,7 @@ public class FBManager : MonoBehaviour
     void Awake()
     {
         _uniqInstance = this;
-        DontDestroyOnLoad(_uniqInstance);
+        DontDestroyOnLoad(gameObject);
         auth = FirebaseAuth.DefaultInstance;        // 로그인 인증을 관리할 객체를 먼저 선언
         // Firebase 초기화
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
@@ -162,9 +170,7 @@ public class FBManager : MonoBehaviour
         FirebaseAuth.DefaultInstance.SignOut();
     }
 
-    int testWincount = 0;
-
-    public void UserInfoLoad(string name, int wins, int losses, int coin, int icon, int outline)
+    public void UserInfoLoad(Action callback = null)
     {
         if (user == null)
         {
@@ -173,100 +179,80 @@ public class FBManager : MonoBehaviour
         }
         Debug.Log("유저인포로드함수 진입");
 
+        string data;
+        string cf_data;
+        string cs_data;
+
         dbReference.Child("Users").Child(user.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
         {
             Debug.Log("데이타베이스 접근");
             if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
+                object pname = snapshot.Child("Name").Value;
+                m_name = Convert.ToString(pname);
                 // 전적 불러오기
                 if (snapshot.Child("Record").Exists)
                 {
                     object pwin = snapshot.Child("Record").Child("Wins").Value;
-                    int wins = Convert.ToInt32(pwin);
-                    testWincount = wins;
-                    Debug.Log($"Wins 값: {wins}");
+                    m_win = Convert.ToInt32(pwin);
+                    //wins = m_win;
+                    //Debug.Log($"Wins 값: {m_win}");
+
                     object plosses = snapshot.Child("Record").Child("Losses").Value;
-                    int losses = Convert.ToInt32(plosses);
-                    Debug.Log($"Losses 값: {losses}");
+                    m_loss = Convert.ToInt32(plosses);
+                    //losses = m_loss;
+                    //Debug.Log($"Losses 값: {m_loss}");
                 }
                 // 게임 전적이 없으면 0 으로 셋팅
                 else
                 {
-                    dbReference.Child("Users").Child(user.UserId).Child("Record").Child("Wins").SetValueAsync(0).ContinueWithOnMainThread(task =>
-                    {
-                        if (task.IsCompleted)
-                        {
-                            Debug.Log("DB에 승 기록 셋팅");
-                        }
-                        else
-                        {
-                            Debug.LogError("기록 셋팅 실패 : " + task.Exception);
-                        }
-                    });
-
-                    dbReference.Child("Users").Child(user.UserId).Child("Record").Child("Losses").SetValueAsync(0).ContinueWithOnMainThread(task =>
-                    {
-                        if (task.IsCompleted)
-                        {
-                            Debug.Log("DB에 패 기록 셋팅");
-                        }
-                        else
-                        {
-                            Debug.LogError("기록 셋팅 실패 " + task.Exception);
-                        }
-                    });
+                    data = "Record";
+                    cf_data = "Wins";
+                    cs_data = "Losses";
+                    UserDataSet(data, cf_data);
+                    UserDataSet(data, cs_data);
                 }
+
+
                 // 코인 불러오기
                 if (snapshot.Child("Coin").Exists)
                 {
-                    object plosses = snapshot.Child("Coin").Value;
-                    int losses = Convert.ToInt32(plosses);
-                    Debug.Log($"Coin 값: {losses}");
+                    object pcoin = snapshot.Child("Coin").Value;
+                    m_coin = Convert.ToInt32(pcoin);
+                    //coin = m_coin;
+                    //Debug.Log($"Coin 값: {m_coin}");
                 }
                 // 처음 들어왔으면 코인이 없을테니 0으로 셋팅
                 else
                 {
-                    CoinSet();
+                    data = "Coin";
+                    UserDataSet(data);      // 코인 개수 0개 설정
                 }
+
+
                 if (snapshot.Child("Decoration").Exists)
                 {
                     object picon = snapshot.Child("Decoration").Child("icon").Value;
-                    int icon = Convert.ToInt32(picon);
-                    Debug.Log($"icon 값: {icon}");
+                    m_icon = Convert.ToInt32(picon);
+                    //icon = m_icon;
+                    //Debug.Log($"icon 값: {m_icon}");
+
                     object poutline = snapshot.Child("Decoration").Child("outline").Value;
-                    int outline = Convert.ToInt32(poutline);
-                    Debug.Log($"outline 값: {outline}");
+                    m_outline = Convert.ToInt32(poutline);
+                    //outline = m_outline;
+                    //Debug.Log($"outline 값: {m_outline}");
                 }
                 else
                 {
-                    // 아이콘 기본값으로 설정
-                    dbReference.Child("Users").Child(user.UserId).Child("Decoration").Child("icon").SetValueAsync(0).ContinueWithOnMainThread(task =>
-                    {
-                        if (task.IsCompleted)
-                        {
-                            Debug.Log("치장 옵션 셋팅");
-                        }
-                        else
-                        {
-                            Debug.LogError("치장 옵션 셋팅 실패 : " + task.Exception);
-                        }
-                    });
-                    // 아웃라인 기본값으로 설정
-                    dbReference.Child("Users").Child(user.UserId).Child("Decoration").Child("outline").SetValueAsync(0).ContinueWithOnMainThread(task =>
-                    {
-                        if (task.IsCompleted)
-                        {
-                            Debug.Log("치장 옵션 셋팅");
-                        }
-                        else
-                        {
-                            Debug.LogError("치장 옵션 셋팅 실패 : " + task.Exception);
-                        }
-                    });
+                    data = "Decoration";
+                    cf_data = "icon";
+                    cs_data = "outline";
+                    UserDataSet(data, cf_data);     // 아이콘 기본값으로 설정
+                    UserDataSet(data, cs_data);     // 아웃라인 기본값으로 설정
                 }
 
-                //name = snapshot.Child("Name").Value.ToString();
+                callback?.Invoke();
             }
             else
             {
@@ -275,17 +261,31 @@ public class FBManager : MonoBehaviour
         });
     }
 
-    void CoinSet()
+    void UserDataSet(string data)
     {
-        dbReference.Child("Users").Child(user.UserId).Child("Coin").SetValueAsync(0).ContinueWithOnMainThread(task =>
+        dbReference.Child("Users").Child(user.UserId).Child(data).SetValueAsync(0).ContinueWithOnMainThread(task =>
         {
             if (task.IsCompleted)
             {
-                Debug.Log("코인 셋팅");
+                Debug.Log("데이터 셋팅");
             }
             else
             {
-                Debug.LogError("코인 셋팅 실패 : " + task.Exception);
+                Debug.LogError("데이터 셋팅 실패 : " + task.Exception);
+            }
+        });
+    }
+    void UserDataSet(string data, string cData)
+    {
+        dbReference.Child("Users").Child(user.UserId).Child(data).Child(cData).SetValueAsync(0).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+                Debug.Log("데이터 셋팅");
+            }
+            else
+            {
+                Debug.LogError("데이터 셋팅 실패 : " + task.Exception);
             }
         });
     }

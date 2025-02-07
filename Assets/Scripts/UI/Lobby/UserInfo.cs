@@ -15,12 +15,6 @@ public class UserInfo : MonoBehaviour
 
     [SerializeField] Sprite[] m_SpritesIcon;
     [SerializeField] Sprite[] m_SpritesOutline;
-    string m_name;
-    int m_winCount;
-    int m_lossCount;
-    int m_coinCount;
-    int m_iconIndex;
-    int m_outlineIndex;
     #endregion
 
     #region Public Methods and Operators
@@ -61,9 +55,23 @@ public class UserInfo : MonoBehaviour
     void Awake()
     {
         // TODO : TEST data. DB data로 변경 필요 (2025.02.03) get set으로 받기 
-        string playerName = "hyeon";
-        SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, -1, -1, -1);
-        //FBManager._instance.UserInfoLoad(ref m_name,ref m_winCount,ref m_lossCount,ref m_coinCount,ref m_iconIndex, ref m_outlineIndex);  임시 주석
-        SetUserInfo(playerName, m_winCount, m_lossCount, m_coinCount, m_iconIndex, m_outlineIndex);
+        //string playerName = "Player1";
+        FBManager._instance.UserInfoLoad(() =>
+        {
+            Debug.Log($"이름: {FBManager._instance.m_name}");
+            Debug.Log($"승리: {FBManager._instance.m_win}");
+            Debug.Log($"패배: {FBManager._instance.m_loss}");
+            Debug.Log($"코인: {FBManager._instance.m_coin}");
+            Debug.Log($"아이콘: {FBManager._instance.m_icon}");
+            Debug.Log($"아웃라인: {FBManager._instance.m_outline}");
+
+            SetUserInfo(FBManager._instance.m_name,
+                        FBManager._instance.m_win,
+                        FBManager._instance.m_loss,
+                        FBManager._instance.m_coin,
+                        FBManager._instance.m_icon,
+                        FBManager._instance.m_outline);
+        });
+
     }
 }
