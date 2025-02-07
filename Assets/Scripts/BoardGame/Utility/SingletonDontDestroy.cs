@@ -14,11 +14,14 @@ public class SingletonDontDestroy<T> : MonoBehaviour where T : SingletonDontDest
         {
             Instance = (T)this;
             OnAwake();
+            Debug.Log($"[Singleton] {typeof(T)} 생성됨, DontDestroyOnLoad 적용");
             DontDestroyOnLoad(gameObject);
         }
         else
         {
+            Debug.Log($"[Singleton] {typeof(T)} 이미 존재하므로 삭제됨");
             Destroy(gameObject);
+            return;
         }
     }
     // Start is called before the first frame update

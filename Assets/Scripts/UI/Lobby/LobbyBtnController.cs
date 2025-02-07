@@ -114,7 +114,7 @@ public class LobbyBtnController : MonoBehaviour
         m_userInfoWindow.OpenWindow();
 
         // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
-        string playerName = "Player1";
+        string playerName = "hyeon";
         int playerWins = 10;
         int playerLosses = 3;
         int playerCoin = 500;

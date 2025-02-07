@@ -52,8 +52,8 @@ public class UserInfo : MonoBehaviour
     void Awake()
     {
         // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
-        string playerName = "Player1";
-        FBManager._instance.UserInfoLoad();
+        string playerName = "hyeon";
         SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, -1, -1, -1);
+        FBManager._instance.UserInfoLoad();
     }
 }

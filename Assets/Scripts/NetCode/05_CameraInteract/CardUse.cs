@@ -71,7 +71,7 @@ public class CardUse : MonoBehaviour
                 {
                     //이 OpenCard는 GameManager에 연결된 HalliGalliNetwork의 Open카드를 실행시키는 함수
                     //그래서 자기 아이디와 현재 카드를 보냄
-                    SoundManager.Instance.PlaySound(SoundManager.SoundType.Flip);
+                    SoundManager.Instance.PlaySFX(SoundManager.SoundType.Flip);
                     GameManager.Instance.OpenCard((int)NetworkManager.Singleton.LocalClientId, m_draggedHalliGalliCard.m_CardIndex);
                 }
 
@@ -99,7 +99,7 @@ public class CardUse : MonoBehaviour
         int cardCount = m_scannedCards.Count;
         Vector3[] newPos = new Vector3[cardCount];                   // 카드들의 위치를 저장할 임시 배열.
 
-        SoundManager.Instance.PlaySound(SoundManager.SoundType.Shuffle);
+        SoundManager.Instance.PlaySFX(SoundManager.SoundType.Shuffle);
         // 현재 위치 정보 newPos에 저장
         for (int i = 0; i < cardCount; i++)
         {

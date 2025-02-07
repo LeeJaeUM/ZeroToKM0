@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OpeningAnimHandler : MonoBehaviour
 {
@@ -25,6 +26,6 @@ public class OpeningAnimHandler : MonoBehaviour
     // Animation 종료
     public void AnimEvent_FinishAnimation()
     {
-        LoadScene.Instance.LoadSceneAsync(SceneState.Login);
+        SceneManager.LoadSceneAsync(1);
     }
 }
