@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 
 public class SoundManager : SingletonDontDestroy<SoundManager>
 {
+    #region Contants and Fields
     public enum SoundType
     {
         Flip,
@@ -15,6 +16,10 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
     [SerializeField] List<AudioClip> m_audioClip;   // 효과음 List
     [SerializeField] AudioClip m_defaultBGM;          // 기본 BGM
 
+    SettingsController m_settingsController;
+    #endregion
+
+    #region Public Methods and Operators
     public void PlaySFX(SoundType type)
     {
         int index = (int)type;
@@ -35,6 +40,20 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
             m_bgmSource.Play();
         }
     }
+    public void SetVolume(float bgmVolume, float sfxVolume)
+    {
+        if(m_bgmSource != null)
+        {
+            m_bgmSource.volume = Mathf.Clamp01(bgmVolume); // 배경음 볼륨
+        }
+
+        if(m_sfxSource != null)
+        {
+            m_sfxSource.volume = Mathf.Clamp01(sfxVolume); // 효과음 볼륨
+        }
+    }
+    #endregion
+
     protected override void OnAwake()
     {
         base.OnAwake();
