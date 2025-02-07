@@ -21,6 +21,13 @@ public class LobbyBtnController : MonoBehaviour
     bool isTransitioning = false; // 전환 중인지 확인
 
     [SerializeField] WidgetController m_widgetController;
+
+    // 테스트
+    int playerWins;
+    int playerLosses;
+    int playerCoin;
+    int playerIcon;
+    int playerOutline;
     #endregion
 
     #region Public Methods and Operators
@@ -115,11 +122,14 @@ public class LobbyBtnController : MonoBehaviour
 
         // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
         string playerName = "hyeon";
-        int playerWins = 10;
-        int playerLosses = 3;
-        int playerCoin = 500;
+        //int playerWins = 10;
+        //int playerLosses = 3;
+        //int playerCoin = 500;
 
-        m_userInfo.SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, playerWins, playerLosses, playerCoin);
+        // 임시 주석
+        //FBManager._instance.UserInfoLoad(ref playerName,ref playerWins,ref playerLosses,ref playerCoin,ref playerIcon,ref playerOutline);
+        //m_userInfo.SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, playerWins, playerLosses, playerCoin);
+        //m_userInfo.SetUserInfo(playerName, playerWins, playerLosses, playerCoin, playerIcon, playerOutline);
     }
     #endregion
 

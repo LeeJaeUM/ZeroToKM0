@@ -181,28 +181,13 @@ public class GameManager : NetworkBehaviour
     {
         StartCoroutine("CoRoundWinMessage");
         m_roundWinner.SetText(winner);
-        RoundWinMessageClientRpc(winner);
     }
     public void FinalWinMessage()
     {
         int winner = m_turnManager.GetCurruntTurnPlayerNum();
         StartCoroutine("CoFinalWinMessage");
         m_finalWinner.SetText(winner + 1);
-        FinalWinMessageClientRpc(winner);
     }
-    [ClientRpc]
-    private void RoundWinMessageClientRpc(int winner)
-    {
-        StartCoroutine(CoRoundWinMessage());
-        m_roundWinner.SetText(winner);
-    }
-    [ClientRpc]
-    private void FinalWinMessageClientRpc(int winner)
-    {
-        StartCoroutine(CoFinalWinMessage());
-        m_finalWinner.SetText((winner + 1));
-    }
-
 
     public void OpenCard(int playerNum, int cardIndex)
     {

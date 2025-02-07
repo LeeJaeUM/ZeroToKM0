@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2406388887
+  GlobalObjectIdHash: 3939067494
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -78,7 +78,6 @@ GameObject:
   - component: {fileID: 4489816920735559123}
   - component: {fileID: 8575301055250254301}
   - component: {fileID: 1797845579112552966}
-  - component: {fileID: 1059976298058442994}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: Untagged
@@ -332,19 +331,3 @@ MonoBehaviour:
   skewerLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &1059976298058442994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2857587612289322200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705c88e07c3ea914ca0e7836445f66f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  playerInput: {fileID: 7725535021732815981}
-  m_markerPrefab: {fileID: 5838454453398594562, guid: 2019528689600f546bd5af73afc826a1, type: 3}
-  m_distanceCameraToMarker: 5

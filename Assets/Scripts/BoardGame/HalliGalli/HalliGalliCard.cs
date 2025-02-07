@@ -34,16 +34,9 @@ public class HalliGalliCard : Card
         m_NetAnimalType.Value = (int)type; // NetworkVariable은 int로 설정되므로 타입을 int로 변환
         m_NetFruitNum.Value = num;
         m_NetCardIndex.Value = cardIndex;
-        m_CardIndex = cardIndex;
     }
 
     #region Network Functions
-    // 서버에서 카드 인덱스가 변경되었을 때, 클라이언트에서 호출되는 함수
-    private void OnCardIndexChanged(int oldValue, int newValue)
-    {
-        // 인덱스가 변경되었을 때 클라이언트에서 처리할 추가 작업이 있으면 여기에 추가
-        m_CardIndex = newValue;
-    }
 
     // 동기화된 값이 변경되면 호출될 함수들
     private void HandleAnimalTypeChanged(int oldValue, int newValue)
@@ -79,6 +72,12 @@ public class HalliGalliCard : Card
         }
     }    
     
+    // 서버에서 카드 인덱스가 변경되었을 때, 클라이언트에서 호출되는 함수
+    private void OnCardIndexChanged(int oldValue, int newValue)
+    {
+        // 인덱스가 변경되었을 때 클라이언트에서 처리할 추가 작업이 있으면 여기에 추가
+        m_CardIndex = newValue;
+    }
 
     #endregion
     void Awake()

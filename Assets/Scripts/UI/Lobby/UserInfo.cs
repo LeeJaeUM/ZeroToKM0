@@ -12,6 +12,15 @@ public class UserInfo : MonoBehaviour
     // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
     [SerializeField] Sprite m_sampleIcon;
     [SerializeField] Sprite m_sampleOutline;
+
+    [SerializeField] Sprite[] m_SpritesIcon;
+    [SerializeField] Sprite[] m_SpritesOutline;
+    string m_name;
+    int m_winCount;
+    int m_lossCount;
+    int m_coinCount;
+    int m_iconIndex;
+    int m_outlineIndex;
     #endregion
 
     #region Public Methods and Operators
@@ -24,11 +33,11 @@ public class UserInfo : MonoBehaviour
     /// <param name="wins">User 승리 기록</param>
     /// <param name="losses">User 패배 기록</param>
     /// <param name="coin">User Coin</param>
-    public void SetUserInfo(Sprite icon, Sprite outline, string userName, int wins, int losses, int coin)
+    public void SetUserInfo(string userName, int wins, int losses, int coin, int icon, int outline)
     {
         // 아이콘 & 테두리 변경
-        if (m_userIcon != null) m_userIcon.sprite = icon;
-        if (m_userOutline != null) m_userOutline.sprite = outline;
+        if (m_userIcon != null) m_userIcon.sprite = m_SpritesIcon[icon];
+        if (m_userOutline != null) m_userOutline.sprite = m_SpritesOutline[outline];
 
         // 텍스트 변경
         if (m_userName != null)
@@ -51,9 +60,10 @@ public class UserInfo : MonoBehaviour
 
     void Awake()
     {
-        // TODO : TEST data. DB data로 변경 필요 (2025.02.03)
+        // TODO : TEST data. DB data로 변경 필요 (2025.02.03) get set으로 받기 
         string playerName = "hyeon";
         SetUserInfo(m_sampleIcon, m_sampleOutline, playerName, -1, -1, -1);
-        FBManager._instance.UserInfoLoad();
+        //FBManager._instance.UserInfoLoad(ref m_name,ref m_winCount,ref m_lossCount,ref m_coinCount,ref m_iconIndex, ref m_outlineIndex);  임시 주석
+        SetUserInfo(playerName, m_winCount, m_lossCount, m_coinCount, m_iconIndex, m_outlineIndex);
     }
 }

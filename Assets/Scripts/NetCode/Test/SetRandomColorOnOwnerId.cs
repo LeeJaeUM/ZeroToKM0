@@ -14,47 +14,10 @@ public class SetRandomColor : NetworkBehaviour
     /// and the network is setup.
     /// Here we use it to set the color of the object based on the owner's client ID.
     /// </summary>
-    /// 
-    private NetworkVariable<Color> playerColor = new NetworkVariable<Color>(
-          Color.white, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    private static readonly Color[] playerColors = {
-    Color.red, Color.blue, Color.green, Color.yellow, Color.cyan, Color.magenta
-};
-    ////public override void OnNetworkSpawn()
-    ////{
-    ////    base.OnNetworkSpawn();
-    ////    SetColorBasedOnOwner();
-    ////}
-    public void OnEnable()
+    public override void OnNetworkSpawn()
     {
-          //  AssignColor();
-
-        playerColor.OnValueChanged += OnColorChanged;
-        OnColorChanged(Color.white, playerColor.Value); // 초기화
-    }
-    public void AssignColor(int playerNum)
-    {
-        int playerIndex = playerNum;
-        if (IsServer)
-            playerColor.Value = playerColors[playerIndex]; // 서버에서 색상 지정
-        //else(!IsHost && IsClient)
-        //{
-        //    TestSetCOLORServerRpc();
-        //}
-    }
-
-    [ServerRpc]
-    void TestSetCOLORServerRpc(int a)
-    {
-
-    }
-
-    private void OnColorChanged(Color oldColor, Color newColor)
-    {
-        if (bodyRenderer != null)
-        {
-            bodyRenderer.material.color = newColor;
-        }
+        base.OnNetworkSpawn();
+        SetColorBasedOnOwner();
     }
 
     /// <summary>
@@ -77,24 +40,6 @@ public class SetRandomColor : NetworkBehaviour
         //GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
         bodyRenderer.material.color = UnityEngine.Random.ColorHSV();
     }
-   public  void SetColor()
-    {
-        // OwnerClientId is used here for debugging purposes. A live game should use a session manager to make sure
-        // reconnecting players still get the same color, as client IDs could be reused for other clients between
-        // disconnect and reconnect. See Boss Room for a session manager example.
-        UnityEngine.Random.InitState((int)OwnerClientId);
 
-        //GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
-        bodyRenderer.material.color = UnityEngine.Random.ColorHSV();
-
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetColor();
-        }
-    }
 }
 
