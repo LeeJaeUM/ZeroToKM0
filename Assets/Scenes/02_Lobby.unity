@@ -4708,7 +4708,7 @@ MonoBehaviour:
   m_userInfo: {fileID: 1966011917}
   m_sampleIcon: {fileID: 134042200, guid: 28dce9785f0a4a745ae0ba201d559145, type: 3}
   m_sampleOutline: {fileID: 1867022078, guid: 57095637ce292744eb212718477c6b91, type: 3}
-  m_widgetController: {fileID: 0}
+  m_widgetController: {fileID: 399288062134249600}
 --- !u!1 &711808252
 GameObject:
   m_ObjectHideFlags: 0
@@ -15241,7 +15241,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6077157785013570157}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa4b2a2cc2cd7ac4bb2eda8eaad215bf, type: 3}
   m_Name: 
@@ -17336,7 +17336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1220, y: 0}
+  m_AnchoredPosition: {x: -3, y: 0}
   m_SizeDelta: {x: 1300, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4058042015252825763
@@ -17627,7 +17627,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 697646113}
         m_TargetAssemblyTypeName: LobbyBtnController, Assembly-CSharp
         m_MethodName: OnCancelBtnClick
         m_Mode: 1
@@ -18342,7 +18342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &7247331934186300758
 GameObject:
   m_ObjectHideFlags: 0

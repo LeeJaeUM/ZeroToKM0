@@ -38,21 +38,6 @@ public class LobbyBtnController : MonoBehaviour
     {
         Debug.Log("Join Button Clicked - Switching to Client Mode");
 
-        // 씬 로드 후 클라이언트 시작
-        // 개발 중에 확인할 코드
-        //SceneManager.LoadScene(TargetSceneName);
-        //SceneManager.sceneLoaded += (scene, mode) =>
-        //{
-        //    if (scene.name == TargetSceneName)
-        //    {
-        //        StartClient();
-        //    }
-        //};
-
-        //
-
-        // TODO : Client 연결로 변경 해놓으셔서 방목록창으로 변경 할시 아래코드 사용 요망 (2025.01.16)
-        
         if (isTransitioning) return; // 이미 전환 중이면 중복 실행 방지
         isTransitioning = true;
 
@@ -72,17 +57,6 @@ public class LobbyBtnController : MonoBehaviour
     public void OnCreateBtnClick()
     {
         Debug.Log("Create Button Clicked - Switching to Host Mode");
-
-        // 씬 로드 후 호스트 시작 (개발용)
-        //SceneManager.LoadScene(TargetSceneName);
-        //SceneManager.sceneLoaded += (scene, mode) =>
-        //{
-        //    if (scene.name == TargetSceneName)
-        //    {
-        //        //
-        //        StartHost();
-        //    }
-        //};
 
         //relay 사용
         m_widgetController.CreateSessionClick();
@@ -134,38 +108,7 @@ public class LobbyBtnController : MonoBehaviour
     #endregion
 
     #region Methods
-    /// <summary>
-    /// 개발용 클라이언트 시작
-    /// </summary>
-    private void StartClient()
-    {
-        if (NetworkManager.Singleton != null)
-        {
-            NetworkManager.Singleton.StartClient();
-            Debug.Log("Client started successfully.");
-        }
-        else
-        {
-            Debug.LogError("NetworkManager is not set up in the scene.");
-        }
-    }
-
-    /// <summary>
-    /// 개발용 호스트 시작
-    /// </summary>
-    private void StartHost()
-    {
-        if (NetworkManager.Singleton != null)
-        {
-            NetworkManager.Singleton.StartHost();
-            Debug.Log("Host started successfully.");
-        }
-        else
-        {
-            Debug.LogError("NetworkManager is not set up in the scene.");
-        }
-    }
-
+ 
     float GetAnimationClipLength(Animator animator, string clipName)
     {
         if (animator == null) return 0f;
