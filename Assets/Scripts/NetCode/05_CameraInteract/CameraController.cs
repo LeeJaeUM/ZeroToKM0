@@ -79,7 +79,6 @@ public class CameraController : MonoBehaviour
     public void OnRightClick(InputValue value)
     {
         m_isRightClickHeld = value.isPressed; // 우클릭 여부 확인
-        Debug.Log($"우클릭함 {m_isRightClickHeld}");
 
     }
 

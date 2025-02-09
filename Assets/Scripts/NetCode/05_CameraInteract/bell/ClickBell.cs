@@ -12,6 +12,14 @@ public class ClickBell : MonoBehaviour
         }
     }
 
+    private void OnReady(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            GameManager.Instance.SetIconName();
+        }
+    }
+
     private void RingBells()
     {
         Ray ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());

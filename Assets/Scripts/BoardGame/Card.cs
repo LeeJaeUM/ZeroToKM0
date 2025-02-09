@@ -90,7 +90,7 @@ public class Card : NetworkBehaviour
             }
             else if (other.collider.CompareTag("Table"))
             {
-                print("table");
+               /// print("table");
                 m_isPlaced = true;  // 테이블 위에 놓였음을 표시
             }
         }

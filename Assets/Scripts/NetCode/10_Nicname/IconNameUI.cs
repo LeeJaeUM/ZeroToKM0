@@ -2,6 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using UnityEngine.InputSystem;
+using System;
 
 public class IconNameUI : NetworkBehaviour
 {
@@ -12,22 +14,35 @@ public class IconNameUI : NetworkBehaviour
     [SerializeField] Sprite[] m_SpritesIcon;
     #endregion
 
-
-    
-
     #region Public Methods and Operators
     public void SetUserInfo(ulong playerNum)
     {
-        Debug.Log(playerNum);
+        Debug.Log($"{playerNum} 이 닉네임 세팅을 함");
         FBManager._instance.UserInfoLoad(() =>
         {
             SetInGameUserInfo(FBManager._instance.m_name,
                         FBManager._instance.m_icon,
                         (int)playerNum);
         });
+
+        //테스트용
+        //int testInt = (int)NetworkManager.Singleton.LocalClientId;
+        //SetInGameUserInfo($"{testInt} : player", testInt, (int)playerNum);
     }
     #endregion
     private void SetInGameUserInfo(string userName, int icon, int playerNum)
+    {
+        if(IsServer)
+        {
+            OnClientSetInGameUserInfo(userName, icon, playerNum);
+            SetIconNameClientRpc(userName, icon, playerNum);
+        }
+        else if (IsClient && !IsHost)
+        {
+            RequestSetIconNameServerRpc(userName, icon, playerNum);
+        }
+    }
+    private void OnClientSetInGameUserInfo(string userName, int icon, int playerNum)
     {
         // 아이콘 & 테두리 변경
         if (m_userIcon != null) m_userIcon[playerNum].sprite = m_SpritesIcon[icon];
@@ -38,27 +53,48 @@ public class IconNameUI : NetworkBehaviour
             m_userName[playerNum].text = userName;
         }
     }
-
-    private void Start()
+    [ServerRpc(RequireOwnership = false)]
+    public void RequestSetIconNameServerRpc(string userName, int icon, int playerNum)
     {
-        if (IsServer)
-        {
-            NetworkManager.Singleton.OnClientConnectedCallback += SetUserInfo;
-        }
+        OnClientSetInGameUserInfo(userName, icon, playerNum);
+        Debug.Log("클라이언트에서 서버로 아이콘닉네임 설정 요청함");
+        SetIconNameClientRpc(userName, icon, playerNum);
     }
 
-    private void OnDestroy()
+    [ClientRpc]
+    public void SetIconNameClientRpc(string userName, int icon, int playerNum)
     {
-        if (IsOwner)
-        {
-            NetworkManager.Singleton.OnClientConnectedCallback -= SetUserInfo;
-        }
+        Debug.Log("서버에서 클라이언트로 아이콘닉네임 설정 요청함");
+        OnClientSetInGameUserInfo(userName, icon, playerNum);
+    }
+
+    private void OnReadyGame(InputAction.CallbackContext context)
+    {
+        Debug.Log("눌렸나?");
+        SetUserInfo(NetworkManager.Singleton.LocalClientId);
     }
 
     void Awake()
     {
         m_userIcon = GetComponentsInChildren<Image>();
         m_userName = GetComponentsInChildren<TextMeshProUGUI>();
-        SetUserInfo(0); //기본은 0으로 초기화
+    }
+
+    private void Start()
+    {
+        if (IsServer)
+        {
+            // NetworkManager.Singleton.OnClientConnectedCallback += SetUserInfo;
+        }
+    }
+
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        if (IsServer)
+        {
+            //NetworkManager.Singleton.OnClientConnectedCallback -= SetUserInfo;
+        }
     }
 }

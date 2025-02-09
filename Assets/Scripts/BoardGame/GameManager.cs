@@ -56,6 +56,11 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] GameResultController m_gameResultController;
 
+    /// <summary>
+    /// 아이콘 닉네임
+    /// </summary>
+    public IconNameUI m_iconNameUI;
+
     #region Public Methods and Operators
     public void SetBoardGame(BoardGameType type)        // 입력 받은 보드게임을 활성화해주는 함수
     {
@@ -193,6 +198,16 @@ public class GameManager : NetworkBehaviour
     {
         m_halligalli.OpenCard(playerNum, cardIndex);
     }
+
+    /// <summary>
+    /// 유저의 닉네임과 아이콘 표시 함수 m_iconNameUI사용
+    /// </summary>
+    public void SetIconName()
+    {
+        ulong playerNum = NetworkManager.Singleton.LocalClientId;
+        m_iconNameUI.SetUserInfo(playerNum);
+    }
+
     #endregion
 
     #region Coroutine Methods
