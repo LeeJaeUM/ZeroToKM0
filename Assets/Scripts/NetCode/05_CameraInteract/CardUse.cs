@@ -15,6 +15,8 @@ public class CardUse : MonoBehaviour
     private HalliGalliCard m_draggedHalliGalliCard;
     private int m_playerNum;        // player번호
 
+    private bool isTurnMode = true;
+
     private List<Card> m_scannedCards = new List<Card>(); // 드래그 중인 오브젝트들의 NetworkMove 컴포넌트들
     [SerializeField] private float m_dragRadius = 5f; // 드래그 가능한 범위
     private float m_cardSpacing = 0.1f;
@@ -60,7 +62,14 @@ public class CardUse : MonoBehaviour
         {
             bool isMyTurn = false;
             int playerNum = (int)NetworkManager.Singleton.LocalClientId;
-            isMyTurn = GameManager.Instance.IsMyTurn(playerNum);
+            if(isTurnMode)
+            {
+                isMyTurn = GameManager.Instance.IsMyTurn(playerNum);
+            }
+            else
+            {
+                isMyTurn = true;
+            }
             Debug.Log($"현재 플레이어 넘버 : {playerNum}, 내턴 인지? = {isMyTurn}");
             //isMyTurn = GameManager.Instance.IsMyTurn((int)NetworkManager.Singleton.LocalClientId);
             if (isMyTurn)
@@ -159,6 +168,19 @@ public class CardUse : MonoBehaviour
             return false;
         }
     }
+    private void OnChange(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            SetTurnMode();
+        }
+    }
+    public void SetTurnMode()
+    {
+        isTurnMode = !isTurnMode;
+    }
+
+
     private void Start()
     {
         m_camera = GetComponent<Camera>(); // 플레이어 카메라 초기화

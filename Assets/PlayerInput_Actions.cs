@@ -197,6 +197,15 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Change"",
+                    ""type"": ""Button"",
+                    ""id"": ""b614a473-10c4-4431-af1b-947611e61df5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -714,6 +723,17 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ready"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c280ce9c-299b-418d-bfb9-7797d14e84cb"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1320,6 +1340,7 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
         m_Player_MakeSshape = m_Player.FindAction("MakeSshape", throwIfNotFound: true);
         m_Player_MakeIdleshape = m_Player.FindAction("MakeIdleshape", throwIfNotFound: true);
         m_Player_Ready = m_Player.FindAction("Ready", throwIfNotFound: true);
+        m_Player_Change = m_Player.FindAction("Change", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1418,6 +1439,7 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MakeSshape;
     private readonly InputAction m_Player_MakeIdleshape;
     private readonly InputAction m_Player_Ready;
+    private readonly InputAction m_Player_Change;
     public struct PlayerActions
     {
         private @PlayerInput_Actions m_Wrapper;
@@ -1441,6 +1463,7 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
         public InputAction @MakeSshape => m_Wrapper.m_Player_MakeSshape;
         public InputAction @MakeIdleshape => m_Wrapper.m_Player_MakeIdleshape;
         public InputAction @Ready => m_Wrapper.m_Player_Ready;
+        public InputAction @Change => m_Wrapper.m_Player_Change;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1507,6 +1530,9 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
             @Ready.started += instance.OnReady;
             @Ready.performed += instance.OnReady;
             @Ready.canceled += instance.OnReady;
+            @Change.started += instance.OnChange;
+            @Change.performed += instance.OnChange;
+            @Change.canceled += instance.OnChange;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1568,6 +1594,9 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
             @Ready.started -= instance.OnReady;
             @Ready.performed -= instance.OnReady;
             @Ready.canceled -= instance.OnReady;
+            @Change.started -= instance.OnChange;
+            @Change.performed -= instance.OnChange;
+            @Change.canceled -= instance.OnChange;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1769,6 +1798,7 @@ public partial class @PlayerInput_Actions: IInputActionCollection2, IDisposable
         void OnMakeSshape(InputAction.CallbackContext context);
         void OnMakeIdleshape(InputAction.CallbackContext context);
         void OnReady(InputAction.CallbackContext context);
+        void OnChange(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
