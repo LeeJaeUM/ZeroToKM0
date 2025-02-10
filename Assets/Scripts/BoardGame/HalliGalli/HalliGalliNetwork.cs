@@ -178,11 +178,11 @@ public class HalliGalliNetwork : BoardGame
     {
         if (isUsePrivateMode)//턴 제한 있을 때 로직
         {
-            if (!IsOpenableCard(playerNum, cardIndex))
-            {
-                Debug.Log("내 카드가 아니면 카드를 오픈할 수 없음");
-                return;
-            }
+            //if (!IsOpenableCard(playerNum, cardIndex))
+            //{
+            //    Debug.Log("내 카드가 아니면 카드를 오픈할 수 없음");
+            //    return;
+            //}
         }
         if (IsServer)
         {

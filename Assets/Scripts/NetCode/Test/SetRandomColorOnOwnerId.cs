@@ -35,7 +35,7 @@ public class SetRandomColor : NetworkBehaviour
         // OwnerClientId is used here for debugging purposes. A live game should use a session manager to make sure
         // reconnecting players still get the same color, as client IDs could be reused for other clients between
         // disconnect and reconnect. See Boss Room for a session manager example.
-        UnityEngine.Random.InitState((int)OwnerClientId);
+        UnityEngine.Random.InitState((int)NetworkManager.Singleton.LocalClientId);
 
         //GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
         bodyRenderer.material.color = UnityEngine.Random.ColorHSV();

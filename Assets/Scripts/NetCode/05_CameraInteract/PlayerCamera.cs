@@ -6,12 +6,13 @@ public class PlayerCamera : NetworkBehaviour
 {
     public Camera m_playerCamera; // 네트워크로 제어되는 플레이어의 카메라
     private Camera m_localCamera; // 기존 로컬 카메라 (게임 시작 전에 있는 카메라)
+    public AudioListener m_audioListenr;
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
         if (!IsOwner)
         {
-            m_playerCamera.gameObject.SetActive(false);
+            NotMyCamera();
         }
     }
     private void Start()
@@ -41,8 +42,15 @@ public class PlayerCamera : NetworkBehaviour
             // 다른 클라이언트는 카메라 비활성화
             if (m_playerCamera != null)
             {
-                m_playerCamera.gameObject.SetActive(false); // 다른 클라이언트의 카메라 비활성화
+                NotMyCamera();
             }
         }
+    }
+
+    private void NotMyCamera()
+    {
+        //m_playerCamera.gameObject.SetActive(false); // 다른 클라이언트의 카메라 비활성화
+        m_audioListenr.enabled = false;
+        m_playerCamera.enabled = false;
     }
 }

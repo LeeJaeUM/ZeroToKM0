@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5314335690515645417}
   - component: {fileID: 9001038653003279686}
   - component: {fileID: 7662874986836431962}
-  - component: {fileID: 4664938231047232982}
+  - component: {fileID: 4436114990036155583}
   m_Layer: 2
   m_Name: MousePointerObj
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.29, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.13, z: 0.2}
+  m_LocalScale: {x: 0.16, y: 0.1, z: 0.16}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -113,7 +113,7 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &4664938231047232982
+--- !u!114 &4436114990036155583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,8 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5838454453398594562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d86af630f88fcc46bf26724a9644810, type: 3}
+  m_Script: {fileID: 11500000, guid: 81bec089d381e2e43aaa95febb8e6c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
   bodyRenderer: {fileID: 9001038653003279686}

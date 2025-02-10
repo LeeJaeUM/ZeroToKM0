@@ -513,8 +513,8 @@ Transform:
   m_Children:
   - {fileID: 5811951623896044322}
   - {fileID: 5502046590558162348}
-  - {fileID: 9023405865196979125}
   - {fileID: 4466798814675333925}
+  - {fileID: 9023405865196979125}
   - {fileID: 5953922358578642937}
   m_Father: {fileID: 6726494994537095752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3587226481
+  GlobalObjectIdHash: 3056021460
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -711,7 +711,8 @@ MonoBehaviour:
   m_shuffledIndexes: 
   m_animalCount: 0300000003000000030000000300000002000000
   m_roundCount: 1
-  isUseTurnMode: 0
+  isUsePrivateMode: 0
+  isOpenable: 0
 --- !u!1 &5188617942372239907
 GameObject:
   m_ObjectHideFlags: 0

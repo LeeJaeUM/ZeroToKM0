@@ -12,13 +12,6 @@ public class ClickBell : MonoBehaviour
         }
     }
 
-    private void OnReady(InputValue value)
-    {
-        if(value.isPressed)
-        {
-            GameManager.Instance.SetIconName();
-        }
-    }
 
     private void RingBells()
     {

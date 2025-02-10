@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class MousePositionSync : NetworkBehaviour
 {
     public GameObject m_markerPrefab;  // 마우스 위치에 표시할 게임 오브젝트 프리팹
-    private GameObject m_markerInstance; // 게임 오브젝트 인스턴스
+    [SerializeField]private GameObject m_markerInstance; // 게임 오브젝트 인스턴스
     private Camera m_playerCamera; // 플레이어 카메라
     public float m_distanceCameraToMarker = 5f; // 마커와 카메라 사이의 거리
     private float m_maxRayDistance = 20f; // Ray 길이 제한
@@ -16,6 +16,27 @@ public class MousePositionSync : NetworkBehaviour
     private float moveDuration = 0.2f; // 부드럽게 이동하는 데 걸리는 시간
     private Vector3 m_targetPosition = Vector3.zero; // 마커 위치
 
+
+    /// <summary>
+    /// 아이콘과 이름을 동기화하는 함수
+    /// </summary>
+    /// <param name="value"></param>
+    private void OnReady(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            GameManager.Instance.SetIconName();
+            SetUserColor setUserColor = m_markerInstance.GetComponent<SetUserColor>();
+            if (setUserColor != null)
+            {
+                setUserColor.SetColorBasedOnOwner();
+            }
+            else
+            {
+                Debug.LogWarning("없음 찾을수가없음");
+            }
+        }
+    }
     public void OnMouseMove(InputValue value)
     {
         if (IsOwner) // 자신의 클라이언트에서만 처리
@@ -146,18 +167,19 @@ public class MousePositionSync : NetworkBehaviour
         if(targetPosition != m_targetPosition)
         {
             m_targetPosition = targetPosition;
-            StartCoroutine(SmoothMoveToPosition(m_targetPosition));
+           // StartCoroutine(SmoothMoveToPosition(m_targetPosition));
         }
     }
+
+
+
     private void Start()
     {
         // 네트워크 소유자에 해당하는 클라이언트에서만 마커를 생성
-        //if (IsOwner)
-        //{
-        //    m_markerInstance = Instantiate(m_markerPrefab);
-        //    m_playerCamera = GetComponent<Camera>();
-        //}       
+        if (IsOwner)
+        {
             m_markerInstance = Instantiate(m_markerPrefab);
             m_playerCamera = GetComponent<Camera>();
+        }
     }
 }
