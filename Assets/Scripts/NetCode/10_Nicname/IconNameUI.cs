@@ -18,16 +18,16 @@ public class IconNameUI : NetworkBehaviour
     public void SetUserInfo(ulong playerNum)
     {
         Debug.Log($"{playerNum} 이 닉네임 세팅을 함");
-        //FBManager._instance.UserInfoLoad(() =>
-        //{
-        //    SetInGameUserInfo(FBManager._instance.m_name,
-        //                FBManager._instance.m_icon,
-        //                (int)playerNum);
-        //});
+        FBManager._instance.UserInfoLoad(() =>
+        {
+            SetInGameUserInfo(FBManager._instance.m_name,
+                        FBManager._instance.m_icon,
+                        (int)playerNum);
+        });
 
         //테스트용
-        int testInt = (int)NetworkManager.Singleton.LocalClientId;
-        SetInGameUserInfo($"{testInt} : player", testInt, (int)playerNum);
+        //int testInt = (int)NetworkManager.Singleton.LocalClientId;
+        //SetInGameUserInfo($"{testInt} : player", testInt, (int)playerNum);
     }
     #endregion
     private void SetInGameUserInfo(string userName, int icon, int playerNum)
@@ -57,14 +57,12 @@ public class IconNameUI : NetworkBehaviour
     public void RequestSetIconNameServerRpc(string userName, int icon, int playerNum)
     {
         OnClientSetInGameUserInfo(userName, icon, playerNum);
-        Debug.Log("클라이언트에서 서버로 아이콘닉네임 설정 요청함");
         SetIconNameClientRpc(userName, icon, playerNum);
     }
 
     [ClientRpc]
     public void SetIconNameClientRpc(string userName, int icon, int playerNum)
     {
-        Debug.Log("서버에서 클라이언트로 아이콘닉네임 설정 요청함");
         OnClientSetInGameUserInfo(userName, icon, playerNum);
     }
 
