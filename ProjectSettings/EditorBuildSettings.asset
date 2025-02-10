@@ -17,25 +17,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/04_OtherGames.unity
     guid: b15156008605fa947a162747f8499d09
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestNetCodeScene/08_Test_RelayLobby.unity
     guid: 798ce3ceec9e93e419702e8fad850586
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/04_OtherGames 1.unity
     guid: cd5f0f30f2b70e441ae1104202ab3ba2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestHalliGalliScene/05_TEST_NetworkHalliGalli (2).unity
     guid: a22c35abef9c8564d806993ff89336cc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestNetCodeScene/09_2_SceneLoad.unity
     guid: f0d628b13d2632b4e81e55233e17ddc2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestHalliGalliScene/05_TEST_NetworkHalliGalli.unity
     guid: 6a82d4c00dfef474092845d3d14a9405
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestNetCodeScene/11_Other.unity
     guid: c2b9005b0f0c0854fa6755a8964f6ce5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestNetCodeScene/05_Test_MouseMove.unity
     guid: 3fb27107fb9805f4791083b7aa9d0dba
   m_configObjects: {}

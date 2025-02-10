@@ -1,6 +1,5 @@
 using Unity.Netcode.Components;
 using Unity.Netcode;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class CardAnimation : NetworkBehaviour
