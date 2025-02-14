@@ -58,6 +58,8 @@ public class FBManager : MonoBehaviour
             }
         });
         user = FirebaseAuth.DefaultInstance.CurrentUser;
+        string aCu = Convert.ToString(user.UserId);
+        Debug.Log($"로그인 유저 {aCu}");
     }
 
     public void OnClickEmailSignInButton()       // 이메일 로그인
@@ -85,6 +87,7 @@ public class FBManager : MonoBehaviour
 
             if (task.IsCompleted)
             {
+                user = FirebaseAuth.DefaultInstance.CurrentUser;
                 Debug.Log("Task가 성공적으로 완료되었습니다.");
                 SceneManager.LoadScene(LobbyScene);
             }
@@ -118,7 +121,7 @@ public class FBManager : MonoBehaviour
             }
         });
     }
-    public void SvaeUserInfo()      // 회원가입시 파이어베이스에 유저데이터 정보저장
+    public void SvaeUserName()      // 회원가입시 파이어베이스에 유저데이터 정보저장
     {
         if (user == null)
         {
@@ -139,7 +142,8 @@ public class FBManager : MonoBehaviour
                 if (task.IsCompleted)
                 {
                     Debug.Log("유저정보 저장 성공 "+ name);
-                    SceneManager.LoadScene(LobbyScene);
+                    nameWindow.SetActive(false);
+                    //SceneManager.LoadScene(LobbyScene);
                 }
                 else
                 {
@@ -155,7 +159,8 @@ public class FBManager : MonoBehaviour
                 if (task.IsCompleted)
                 {
                     Debug.Log("유저정보 저장 성공 "+ nameField.text);
-                    SceneManager.LoadScene(LobbyScene);
+                    nameWindow.SetActive(false);
+                    //SceneManager.LoadScene(LobbyScene);
                 }
                 else
                 {
@@ -288,5 +293,19 @@ public class FBManager : MonoBehaviour
                 Debug.LogError("데이터 셋팅 실패 : " + task.Exception);
             }
         });
+    }
+
+    public void TestCurrentUser()
+    {
+        if (user == null)
+        {
+            Debug.LogError("로그인된 사용자가 없습니다!");
+        }
+        else
+        {
+            string cu = Convert.ToString(user.UserId);
+            Debug.Log($"현재 로그인한 유저 {cu}");
+        }
+
     }
 }
