@@ -204,6 +204,8 @@ public class MousePositionSync : NetworkBehaviour
     {
         if (value.isPressed)
         {
+            int playerNum = (int)NetworkManager.Singleton.LocalClientId;
+            GameManager.Instance.SetUserNickName(playerNum);
             GameManager.Instance.SetIconName();
 
             Debug.LogWarning("색깔 지정 할려고함");

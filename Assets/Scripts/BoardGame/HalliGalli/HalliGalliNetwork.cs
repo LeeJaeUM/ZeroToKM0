@@ -208,8 +208,8 @@ public class HalliGalliNetwork : BoardGame
         // 1. 정답이 맞을 때
         if (IsCorrect())
         {
-            print("Round" + m_roundCount++ + " Winner : Player" + (playernum + 1));
-            m_gameManager.RoundWinMessage(playernum + 1);
+            print("Round" + m_roundCount++ + " Winner : Player" + (playernum));
+            m_gameManager.RoundWinMessage(playernum);
             FlipOpenedCards();  // 뒤집혀있는 OpenedCard들을 전부 다시 뒤집어줌
             GiveCard(playernum);
             RoundFinish();

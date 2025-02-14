@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float m_moveSpeed = 5f;       // 카메라 이동 속도
-    public float m_rotationSpeed = 200f; // 카메라 회전 속도
+    private float m_moveSpeed = 24f;       // 카메라 이동 속도
+    private float m_rotationSpeed = 70f; // 카메라 회전 속도
 
     private Vector2 m_moveInput;        // 이동 입력 값
     private Vector2 m_lookInput;        // 회전 입력 값
@@ -23,22 +23,18 @@ public class CameraController : MonoBehaviour
         if (m_isMoveClickHeld)
         {
             // 카메라가 바라보는 방향을 기준으로 이동
-            Vector3 forward = transform.forward; // 카메라의 앞 방향
-            Vector3 right = transform.right;     // 카메라의 오른쪽 방향
-
-            // 상하 이동은 y값을 0으로 고정하여 수평 이동만 처리
-            //forward.y = 0f;
-            //right.y = 0f;
+            Vector3 forward = transform.forward;
+            Vector3 right = transform.right;
 
             forward.Normalize();
             right.Normalize();
 
-            // 카메라가 바라보는 방향으로 이동 처리
+            //카메라의 앞 방향을 기준으로 설정
             Vector3 moveDirection = (forward * m_moveInput.y + right * m_moveInput.x);
 
-            // SmoothDamp를 사용해 부드러운 이동 처리
+            // Lerp를 사용하여 일정한 속도로 이동
             Vector3 targetPosition = transform.position + moveDirection * m_moveSpeed * Time.deltaTime;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref m_currentVelocity, 0.02f); // 마지막 값(0.1f)은 감속 시간
+            transform.position = Vector3.Lerp(transform.position, targetPosition, 0.8f);  // 0.1f는 이동 비율
         }
     }
 

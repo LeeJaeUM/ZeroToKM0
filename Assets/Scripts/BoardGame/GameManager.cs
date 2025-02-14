@@ -51,8 +51,9 @@ public class GameManager : NetworkBehaviour
 
     // 할리갈리 topcard 정보 체크용
     // 이미지 구해지면 지우기
-    public RoundWinner m_roundWinner;
-    public FinalWinner m_finalWinner;
+    public WinMessage m_winMessage;
+
+
 
     [SerializeField] GameResultController m_gameResultController;
 
@@ -60,6 +61,8 @@ public class GameManager : NetworkBehaviour
     /// 아이콘 닉네임
     /// </summary>
     public IconNameUI m_iconNameUI;
+
+    public bool isTest = false;
 
     #region Public Methods and Operators
     public void SetBoardGame(BoardGameType type)        // 입력 받은 보드게임을 활성화해주는 함수
@@ -184,14 +187,25 @@ public class GameManager : NetworkBehaviour
 
     public void RoundWinMessage(int winner)
     {
-        StartCoroutine("CoRoundWinMessage");
-        m_roundWinner.SetText(winner);
+        m_winMessage.SetRoundWinText(winner);
+        RoundWinMessageClientRpc(winner);
     }
     public void FinalWinMessage()
     {
         int winner = m_turnManager.GetCurruntTurnPlayerNum();
-        StartCoroutine("CoFinalWinMessage");
-        m_finalWinner.SetText(winner + 1);
+        m_winMessage.SetFinalWinText(winner);
+        FinalWinMessageClientRpc(winner);
+    }
+
+    [ClientRpc]
+    private void RoundWinMessageClientRpc(int winner)
+    {
+        m_winMessage.SetRoundWinText(winner);
+    }
+    [ClientRpc]
+    private void FinalWinMessageClientRpc(int winner)
+    {
+        m_winMessage.SetFinalWinText(winner);
     }
 
     public void OpenCard(int playerNum, int cardIndex)
@@ -208,22 +222,61 @@ public class GameManager : NetworkBehaviour
         m_iconNameUI.SetUserInfo(playerNum);
     }
 
+    public void SetUserNickName(int playerNum)
+    {
+        if (isTest) 
+        { 
+            
+        }
+        else
+        {
+            if (IsServer)
+            {
+                FBManager._instance.UserInfoLoad(() =>
+                {
+                    string userName = FBManager._instance.m_name;
+                    FBSetUserNickName(userName, playerNum);
+                    SetUserNickNameClientRpc(userName, playerNum);
+                });
+            }
+            else if (IsClient && !IsHost)
+            {
+                //클라이언트에서 자기 자신의 닉네임을 전달
+                FBManager._instance.UserInfoLoad(() =>
+                {
+                    string userName = FBManager._instance.m_name;
+                    RequestSetUserNickNameServerRpc(userName, playerNum);
+                });
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// 전광판에 보일 유저 닉네임 설정함수
+    /// </summary>
+    /// <param name="nickname"></param>
+    /// <param name="playerNum"></param>
+    private void FBSetUserNickName(string nickname, int playerNum)
+    {
+        m_winMessage.SetName(nickname, playerNum);
+    }
+
+    [ServerRpc]
+    public void RequestSetUserNickNameServerRpc(string nickname, int playerNum)
+    {
+        FBSetUserNickName(nickname, playerNum); //서버에서 실행
+        SetUserNickNameClientRpc(nickname, playerNum);
+    }
+
+    [ClientRpc]
+    public void SetUserNickNameClientRpc(string nickname, int playerNum)
+    {
+        FBSetUserNickName(nickname, playerNum);
+    }
     #endregion
 
-    #region Coroutine Methods
-    IEnumerator CoRoundWinMessage()
-    {
-        m_roundWinner.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        m_roundWinner.gameObject.SetActive(false);
-    }
-    IEnumerator CoFinalWinMessage()
-    {
-        m_finalWinner.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        m_finalWinner.gameObject.SetActive(false);
-    }
-    #endregion
+
 
     private void Start()
     {

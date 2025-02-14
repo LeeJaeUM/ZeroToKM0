@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2041051654
+  GlobalObjectIdHash: 2327524985
   InScenePlacedSourceGlobalObjectIdHash: 2041051654
   DeferredDespawnTick: 0
   Ownership: 1
@@ -533,7 +533,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1762840880, guid: 0357c37707ee91c468fded36544c5484, type: 3}
+  m_Sprite: {fileID: -1810560813, guid: ff98adac79a9d834dbca1088580e2e5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

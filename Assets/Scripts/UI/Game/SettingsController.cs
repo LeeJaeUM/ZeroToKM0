@@ -7,15 +7,21 @@ public class SettingsController : MonoBehaviour
 {
     [SerializeField] SliderManager m_bgmVolumeSlider;     // 전체 볼륨 슬라이더
     [SerializeField] SliderManager m_sfxVolumeSlider;   // 효과음 볼륨 슬라이더
+    [SerializeField] SliderManager m_moveSpeedSlider;     // 전체 볼륨 슬라이더
+    [SerializeField] SliderManager m_rotateSpeedSlider;   // 효과음 볼륨 슬라이더
 
     // 임시로 값을 저장하는 변수
     float m_tempFullVolume;
-    float m_tempEffectVolume;
+    float m_tempEffectVolume;   
+    float m_tempMoveSpeed;
+    float m_tempRotateSpeed;
 
 
     // 저장된 설정 값 (PlayerPrefs 키)
     const string BGM_VOLUME_KEY = "BGMVolume";
-    const string SFX_VOLUME_KEY = "SFXVolume";
+    const string SFX_VOLUME_KEY = "SFXVolume";    
+    const string MOVESPEED_KEY= "MoveSpeed";
+    const string ROTATESPEED_KEY= "RotateSpeed";
 
     public void OnSaveSettings()
     {

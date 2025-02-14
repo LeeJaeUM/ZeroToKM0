@@ -17,17 +17,23 @@ public class IconNameUI : NetworkBehaviour
     #region Public Methods and Operators
     public void SetUserInfo(ulong playerNum)
     {
-        Debug.Log($"{playerNum} 이 닉네임 세팅을 함");
-        FBManager._instance.UserInfoLoad(() =>
+        if(GameManager.Instance.isTest)
         {
-            SetInGameUserInfo(FBManager._instance.m_name,
-                        FBManager._instance.m_icon,
-                        (int)playerNum);
-        });
+            //테스트용
+            int testInt = (int)NetworkManager.Singleton.LocalClientId;
+            SetInGameUserInfo($"{testInt} : player", testInt, (int)playerNum);
+        }
+        else
+        {
+            Debug.Log($"{playerNum} 이 닉네임 세팅을 함");
+            FBManager._instance.UserInfoLoad(() =>
+            {
+                SetInGameUserInfo(FBManager._instance.m_name,
+                            FBManager._instance.m_icon,
+                            (int)playerNum);
+            });
+        }
 
-        //테스트용
-        //int testInt = (int)NetworkManager.Singleton.LocalClientId;
-        //SetInGameUserInfo($"{testInt} : player", testInt, (int)playerNum);
     }
     #endregion
     private void SetInGameUserInfo(string userName, int icon, int playerNum)
