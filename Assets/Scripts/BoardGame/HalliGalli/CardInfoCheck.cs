@@ -44,12 +44,12 @@ public class CardInfoCheck : NetworkBehaviour
 
     private void Start()
     {
-        GameManager.Instance.m_halligalli.OnTopCardChanged += UpdateText;
+      //  GameManager.Instance.m_halligalli.OnTopCardChanged += UpdateText;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.m_halligalli.OnTopCardChanged -= UpdateText;
+      //  GameManager.Instance.m_halligalli.OnTopCardChanged -= UpdateText;
     }
 
 }

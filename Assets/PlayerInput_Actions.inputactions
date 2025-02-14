@@ -620,7 +620,7 @@
                     "name": "",
                     "id": "427ecae4-dfc1-48a5-af04-c70e1d9ebd34",
                     "path": "<Keyboard>/f",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Flip",

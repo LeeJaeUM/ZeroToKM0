@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using Unity.Netcode;
 using NUnit.Framework;
+using Unity.VisualScripting;
 
 public class HalliGalliNetwork : BoardGame
 {
@@ -12,6 +13,7 @@ public class HalliGalliNetwork : BoardGame
     public List<HalliGalliCard>[] m_playerCard;      // 플레이어 각각의 카드
     public HalliGalliCard[] m_topCards;        // 각 플레이어의 오픈된 가장 윗 카드
     public List<HalliGalliCard> m_openedCard;         // 오픈된 카드
+   // public List<List<HalliGalliCard>> m_arOpenedCards = new();         // 오픈된 카드
 
     public int[] m_playerCardCount;         // 각 플레이어의 카드 개수
     public float m_cardHeight;              // 카드의 높이
@@ -28,7 +30,9 @@ public class HalliGalliNetwork : BoardGame
     public bool isOpenable = false;
 
     // 길이 변경 이벤트
-    public event Action<string, int> OnTopCardChanged;
+    //public event Action<string, int> OnTopCardChanged;
+    // OnTopCardChanged 이벤트 호출 : 텍스트 확인용 액션 - 할리갈리 개발 완료 시 삭제예정
+    //OnTopCardChanged?.Invoke(m_topCards[playerNum].m_AnimalType.ToString() + m_topCards[playerNum].m_fruitNum, playerNum);
 
     public void ServerGameSetting()                                                       // 게임 시작 전 실행
     {
@@ -186,20 +190,7 @@ public class HalliGalliNetwork : BoardGame
         }
         if (IsServer)
         {
-            HalliGalliCard findcard = null;
-            foreach (HalliGalliCard _card in m_card)
-            {
-                if (_card.m_CardIndex == cardIndex)
-                    findcard = _card;
-            }
-            if (findcard != null)
-            {
-                m_topCards[playerNum] = findcard;                        // 그 카드를 m_topCard에 추가
-                m_openedCard.Add(findcard);                             // m_openedCard에 추가
-
-                // OnTopCardChanged 이벤트 호출 : 텍스트 확인용 액션 - 할리갈리 개발 완료 시 삭제예정
-                OnTopCardChanged?.Invoke(m_topCards[playerNum].m_AnimalType.ToString() + m_topCards[playerNum].m_fruitNum, playerNum);
-            }
+            OpenCardOnServer(playerNum, cardIndex);
         }
         else if (!IsHost&&IsClient)
         {
@@ -270,11 +261,28 @@ public class HalliGalliNetwork : BoardGame
     {
         for (int i = 0; i < m_openedCard.Count; i++)
         {
+            Debug.Log($"{m_openedCard[i].gameObject.name} 이 카드가 승자인 {playerNum} 번 에게넘어감");
             m_playerCard[playerNum].Add(m_openedCard[i]);
         }
         m_openedCard.Clear();
         m_topCards = null;
         m_topCards = new HalliGalliCard[m_gameManager.GetPlayerCount()];
+
+
+
+
+
+        //debug용
+        for(int i=0; i < GameManager.Instance.GetPlayerCount(); i++)
+        {
+            int count = 0;
+            foreach(HalliGalliCard card in m_playerCard[i])
+            {
+                count++;
+            }
+            Debug.Log($"{i} 번 플레이어 카드개수 = {count}");
+            count = 0;
+        }
     }
     public void RoundFinish()                               // 탈락자를 제거하고, 새 라운드를 시작하는 함수.
                                                             // 종을 쳐서 정답일 경우 호출됨.
@@ -295,13 +303,8 @@ public class HalliGalliNetwork : BoardGame
         else
         {
             print(m_gameManager.GetPlayerCount());
-            //Array.Clear(m_topCard, 0, m_topCard.Length);    // topcard초기화
             print("new round");
             Dealcard();
-            for (int i = 0; i < m_gameManager.GetPlayerCount(); i++)    // topcard초기화 후 CardInfoCheck에 초기화 된 string값을 액션으로 보냄 
-            {
-                OnTopCardChanged?.Invoke(" 라운드 초기화 ", i);
-            }
         }
     }
     public void GameOver()                                  // 게임 종료
@@ -361,13 +364,7 @@ public class HalliGalliNetwork : BoardGame
         {
             m_topCards[playerNum] = findcard;                        // 그 카드를 m_topCard에 추가
             m_openedCard.Add(findcard);                             // m_openedCard에 추가
-
-            // OnTopCardChanged 이벤트 호출 : 텍스트 확인용 액션 - 할리갈리 개발 완료 시 삭제예정
-            OnTopCardChanged?.Invoke(m_topCards[playerNum].m_AnimalType.ToString() + m_topCards[playerNum].m_fruitNum, playerNum);
-        }
-        else
-        {
-            Debug.Log("클라이언트에서 OpenCArd했는데 못찾음");
+            m_playerCard[playerNum].Remove(findcard);
         }
     }
 

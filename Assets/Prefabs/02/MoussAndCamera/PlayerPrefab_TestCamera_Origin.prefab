@@ -264,6 +264,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_playerCamera: {fileID: 530245754898197131}
   m_audioListenr: {fileID: 5690650839207566990}
+  m_playerInput: {fileID: 7725535021732815981}
 --- !u!114 &9166110698299467341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,3 +349,4 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_markerPrefab: {fileID: 5838454453398594562, guid: 2019528689600f546bd5af73afc826a1, type: 3}
   m_distanceCameraToMarker: 5
+  m_createCount: 0
