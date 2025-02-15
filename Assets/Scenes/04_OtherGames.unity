@@ -2960,6 +2960,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -27.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2227076940047610513, guid: 28b7f05cc6c21c44d97ab338171b7c54, type: 3}
+      propertyPath: m_text
+      value: Leave Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 2227076940047610513, guid: 28b7f05cc6c21c44d97ab338171b7c54, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
+    - target: {fileID: 2227076940047610513, guid: 28b7f05cc6c21c44d97ab338171b7c54, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 21261991626553910, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
+    - target: {fileID: 2227076940047610513, guid: 28b7f05cc6c21c44d97ab338171b7c54, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2411685505960235042, guid: 28b7f05cc6c21c44d97ab338171b7c54, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
