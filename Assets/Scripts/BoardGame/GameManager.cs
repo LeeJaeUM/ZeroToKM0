@@ -3,6 +3,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Collections.Generic;
 using static GameManager;
+using System;
 
 
 public class GameManager : NetworkBehaviour
@@ -53,6 +54,7 @@ public class GameManager : NetworkBehaviour
     // 이미지 구해지면 지우기
     public WinMessage m_winMessage;
 
+    public Action m_onGameEnd;
 
 
     [SerializeField] GameResultController m_gameResultController;
