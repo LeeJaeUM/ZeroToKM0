@@ -92,7 +92,7 @@ public class FBManager : MonoBehaviour
                 Debug.Log("Task가 성공적으로 완료되었습니다.");
                 NameLoad(() =>
                 {
-                    nameWindow.SetActive(true);
+                    Debug.Log("닉네임확인");
                 });
             }
         });
@@ -324,6 +324,7 @@ public class FBManager : MonoBehaviour
                 {
                     object name = snapshot.Child("Name").Value;
                     m_name = Convert.ToString(name);
+                    SceneManager.LoadScene(LobbyScene);
                 }
                 else
                 {

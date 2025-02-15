@@ -226,6 +226,7 @@ public class GameManager : NetworkBehaviour
 
     public void SetUserNickName(int playerNum)
     {
+        ///if (isTest) 
         if (isTest) 
         { 
             
@@ -278,6 +279,7 @@ public class GameManager : NetworkBehaviour
     }
     #endregion
 
+ 
 
 
     private void Start()
