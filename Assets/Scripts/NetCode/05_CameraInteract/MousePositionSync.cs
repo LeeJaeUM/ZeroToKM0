@@ -209,18 +209,16 @@ public class MousePositionSync : NetworkBehaviour
             GameManager.Instance.SetIconName();
 
             Debug.LogWarning("색깔 지정 할려고함");
-            //SetUserColor setUserColor = m_markerInstance.GetComponent<SetUserColor>();
-            //if (setUserColor != null)
-            //{
-            //Debug.LogWarning("색깔 지정 함수 실행함");
-            //    setUserColor.SetColorBasedOnOwner();
-            //}
-            //else
-            //{
-            //    Debug.LogWarning("없음 찾을수가없음");
-            //}
-            if(IsServer)
-                GameManager.Instance.m_onGameEnd?.Invoke();
+            SetUserColor setUserColor = m_markerInstance.GetComponent<SetUserColor>();
+            if (setUserColor != null)
+            {
+                Debug.LogWarning("색깔 지정 함수 실행함");
+                setUserColor.SetColorBasedOnOwner();
+            }
+            else
+            {
+                Debug.LogWarning("없음 찾을수가없음");
+            }
         }
     }
     private void Update()

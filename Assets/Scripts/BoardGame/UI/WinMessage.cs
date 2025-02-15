@@ -7,7 +7,7 @@ public class WinMessage : MonoBehaviour
     public Text[] m_text;
     public Image[] m_image;
     [SerializeField]
-    private readonly string[] playerNames = { "hyeon", "moonasd13", "yunjae999", "JaeUM" };
+    private readonly string[] playerNames = { "Amadeus", "hyeon", "yunjae999", "asd111" };
     public void SetRoundWinText(int winner)
     {
         m_text[0].text = $"Round Winner : {playerNames[winner]}";
