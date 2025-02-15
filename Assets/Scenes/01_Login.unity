@@ -15692,7 +15692,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 611384094}
         m_TargetAssemblyTypeName: FBManager, Assembly-CSharp
-        m_MethodName: SvaeUserInfo
+        m_MethodName: SvaeUserName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

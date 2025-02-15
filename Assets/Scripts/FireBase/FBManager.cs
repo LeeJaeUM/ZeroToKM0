@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 using System.Threading.Tasks;
 using System;
+using Unity.VisualScripting.FullSerializer;
 
 public class FBManager : MonoBehaviour
 {
@@ -89,7 +90,10 @@ public class FBManager : MonoBehaviour
             {
                 user = FirebaseAuth.DefaultInstance.CurrentUser;
                 Debug.Log("Task가 성공적으로 완료되었습니다.");
-                SceneManager.LoadScene(LobbyScene);
+                NameLoad(() =>
+                {
+                    nameWindow.SetActive(true);
+                });
             }
         });
     }
@@ -116,12 +120,12 @@ public class FBManager : MonoBehaviour
             {
                 Debug.Log("회원가입 성공");
                 signUpWindow.SetActive(false);
-                nameWindow.SetActive(true);
+                //nameWindow.SetActive(true);
                 return;
             }
         });
     }
-    public void SvaeUserName()      // 회원가입시 파이어베이스에 유저데이터 정보저장
+    public void SvaeUserName()      // 회원가입시 파이어베이스에 유저닉네임데이터 정보저장
     {
         if (user == null)
         {
@@ -142,8 +146,8 @@ public class FBManager : MonoBehaviour
                 if (task.IsCompleted)
                 {
                     Debug.Log("유저정보 저장 성공 "+ name);
-                    nameWindow.SetActive(false);
-                    //SceneManager.LoadScene(LobbyScene);
+                    //nameWindow.SetActive(false);
+                    SceneManager.LoadScene(LobbyScene);
                 }
                 else
                 {
@@ -159,8 +163,8 @@ public class FBManager : MonoBehaviour
                 if (task.IsCompleted)
                 {
                     Debug.Log("유저정보 저장 성공 "+ nameField.text);
-                    nameWindow.SetActive(false);
-                    //SceneManager.LoadScene(LobbyScene);
+                    //nameWindow.SetActive(false);
+                    SceneManager.LoadScene(LobbyScene);
                 }
                 else
                 {
@@ -307,5 +311,31 @@ public class FBManager : MonoBehaviour
             Debug.Log($"현재 로그인한 유저 {cu}");
         }
 
+    }
+    void NameLoad(Action callback = null)
+    {
+        dbReference.Child("Users").Child(user.UserId).GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            Debug.Log("데이타베이스 접근");
+            if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                if (snapshot.Child("Name").Exists)
+                {
+                    object name = snapshot.Child("Name").Value;
+                    m_name = Convert.ToString(name);
+                }
+                else
+                {
+                    nameWindow.SetActive(true);
+                }
+
+                callback?.Invoke();
+            }
+            else
+            {
+                Debug.LogError("데이터 불러오기 실패");
+            }
+        });
     }
 }
