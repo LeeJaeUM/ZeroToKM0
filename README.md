@@ -15,3 +15,5 @@
 - Netcode for GameObjects (NGO)
 - Unity Multiplayer Services (Relay & Lobby)
 - Firebase Authentication & Firestore
+
+설명영상 : https://youtu.be/cuJPEWlaST0
